@@ -1,14 +1,9 @@
 <odoo>
     <data>
-        <!--
-            Partner
-        -->
-        <function  id="res_partner_type_set"
-                   model="ir.values" name="set_default"
-                   eval="('res.partner', 'company_type', 'company')"/>
 
-        <record id="view_partner2_select" model="ir.ui.view">
-            <field name="name">view.partner.select2</field>
+        <!-- PARTNER -->
+        <record id="partner_ec_select_view" model="ir.ui.view">
+            <field name="name">view.partner.select</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_res_partner_filter"/>
             <field name="arch" type="xml">
@@ -19,8 +14,8 @@
             </field>
         </record>
 
-        <record id="view_partner2_tree" model="ir.ui.view">
-            <field name="name">view.partner.tree2</field>
+        <record id="partner_ec_tree_view" model="ir.ui.view">
+            <field name="name">view.partner.tree</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_tree"/>
             <field name="arch" type="xml">
@@ -30,36 +25,38 @@
             </field>
         </record>
 
-        <record id="view_res_partner_cedruc_form" model="ir.ui.view">
-            <field name="name">res.partner.cedruc.form</field>
+        <record id="partner_ec_form_view" model="ir.ui.view">
+            <field name="name">res.partner.id.form</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="attributes">
-                    <attribute name="placeholder">Razón Social</attribute>
-                </xpath>
-                <xpath expr="//field[@name='parent_id']" position="after">
-                    <div>
-                        <field name="type_identifier" placeholder="Tipo de Identificador" class="oe_inline"/>
-                        <field name="identifier" required="1" placeholder="Cédula / RUC" class="oe_inline"/>
-                    </div>
-                    <field name="tipo_persona" placeholder="Tipo de Persona"/>
-                    <newline/>
+                <field name='parent_id' position="before">
+                    <field name="type_id" placeholder="Tipo de Identificador" class="oe_inline"/>
+                    <field name="identifier" required="1" class="oe_inline"/>
+                </field>
+                <xpath expr="//field[@name='vat']" position="replace">
+                    <field name="type_person" placeholder="Tipo de Persona"/>
                 </xpath>
             </field>
         </record>
 
-        <!-- Compania -->
-
-        <record id="view_res_company_ec_form" model="ir.ui.view">
-            <field name="name">account.res.company.ec.form</field>
+        <!-- COMPANY -->
+        <record id="res_company_ec_form_view" model="ir.ui.view">
+            <field name="name">res.company.ec.form</field>
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                      <attribute name="placeholder">Razón Social</attribute>
+                </xpath>
                 <field name="partner_id" position="after">
+                    <field name="namerl"/>
                     <field name="accountant_id"/>
                     <field name="sri_id"/>
                     <field name="cedula_rl"/>
+                    <field name="forced2keepAccounting"/>
+                    <field name="artesano"/>
+                    <field name="numart" attrs="{'invisible':[('artesano','=',False)]}"/>
                 </field>
             </field>
         </record>

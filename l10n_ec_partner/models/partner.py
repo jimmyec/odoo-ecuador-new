@@ -29,8 +29,8 @@ class ResPartner(models.Model):
         sql_index = """
         CREATE UNIQUE INDEX IF NOT EXISTS
         unique_company_partner_identifier_type on res_partner
-        (company_id, type_identifier, identifier)
-        WHERE type_identifier <> 'pasaporte'"""
+        (company_id, type_id, identifier)
+        WHERE type_id <> 'pasaporte'"""
         self._cr.execute(sql_index)
 
     @api.multi
@@ -38,10 +38,11 @@ class ResPartner(models.Model):
     def name_get(self):
         data = []
         for partner in self:
-            display_val = u'{0} {1}'.format(
-                partner.identifier or '*',
-                partner.name
-            )
+            display_val = partner.name
+            #display_val = u'{0} {1}'.format(
+            #    partner.identifier or '*',
+            #    partner.name
+            #)
             data.append((partner.id, display_val))
         return data
 
@@ -61,9 +62,9 @@ class ResPartner(models.Model):
     @api.constrains('identifier')
     def _check_identifier(self):
         res = False
-        if self.type_identifier == 'cedula':
+        if self.type_id == 'cedula':
             res = ec.ci.is_valid(self.identifier)
-        elif self.type_identifier == 'ruc':
+        elif self.type_id == 'ruc':
             res = ec.ruc.is_valid(self.identifier)
         else:
             return True
@@ -72,42 +73,36 @@ class ResPartner(models.Model):
 
     @api.one
     @api.depends('identifier')
-    def _compute_tipo_persona(self):
+    def _compute_type_person(self):
         if not self.identifier:
-            self.tipo_persona = '0'
+            self.type_person = 'Otro'
         elif int(self.identifier[2]) <= 6:
-            self.tipo_persona = '6'
+            self.type_person = 'Natural'
         elif int(self.identifier[2]) in [6, 9]:
-            self.tipo_persona = '9'
+            self.type_person = 'Juridica'
         else:
-            self.tipo_persona = '0'
+            self.type_person = 'Otro'
 
     identifier = fields.Char(
-        'Cedula/ RUC',
-        size=13,
-        required=True,
-        help='Identificación o Registro Unico de Contribuyentes')
-    type_identifier = fields.Selection(
-        [
-            ('cedula', 'CEDULA'),
-            ('ruc', 'RUC'),
-            ('pasaporte', 'PASAPORTE')
+            string='Identificación',
+            required=True,
+            size=13,
+            help='Cédula de Identidad, RUC o Pasaporte'
+    )
+    type_id = fields.Selection(
+            string="Documento Id", required=True,
+            selection=[
+                ('cedula', 'CEDULA'),
+                ('ruc', 'RUC'),
+                ('pasaporte', 'PASAPORTE')
             ],
-        'Tipo ID',
-        required=True,
-        default='pasaporte'
+            default='pasaporte'
     )
-    tipo_persona = fields.Selection(
-        compute='_compute_tipo_persona',
-        selection=[
-            ('6', 'Persona Natural'),
-            ('9', 'Persona Juridica'),
-            ('0', 'Otro')
-        ],
-        string='Persona',
-        store=True
+    type_person = fields.Char(
+            string='Persona',
+            compute='_compute_type_person'
     )
-    is_company = fields.Boolean(default=True)
+#    is_company = fields.Boolean(default=True)
 
     def validate_from_sri(self):
         """
@@ -120,6 +115,14 @@ class ResPartner(models.Model):
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
+    namerl = fields.Char(string="Representante Legal", help="Apellidos y Nombres",
+            required=True)
+
+    # New fields to the res.company model
     accountant_id = fields.Many2one('res.partner', 'Contador')
-    sri_id = fields.Many2one('res.partner', 'Servicio de Rentas Internas')
-    cedula_rl = fields.Char('Cédula Representante Legal', size=10)
+    sri_id = fields.Many2one('res.partner', 'SRI')
+    cedula_rl = fields.Char('Cédula Rep. Legal', size=10)
+    forced2keepAccounting = fields.Boolean(string="Obligado a llevar contabilidad",
+            default=False)
+    artesano = fields.Boolean(string="Calificación Artesanal", default=False)
+    numart = fields.Char(string="Número")
