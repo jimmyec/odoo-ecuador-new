@@ -5,19 +5,25 @@
 {
     'name': 'Establecimientos y autorizaciones del SRI',
     'version': '10.0.0.0.0',
+    'description': """
+        Funcionalidad para controlar establecimientos propios y de partners
+    """,
+    'summary': """
+        Este módulo es parte de la localización ecuatoriana. Agrega la funcionalidad para controlar los establecimientos
+        de partners y de la compañia.
+    """,
     'author': 'Cristian Salamea',
-    'category': 'Localization',
-    'complexity': 'normal',
-    'license': 'AGPL-3',
     'website': 'http://www.ayni.com.ec',
+    'license': 'AGPL-3',
+    'category': 'Localization',
+    'depends': [
+  	    'l10n_ec_partner',
+        'account'
+    ],
     'data': [
         'view/authorisation_view.xml',
         'data/account.ats.doc.csv',
         'data/account.ats.sustento.csv',
         'security/ir.model.access.csv'
     ],
-    'depends': [
-        'l10n_ec_partner',
-        'account'
-    ]
 }

@@ -73,7 +73,7 @@ class AccountAuthorisation(models.Model):
         return self._context.get('type', 'in_invoice')  # pylint: disable=E1101
 
     def _get_in_type(self):
-        return self._context.get('in_type', 'externo')
+        return self._context.get('in_type', 'external')
 
     def _get_partner(self):
         partner = self.env.user.company_id.partner_id
@@ -117,13 +117,20 @@ class AccountAuthorisation(models.Model):
             )
         return super(AccountAuthorisation, self).unlink()
 
-    name = fields.Char('Num. de Autorización', size=128)
-    serie_entidad = fields.Char('Serie Entidad', size=3, required=True)
-    serie_emision = fields.Char('Serie Emision', size=3, required=True)
-    num_start = fields.Integer('Desde')
-    num_end = fields.Integer('Hasta')
-    is_electronic = fields.Boolean('Documento Electrónico ?')
-    expiration_date = fields.Date('Fecha de Vencimiento')
+    @api.onchange('is_electronic')
+    def _onchange_is_electronic(self):
+        if self.is_electronic:
+            self.num_start = 1
+            self.num_end = 100000000
+            self.expiration_date = '2050-12-30'
+
+    name = fields.Char('Autorización', size=128)
+    serie_entidad = fields.Char('Entidad', size=3, required=True, help='Serie de Entidad')
+    serie_emision = fields.Char('Emisión', size=3, required=True, help='Serie de Emisión')
+    num_start = fields.Integer('Desde', help='Número en el que empieza la serie')
+    num_end = fields.Integer('Hasta', help='Número en el que termina la serie')
+    is_electronic = fields.Boolean('Electrónico', help='¿El documento es electrónico?')
+    expiration_date = fields.Date('Vencimiento', help='Fecha de Vencimiento')
     active = fields.Boolean(
         compute='_compute_active',
         string='Activo',
@@ -131,16 +138,17 @@ class AccountAuthorisation(models.Model):
         default=True
         )
     in_type = fields.Selection(
-        [('interno', 'Internas'),
-         ('externo', 'Externas')],
-        string='Tipo Interno',
+        [('internal', 'Internas'),
+         ('external', 'Externas')],
+        string='Tipo interno',
         readonly=True,
         change_default=True,
         default=_get_in_type
         )
     type_id = fields.Many2one(
         'account.ats.doc',
-        'Tipo de Comprobante',
+        'Comprobante',
+        help='Tipo de comprobante',
         required=True
         )
     partner_id = fields.Many2one(
@@ -197,17 +205,16 @@ class ResPartner(models.Model):
                 return a
         return False
 
-
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
 
     auth_out_invoice_id = fields.Many2one(
         'account.authorisation',
-        'Secuencia Facturas'
+        string = 'Secuencia Facturas'
     )
     auth_out_refund_id = fields.Many2one(
         'account.authorisation',
-        'Secuencia Notas de Credito'
+        string = 'Secuencia Notas de Credito'
     )
     auth_retention_id = fields.Many2one(
         'account.authorisation',
@@ -268,15 +275,18 @@ class AccountInvoice(models.Model):
 
     invoice_number = fields.Char(
         compute='_compute_invoice_number',
-        string='Nro. Documento',
+        string='Número Documento',
         store=True,
         readonly=True,
         copy=False
     )
-    internal_inv_number = fields.Char('Numero Interno', copy=False)
+    internal_inv_number = fields.Char(
+        'Numero Interno',
+        copy=False
+    )
     auth_inv_id = fields.Many2one(
         'account.authorisation',
-        string='Establecimiento',
+        string='Comprobante',
         readonly=True,
         states={'draft': [('readonly', False)]},
         help='Autorizacion para documento',
@@ -309,10 +319,10 @@ class AccountInvoice(models.Model):
             if not self.auth_inv_id.is_valid_number(int(self.reference)):
                 return {
                     'value': {
-                        'reference': ''
-                    },
+                        'reference': self.reference #''
+                        },
                     'warning': {
-                        'title': 'Error',
+                        'title': 'Advertencia',
                         'message': u'Número no coincide con la autorización ingresada.'  # noqa
                     }
                 }
