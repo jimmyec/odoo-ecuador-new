@@ -51,10 +51,10 @@
                 </xpath>
                 <field name="partner_id" position="after">
                     <field name="namerl"/>
-                    <field name="accountant_id"/>
-                    <field name="sri_id"/>
                     <field name="cedula_rl"/>
-                    <field name="forced2keepAccounting"/>
+                    <field name="forced_account"/>
+                    <field name="accountant_id" attrs="{'invisible':[('forced_account','=',False)]}"/>
+                    <field name="sri_id" attrs="{'invisible':[('forced_account','=',False)]}"/>
                     <field name="artesano"/>
                     <field name="numart" attrs="{'invisible':[('artesano','=',False)]}"/>
                 </field>

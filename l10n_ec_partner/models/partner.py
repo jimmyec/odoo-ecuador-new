@@ -122,7 +122,7 @@ class ResCompany(models.Model):
     accountant_id = fields.Many2one('res.partner', 'Contador')
     sri_id = fields.Many2one('res.partner', 'SRI')
     cedula_rl = fields.Char('Cédula Rep. Legal', size=10)
-    forced2keepAccounting = fields.Boolean(string="Obligado a llevar contabilidad",
+    forced_account = fields.Boolean(string="Obligado a llevar contabilidad",
             default=False)
     artesano = fields.Boolean(string="Calificación Artesanal", default=False)
     numart = fields.Char(string="Número")
