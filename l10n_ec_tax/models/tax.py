@@ -6,9 +6,9 @@ import time
 import datetime
 import calendar
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo import tools
-
+#from odoo.tools import report
 
 class AccountInvoiceTax(models.Model):
 
@@ -102,12 +102,8 @@ class AccountReportTax(models.TransientModel):
     date_end = fields.Date('Final de Periodo', default=_default_end)
 
     @api.multi
-    def action_print(self):
-        return self.env['report'].get_action(
-            self,
-            'l10n_ec_tax.reporte_account_tax_ec'
-        )
-
+    def action_print(self, data):
+        return self.env.ref('l10n_ec_tax.account_tax_report').report_action(self, data=data)
 
 class ReportVatPartner(models.Model):
     _name = 'report.vat.partner'

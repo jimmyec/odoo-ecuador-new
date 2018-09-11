@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="account_tax_report"
+            model="account.report.tax"
+            string="Reporte de Impuestos"
+            report_type="qweb-pdf"
+            name="l10n_ec_tax.report_account_tax_ec"
+            file="l10n_ec_tax.report_account_tax_ec"
+            menu="False"
+        />
+    </data>
+</odoo>

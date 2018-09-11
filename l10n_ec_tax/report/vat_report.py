@@ -4,17 +4,19 @@
 
 from operator import itemgetter
 
-from odoo import api, models, fields
-
+from odoo import api, models, fields, _
+from odoo.exceptions import UserError
 
 class ReportAccountReportTax(models.AbstractModel):
-    _name = 'report.l10n_ec_tax.reporte_account_tax_ec'
+    _name = 'report.l10n_ec_tax.report_account_tax_ec'
 
+    @api.model
     def period(self, wiz):
         ds = fields.Date.from_string(wiz.date_start)
         period = '{0:02d}-{1}'.format(ds.month, ds.year)
         return period
 
+    @api.model
     def get_taxes(self, wizard):
         taxes = []
         ret_ir = []  # ret_ir
@@ -93,15 +95,13 @@ class ReportAccountReportTax(models.AbstractModel):
         return taxes
 
     @api.model
-    def render_html(self, docids, data=None):
-        docsargs = {
+    def get_report_values(self, docids, data=None):
+        self.model = self.env.context.get('active_model')
+        docs = self.env[self.model].browse(self.env.context.get('active_id'))
+        return {
             'doc_ids': docids,
-            'doc_model': 'account.report.tax',
-            'docs': self.env['account.report.tax'].browse(docids),
+            'doc_model': self.model,
+            'docs': docs,
             'period': self.period,
-            'get_taxes': self.get_taxes
+            'get_taxes': self.get_taxes,
         }
-        return self.env['report'].render(
-            'l10n_ec_tax.reporte_account_tax_ec',
-            values=docsargs
-        )

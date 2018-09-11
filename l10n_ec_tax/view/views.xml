@@ -15,7 +15,7 @@
                         </group>
                     </group>
                     <footer>
-                        <button name="action_print" default_focus="1" string="Imprimir" icon="fa-print" type="object"/>
+                            <button name="action_print" default_focus="1" string="Imprimir" icon="fa-print" type="object"/>
                     </footer>
                 </form>
             </field>
