@@ -7,7 +7,7 @@ from odoo import api, models
 
 class ReporteComprobante(models.AbstractModel):
 
-    _name = 'report.l10n_ec_withholding.reporte_move'
+    _name = 'report.l10n_ec_withholding.report_move'
 
     def groupby(self, lines):
         """
@@ -29,11 +29,12 @@ class ReporteComprobante(models.AbstractModel):
         return glines
 
     @api.model
-    def render_html(self, docids, data=None):
-        docargs = {
+    def get_report_values(self, docids, data=None):
+        self.model = self.env.context.get('active_model')
+        docs = self.env[self.model].browse(self.env.context.get('active_id'))
+        return {
             'doc_ids': docids,
-            'doc_model': 'account.move',
-            'docs': self.env['account.move'].browse(docids),
+            'doc_model': self.model,
+            'docs': docs,
             'groupby': self.groupby
         }
-        return self.env['report'].render('l10n_ec_withholding.reporte_move', values=docargs)  # noqa

@@ -63,8 +63,8 @@ class Xades(object):
             '-jar',
             firma_path,
             xml_str,
-            base64.b64encode(file_pk12),
-            base64.b64encode(password)
+            base64.b64encode(str.encode(file_pk12)),
+            base64.b64encode(str.encode(password))
         ]
         try:
             logging.info('Probando comando de firma digital')

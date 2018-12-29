@@ -166,7 +166,7 @@ class AccountAuthorisation(models.Model):
 
     _sql_constraints = [
         ('number_unique',
-         'unique(partner_id,expiration_date,type_id)',
+         'unique(name,serie_entidad,serie_emision,type_id)',
          u'La relación de autorización, serie entidad, serie emisor y tipo, debe ser única.'),  # noqa
         ]
 
@@ -265,11 +265,14 @@ class AccountInvoice(models.Model):
         establecimiento seleccionado
         """
         if self.reference:
+            #if self.type == 'out_invoice':
             self.invoice_number = '{0}{1}{2}'.format(
                 self.auth_inv_id.serie_entidad,
                 self.auth_inv_id.serie_emision,
                 self.reference
             )
+            #else:
+            #    self.invoice_number = self.reference
         else:
             self.invoice_number = '*'
 
@@ -301,7 +304,7 @@ class AccountInvoice(models.Model):
     _sql_constraints = [
         (
             'unique_invoice_number',
-            'unique(reference,type,partner_id,state)',
+            'unique(invoice_number,type,partner_id,state)',
             u'El número de factura es único.'
         )
     ]
@@ -314,8 +317,9 @@ class AccountInvoice(models.Model):
     @api.onchange('reference')
     def _onchange_ref(self):
         # TODO: agregar validacion numerica a reference
-        if self.reference:
+        if self.reference and self:
             self.reference = self.reference.zfill(9)
+            #if self.type == 'out_invoice':
             if not self.auth_inv_id.is_valid_number(int(self.reference)):
                 return {
                     'value': {

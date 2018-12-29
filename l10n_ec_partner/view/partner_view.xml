@@ -61,5 +61,22 @@
             </field>
         </record>
 
+        <!-- USERS -->
+        <record id="res_users_ec_form_view" model="ir.ui.view">
+          <field name="name">res.users.ec.form</field>
+          <field name="model">res.users</field>
+          <field name="inherit_id" ref="base.view_users_form"/>
+          <field name="arch" type="xml">
+            <notebook position="inside">
+              <page string='Contacto'>
+                <group string="Datos" name="data_ec">
+                  <field name="type_id"/>
+                  <field name="identifier"/>
+                  <field name="type_person"/>
+                </group>
+              </page>
+            </notebook>
+          </field>
+        </record>
     </data>
 </odoo>

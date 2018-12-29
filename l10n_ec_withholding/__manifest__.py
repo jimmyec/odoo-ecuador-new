@@ -4,21 +4,30 @@
 
 {
     'name': 'Retenciones para Ecuador',
-    'version': '10.0.1.0.0',
-    'category': 'Generic Modules/Accounting',
+    'version': '11.0.0.1',
+    'description': """
+        Documentos de Retenciones para Ecuador
+    """,
+    'summary': """
+        Este módulo es parte de la localización ecuatoriana.
+        Implementa los documentos de retención para Ecuador.
+        Personaliza el cálculo de impuestos.
+        Migrado por cgonzalezbrito.
+    """,
+    'author': 'Cristian Salamea <cristian.salamea@ayni.com.ec>',
+    'website': 'http://www.ayni.com.ec',
     'license': 'AGPL-3',
+    'category': 'Generic Modules/Accounting',
     'depends': [
         'l10n_ec_authorisation',
         'l10n_ec_tax',
     ],
-    'author': 'Cristian Salamea <cristian.salamea@ayni.com.ec>',
-    'website': 'http://www.ayni.com.ec',
     'data': [
         'security/ir.model.access.csv',
         'data/account.fiscal.position.csv',
-        'data/partner.xml',
+        #'data/partner.xml',
         'views/report_account_move.xml',
         'views/reports.xml',
-        'views/withholding_view.xml'
+        'views/withholding_view.xml',
     ]
 }

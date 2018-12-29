@@ -8,7 +8,6 @@ import calendar
 
 from odoo import api, fields, models, _
 from odoo import tools
-#from odoo.tools import report
 
 class AccountInvoiceTax(models.Model):
 
@@ -18,6 +17,11 @@ class AccountInvoiceTax(models.Model):
         'Ejercicio Fiscal',
         size=4,
         default=time.strftime('%Y')
+    )
+    fiscal_period = fields.Char(
+        'Periodo Fiscal',
+        size=7,
+        default=time.strftime('%m'+'/'+'%Y')
     )
     group_id = fields.Many2one(
         related='tax_id.tax_group_id',

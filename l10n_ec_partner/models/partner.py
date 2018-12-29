@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import re
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -82,6 +83,14 @@ class ResPartner(models.Model):
             self.type_person = 'Juridica'
         else:
             self.type_person = 'Otro'
+
+    @api.one
+    @api.constrains('email')
+    def validate_mail(self):
+        if self.email:
+            match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)
+            if match == None:
+                raise ValidationError('Not a Valid email')
 
     identifier = fields.Char(
             string='Identificación',

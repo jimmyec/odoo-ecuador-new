@@ -16,13 +16,13 @@ from openerp.exceptions import (
 import openerp.addons.decimal_precision as dp
 
 # mapping invoice type to journal type
-TYPE2JOURNAL = {
-    'out_invoice': 'sale',
-    'in_invoice': 'purchase',
-    'out_refund': 'sale_refund',
-    'in_refund': 'purchase_refund',
-    'liq_purchase': 'purchase'
-}
+#TYPE2JOURNAL = {
+#    'out_invoice': 'sale',
+#    'in_invoice': 'purchase',
+#    'out_refund': 'sale_refund',
+#    'in_refund': 'purchase_refund',
+#    'liq_purchase': 'purchase'
+#}
 
 
 class Invoice(models.Model):
@@ -38,18 +38,15 @@ class Invoice(models.Model):
         inv_types = inv_type if isinstance(inv_type, list) else [inv_type]
         company_id = self._context.get('company_id', self.env.user.company_id.id)  # noqa
         domain = [
-            ('type', 'in', filter(None, map(TYPE2JOURNAL.get, inv_types))),
+        #    ('type', 'in', filter(None, map(TYPE2JOURNAL.get, inv_types))),
             ('company_id', '=', company_id),
         ]
         return self.env['account.journal'].search(domain, limit=1)
 
     @api.multi
-    def print_move(self):
+    def print_move(self,data):
         # Método para imprimir comprobante contable
-        return self.env['report'].get_action(
-            self.move_id,
-            'l10n_ec_withholding.reporte_move'
-        )
+        return self.env.ref('l10n_ec_withholding.account_move_report').report_action(self, data=data)
 
     @api.multi
     def print_liq_purchase(self):
@@ -60,14 +57,11 @@ class Invoice(models.Model):
         )
 
     @api.multi
-    def print_retention(self):
+    def print_retention(self, data):
         """
         Método para imprimir reporte de retencion
         """
-        return self.env['report'].get_action(
-            self.move_id,
-            'l10n_ec_withholding.account_withholding_report'
-        )
+        return self.env.ref('l10n_ec_withholding.account_withholding_report').report_action(self, data=data)
 
     @api.one
     @api.depends('invoice_line_ids.price_subtotal', 'tax_line_ids.amount', 'currency_id', 'company_id')  # noqa
@@ -356,7 +350,7 @@ class Invoice(models.Model):
                 'partner_id': inv.partner_id.id,
                 'name': wd_number,
                 'invoice_id': inv.id,
-                'auth_id': auth_ret.id,
+                'auth_inv_id': auth_ret.id,
                 'type': inv.type,
                 'in_type': 'ret_%s' % inv.type,
                 'date': inv.date_invoice,

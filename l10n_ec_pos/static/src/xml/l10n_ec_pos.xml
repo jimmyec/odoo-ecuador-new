@@ -22,10 +22,10 @@
                     <div class='client-details-left'>
                         <div class='client-detail'>
                             <span class='label'>Tipo</span>
-                            <select class="detail client-address-street" name="type_identifier">
-                                <option value='cedula' t-att-selected="partner.type_identifier ? (('cedula' === partner.type_identifier) ? true : undefined) : undefined">CÉDULA</option>
-                                <option value='ruc' t-att-selected="partner.type_identifier ? (('ruc' === partner.type_identifier) ? true : undefined) : undefined">RUC</option>
-                                <option value='pasaporte' t-att-selected="partner.type_identifier ? (('pasaporte' === partner.type_identifier) ? true : undefined) : undefined">PASAPORTE</option>
+                            <select class="detail client-address-street" name="type_id">
+                                <option value='cedula' t-att-selected="partner.type_id ? (('cedula' === partner.type_id) ? true : undefined) : undefined">CÉDULA</option>
+                                <option value='ruc' t-att-selected="partner.type_id ? (('ruc' === partner.type_id) ? true : undefined) : undefined">RUC</option>
+                                <option value='pasaporte' t-att-selected="partner.type_id ? (('pasaporte' === partner.type_id) ? true : undefined) : undefined">PASAPORTE</option>
                             </select>
                         </div>
                         <div class='client-detail'>
@@ -43,9 +43,9 @@
                         <div class='client-detail'>
                             <span class='label'>Country</span>
                             <select class='detail client-address-country' name='country_id'>
-                                <option value=''>None</option>
+                                <option value=''>Ecuador</option>
                                 <t t-foreach='widget.pos.countries' t-as='country'>
-                                    <option t-att-value='country.id' t-att-selected="partner_country_id ? ((country.id === partner.country_id[0]) ? true : undefined) : undefined">
+                                    <option t-att-value='country.id' t-att-selected="partner_country_id ? ((country.id === partner.country_id[57]) ? true : undefined) : undefined">
                                         <t t-esc='country.name'/>
                                     </option>
                                 </t>
@@ -53,6 +53,17 @@
                         </div>
                     </div>
                     <div class='client-details-right'>
+                        <!--div class='client-detail'>
+                            <span class='label'>P. Fiscal</span>
+                            <select class="detail client-address-country" name="property_account_position_id">
+                                <option value=''>PERSONA NATURAL NO OBLIGADAS A LLEVAR CONT.</option>
+                                <t t-foreach='account_fiscal_position' t-as='fiscal_position'>
+                                    <option t-att-value='fiscal_position.id' t-att-selected="property_account_position_id ? (('fiscal_position.id' === partner.property_account_position_id[1]) ? true : undefined) : undefined">
+                                        <t t-esc='fiscal_position.name'/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div-->
                         <div class='client-detail'>
                             <span class='label'>Email</span>
                             <input class='detail client-email'  name='email'    type='email'    t-att-value='partner.email || ""'></input>

@@ -32,7 +32,7 @@
       <porcentajeRetener>{{ tax.porcentajeRetener }}</porcentajeRetener>
       <valorRetenido>{{ tax.valorRetenido }}</valorRetenido>
       <codDocSustento>{{ tax.codDocSustento }}</codDocSustento>
-      <numDocSustento>{{ estab }}{{ ptoEmi }}{{ tax.numDocSustento }}</numDocSustento>{# factura proveedor #}
+      <numDocSustento>{{ tax.numDocSustento }}</numDocSustento>{# factura proveedor #}
       <fechaEmisionDocSustento>{{ tax.fechaEmisionDocSustento }}</fechaEmisionDocSustento>
     </impuesto>
     {% endfor %}

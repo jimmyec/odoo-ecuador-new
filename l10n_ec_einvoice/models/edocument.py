@@ -1,23 +1,50 @@
 # -*- coding: utf-8 -*-
 
 import base64
-import StringIO
+import io
 from datetime import datetime
 
-from openerp import api, fields, models
-from openerp.exceptions import Warning as UserError
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-
+from odoo import models, fields, api
+from odoo.exceptions import Warning as UserError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 from . import utils
 from ..xades.sri import SriService
 
 
 class AccountEpayment(models.Model):
-    _name = 'account.epayment'
+    _inherit = 'account.epayment'
 
-    code = fields.Char('Código')
-    name = fields.Char('Forma de Pago')
+    epayment_amount = fields.Char(
+        string='Monto'
+        )
+
+class AccountPayment(models.Model):
+    _inherit = 'account.payment'
+
+    def _compute_epayment(self):
+        if self.journal_id.type == 'cash':
+            self.epayment_id = self.env['account.epayment'].search([('code','=','01')], limit=1)
+            self.code = '01'
+        elif self.journal_id.type == 'bank':
+            self.epayment_id = self.env['account.epayment'].search([('code','=','19')], limit=1)
+            self.code = '19'
+        else:
+            self.epayment_id = self.env['account.epayment'].search([('code','=','20')], limit=1)
+            self.code = '20'
+
+    code = fields.Char(
+        string='Código',
+        compute = _compute_epayment,
+        readonly = True,
+        )
+
+    epayment_id = fields.Many2one(
+        'account.epayment',
+        string='Forma de Pago',
+        compute = _compute_epayment,
+        readonly = True,
+        )
 
 
 class Edocument(models.AbstractModel):
@@ -54,9 +81,11 @@ class Edocument(models.AbstractModel):
         readonly=True
     )
     autorizado_sri = fields.Boolean('¿Autorizado SRI?', readonly=True)
+    to_send_einvoice = fields.Boolean('Enviar email',readonly=True)
     security_code = fields.Char('Código de Seguridad', size=8, readonly=True)
     emission_code = fields.Char('Tipo de Emisión', size=1, readonly=True)
-    epayment_id = fields.Many2one('account.epayment', 'Forma de Pago')
+    epayment_ids = fields.Many2many('account.epayment','name',string='Forma de Pago')
+    #epayment_id = fields.Many2one('account.epayment', default=lambda self:self.env['account.epayment'].search([('code','=','01')]))
     sent = fields.Boolean('Enviado?')
 
     def get_auth(self, document):
@@ -101,11 +130,11 @@ class Edocument(models.AbstractModel):
         elif name == 'account.retention':
             auth = self.company_id.partner_id.get_authorisation('ret_in_invoice')  # noqa
             ld = self.date.split('-')
-            numero = getattr(self, 'name')
-            numero = numero[6:15]
+            numero = getattr(self, 'withholding_number')
+            #numero = numero[6:15]
         ld.reverse()
         fecha = ''.join(ld)
-        tcomp = utils.tipoDocumento[auth.type_id.code]
+        tcomp = self.auth_inv_id.type_id.code
         ruc = self.company_id.partner_id.identifier
         codigo_numero = self.get_code()
         tipo_emision = self.company_id.emission_code
@@ -116,7 +145,7 @@ class Edocument(models.AbstractModel):
         return access_key
 
     @api.multi
-    def _get_codes(self, name='account.invoice'):
+    def _get_codes(self, name):
         ak_temp = self.get_access_key(name)
         self.SriServiceObj.set_active_env(self.env.user.company_id.env_service)
         access_key = self.SriServiceObj.create_access_key(ak_temp)
@@ -168,45 +197,63 @@ class Edocument(models.AbstractModel):
             raise UserError(MESSAGE_TIME_LIMIT)
 
     @api.multi
-    def update_document(self, auth, codes):
-        fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+    def update_document(self, codes):
+        #fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         self.write({
-            'numero_autorizacion': auth.numeroAutorizacion,
-            'estado_autorizacion': auth.estado,
-            'ambiente': auth.ambiente,
-            'fecha_autorizacion': fecha,  # noqa
+            'numero_autorizacion': codes[0],
+            #'estado_autorizacion': auth.estado,
+            #'ambiente': auth.ambiente,
+            #'fecha_autorizacion': fecha,  # noqa
             'autorizado_sri': True,
             'clave_acceso': codes[0],
             'emission_code': codes[1]
         })
 
     @api.one
-    def add_attachment(self, xml_element, auth):
-        buf = StringIO.StringIO()
-        buf.write(xml_element.encode('utf-8'))
+    def add_attachment(self, xml_element):
+        buf = io.BytesIO()
+        buf.write(xml_element)
         document = base64.encodestring(buf.getvalue())
         buf.close()
         attach = self.env['ir.attachment'].create(
             {
-                'name': '{0}.xml'.format(self.clave_acceso),
+                'name': 'factura.xml'.format(self.clave_acceso),
                 'datas': document,
-                'datas_fname':  '{0}.xml'.format(self.clave_acceso),
+                'datas_fname':  'factura.xml'.format(self.clave_acceso),
                 'res_model': self._name,
                 'res_id': self.id,
-                'type': 'binary'
+                'type': 'binary',
+
+            },
+        )
+        return attach
+
+    @api.one
+    def add_attachment_pdf(self, pdf_file):
+        b64_pdf = base64.b64encode(pdf_file[0])
+        attach = self.env['ir.attachment'].create(
+            {
+                'name': 'factura.pdf'.format(self.clave_acceso),
+                'type': 'binary',
+                'datas': b64_pdf,
+                'datas_fname':  'factura.pdf'.format(self.clave_acceso),
+                'store_fname': 'ride',
+                'res_model': self._name,
+                'res_id': self.id,
+                'mimetype': 'application/x-pdf'
             },
         )
         return attach
 
     @api.multi
-    def send_document(self, attachments=None, tmpl=False):
+    def send_document(self, attachments, tmpl):
         self.ensure_one()
         self._logger.info('Enviando documento electronico por correo')
-        tmpl = self.env.ref(tmpl)
-        tmpl.send_mail(  # noqa
-            self.id,
-            email_values={'attachment_ids': attachments}
-        )
+
+        template = False
+        template = self.env.ref(tmpl)
+        self.env['mail.template'].browse(template.id).send_mail(self.id, email_values={'attachment_ids': attachments}, force_send=True, raise_exception=True)
+        self._logger.info('Documento enviado')
         self.sent = True
         return True
 

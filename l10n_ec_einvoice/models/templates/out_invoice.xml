@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<factura id="comprobante" version="1.1.0">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<factura id="comprobante" version="1.0.0">
   <infoTributaria>
     <ambiente>{{ ambiente }}</ambiente>
     <tipoEmision>{{ tipoEmision }}</tipoEmision>
@@ -48,10 +49,12 @@
     <importeTotal>{{ importeTotal }}</importeTotal>
     <moneda>DOLAR</moneda>
     <pagos>
-        <pago>
-            <formaPago>{{ formaPago }}</formaPago>
-            <total>{{ importeTotal }}</total>
-        </pago>
+      {% for pago in formaPago %}
+      <pago>
+        <formaPago>{{ pago['codigo'] }}</formaPago>
+        <total>{{ pago['monto'] }}</total>
+      </pago>
+      {% endfor %}
     </pagos>
     <valorRetIva>{{ valorRetIva }}</valorRetIva>
     <valorRetRenta>{{ valorRetRenta }}</valorRetRenta>

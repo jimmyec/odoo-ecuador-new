@@ -11,20 +11,20 @@
 		        <field name="auth_out_invoice_id"
                    string="Facturas Autorizadas"
                    placeholder="Secuencia de Facturas"
-                   domain="[('in_type','=','interno')]"
-                   context="{'default_in_type': 'interno'}"
+                   domain="[('in_type','=','internal')]"
+                   context="{'default_in_type': 'internal'}"
 			             attrs="{'invisible': [('type','!=','sale')], 'required': [('type','=','sale')]}"/>
 		        <field name="auth_out_refund_id"
                    string="Notas de Crédito"
                    placeholder="Secuencia Notas de Credito"
-                   domain="[('in_type','=','interno')]"
-                   context="{'default_in_type': 'interno'}"
+                   domain="[('in_type','=','internal')]"
+                   context="{'default_in_type': 'internal'}"
 			             attrs="{'invisible': [('type','!=','sale')]}"/>
 		        <field name="auth_retention_id"
                    string="Retenciones Autorizados"
                    placeholder="Documentos para Retenciones"
-                   domain="[('in_type','=','interno')]"
-                   context="{'default_in_type': 'interno'}"
+                   domain="[('in_type','=','internal')]"
+                   context="{'default_in_type': 'internal'}"
 			             attrs="{'invisible': [('type','!=','purchase')], 'required': [('type','=','purchase')]}"/>
         </field>
 	    </field>
@@ -39,8 +39,8 @@
       <field name="model">account.invoice</field>
       <field name="inherit_id" ref="account.invoice_form"/>
       <field name="arch" type="xml">
-        <field name="partner_id" position="after">
-          <field name="auth_inv_id" domain="[('in_type','=','interno')]"
+        <field name="fiscal_position_id" position="after">
+          <field name="auth_inv_id" domain="[('in_type','=','internal')]"
                  required="1" options="{'no_create':True, 'no_create_edit': True}"/>
         </field>
         <field name="fiscal_position_id" position="after">
@@ -142,7 +142,7 @@
                 <field name="is_electronic"/>
                 <field name="type_id" widget="selection"/>
                 <field name="in_type"/>
-                <field name="partner_id" attrs="{'invisible': [('in_type','=','interno')]}" domain="[('supplier','=',True)]"/>
+                <field name="partner_id" attrs="{'invisible': [('in_type','=','internal')]}" domain="[('supplier','=',True)]"/>
                 <field name="sequence_id"/>
               </group>
               <group>
@@ -220,8 +220,8 @@
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
       <field name="search_view_id" ref="view_account_auth_filter"/>
-      <field name="context">{'in_type': 'interno'}</field>
-      <field name="domain">[('in_type', '=', 'interno')]</field>
+      <field name="context">{'in_type': 'internal'}</field>
+      <field name="domain">[('in_type', '=', 'internal')]</field>
     </record>
 
     <menuitem action="action_account_authin_tree"

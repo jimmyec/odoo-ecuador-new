@@ -4,12 +4,13 @@
 
 {
     'name': 'Partner for Ecuador',
-    'version': '10.0.0.0.0',
+    'version': '11.0.0.1',
     'description': """
         Campos requeridos para empresas ecuatorianas
     """,
     'summary': """
         RUC, CI, Contribuyente
+        Migrado por cgonzalezbrito
     """,
     'author': 'Cristian Salamea',
     'website': 'http://www.ayni.com.ec',

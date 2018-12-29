@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_ec_einvoice_dep_l10n_ec_einvoice_dep,l10n_ec_einvoice_dep.l10n_ec_einvoice_dep,model_l10n_ec_einvoice_dep_l10n_ec_einvoice_dep,,1,0,0,0

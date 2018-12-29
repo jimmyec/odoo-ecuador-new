@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="account_report_eretention">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="logo" style="width: 330px; height: 180px;">
+                                <img t-att-src="'data:image/*;base64,%s' % to_text(res_company.logo)"/>
+                            </div><br/>
+                            <h4><span t-esc="res_company.name"/></h4>
+                            <span><strong>DIRECCION: </strong></span><strong></strong><span t-esc="res_company.street"/><br/>
+                            <span><strong>Contribuyente Especial Nro.: </strong></span>
+                            <span t-esc="res_company.company_registry or '000' "/><br/>
+                            <span><strong>Obligado a Llevar contabilidad: </strong> SI</span>
+                        </div>
+                        <div class="col-xs-7">
+                            <span><strong>RUC </strong></span> <span t-esc="res_company.partner_id.identifier"/><br/>
+                            <span><h4 style="text-align: center;">COMPROBANTE DE RETENCIÖN</h4></span><br/>
+                            <span><strong>NUMERO</strong> </span><span t-esc="o.name"/><br/>
+                            <span><strong>NUMERO DE AUTORIZACION</strong></span><br/>
+                            <span t-esc="o.numero_autorizacion"/><br/>
+                            <span><strong>FECHA Y HORA DE AUTORIZACION: </strong></span><span t-esc="o.fecha_autorizacion"/><br/>
+                            <span><strong>AMBIENTE: </strong></span><span t-esc="res_company.env_service == '1' and 'PRUEBAS' or 'PRODUCCION'"/><br/>
+                            <span><strong>EMISION: </strong><span t-esc="res_company.emission_code == '1' and 'NORMAL' or 'INDISPONIBILIDAD'"/></span><br/>
+                            <span><strong>CLAVE DE ACCESO</strong></span><br/>
+                            <div class="text-align: left;">
+                                <img style="text-align: left;" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % ('Code128', o.numero_autorizacion, 450, 60)"/>
+                            </div><br/>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color: silver;">
+                        <div class="col-xs-3" style="padding-left: 0px;">
+                            <span><strong>RAZON SOCIAL</strong></span>
+                        </div>
+                        <div class="col-xs-4" style="padding-left: 0px;">
+                            <span t-esc="o.partner_id.name.upper()"/>
+                        </div>
+                        <div class="col-xs-2" style="padding-left: 0px; padding-right: 0px;">
+                            <span><strong>IDENTIFICACION</strong></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-left: 0px;">
+                            <span t-esc="o.partner_id.identifier"/>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color: silver; margin-bottom: 10px;">
+                        <div class="col-xs-3" style="padding-left: 0px;">
+                            <span><strong>FECHA DE EMISION</strong></span>
+                        </div>
+                        <div class="col-xs-4" style="padding-left: 0px;">
+                            <span t-esc="o.date"/>
+                        </div>
+                        <div class="col-xs-2" style="padding-left: 0px;">
+                            <span><strong>G. REMISION</strong></span>
+                        </div>
+                        <div class="col-xs-2">
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: center; margin-bottom: 8px; font-size: 11px;">
+                        <div class="col-xs-2" style="padding-left: 0px;">
+                            <span><strong>COMPROBANTE</strong></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-left: 0px;">
+                            <span><strong>NÚMERO</strong></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-left: 0px;">
+                            <span><strong>FECHA EMISION</strong></span>
+                        </div>
+                        <div class="col-xs-1" style="padding-left: 0px;">
+                            <span><strong>E. FISCAL</strong></span>
+                        </div>
+                        <div class="col-xs-1" style="padding-left: 0px;">
+                            <span><strong>BASE IMPONIBLE</strong></span>
+                        </div>
+                        <div class="col-xs-2" style="padding-left: 0px;">
+                            <span><strong>IMPUESTO</strong></span>
+                        </div>
+                        <div class="col-xs-1" style="padding-left: 0px;">
+                            <span><strong>PORCENTAJE</strong></span>
+                        </div>
+                        <div class="col-xs-1" style="padding-left: 0px;">
+                            <span><strong>VALOR</strong></span>
+                        </div>
+                    </div>
+                    <t t-foreach="o.tax_ids" t-as="line">
+                        <div class="row" style="margin-bottom: 10px; border-bottom: 1px solid darkgray; font-size: 11px;">
+                            <div class="col-xs-2" style="padding-left: 0px; text-align: left;">
+                                FACTURA
+                            </div>
+                            <div class="col-xs-2" style="padding-left: 0px; text-align: left;">
+                                <span t-esc="o.invoice_id.invoice_number"/>
+                            </div>
+                            <div class="col-xs-2" style="padding-left: 0px; text-align: center;">
+                                <span t-esc="o.invoice_id.date_invoice"/>
+                            </div>
+                            <div class="col-xs-1" style="padding-left: 0px; text-align: center;">
+                                <span t-esc="line.fiscal_year"/>
+                            </div>
+                            <div class="col-xs-1" style="padding-left: 0px; text-align: center;">
+                                <span t-esc="'%.2f' % line.base"/>
+                            </div>
+                            <div class="col-xs-2" style="padding-left: 0px; text-align: center;">
+                                <span t-esc="line.group_id.name"/>
+                            </div>
+                            <div class="col-xs-1" style="padding-left: 0px; text-align: center;">
+                                <span t-esc="'%.2f' % line.tax_id.amount"/>
+                            </div>
+                            <div class="col-xs-1" style="padding-left: 0px; text-align: right;">
+                                <span t-field="line.amount"
+                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                    </t>
+                    <div class="row">
+                        <div class="col-xs-7" style="background-color: silver;">
+                            <span><strong>Información Adicional</strong></span><br/><br/>
+                            <span><strong>Dirección: </strong></span><span t-esc="o.partner_id.street or '**'"/><br/>
+                            <span><strong>Teléfono: </strong></span><span t-esc="o.partner_id.phone or '**'"/><br/>
+                            <span><strong>Email: </strong></span><span t-esc="o.partner_id.email"/><br/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</odoo>

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
-from StringIO import StringIO
 import base64
+import io
 import logging
 
 from lxml import etree
@@ -65,16 +65,16 @@ class DocumentXML(object):
         Metodo que envia el XML al WS
         """
         self.logger.info('Enviando documento para recepcion SRI')
-        buf = StringIO()
+        buf = io.BytesIO()
         buf.write(document)
         buffer_xml = base64.encodestring(buf.getvalue())
 
         if not utils.check_service('prueba'):
             # TODO: implementar modo offline
-            raise 'Error SRI', 'Servicio SRI no disponible.'
+            raise UserError('Error SRI', 'Servicio SRI no disponible.')
 
         client = Client(SriService.get_active_ws()[0])
-        result = client.service.validarComprobante(buffer_xml)
+        result = client.service.validarComprobante(buffer_xml.decode())
         self.logger.info('Estado de respuesta documento: %s' % result.estado)
         errores = []
         if result.estado == 'RECIBIDA':
@@ -114,10 +114,10 @@ class SriService(object):
     __AMBIENTE_PROD = '2'
     __ACTIVE_ENV = False
     # revisar el utils
-    __WS_TEST_RECEIV = 'https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantes?wsdl'  # noqa
-    __WS_TEST_AUTH = 'https://celcer.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantes?wsdl'  # noqa
-    __WS_RECEIV = 'https://cel.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantes?wsdl'  # noqa
-    __WS_AUTH = 'https://cel.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantes?wsdl'  # noqa
+    __WS_TEST_RECEIV = 'https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl'  # noqa
+    __WS_TEST_AUTH = 'https://celcer.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl'  # noqa
+    __WS_RECEIV = 'https://cel.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl'  # noqa
+    __WS_AUTH = 'https://cel.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl'  # noqa
 
     __WS_TESTING = (__WS_TEST_RECEIV, __WS_TEST_AUTH)
     __WS_PROD = (__WS_RECEIV, __WS_AUTH)

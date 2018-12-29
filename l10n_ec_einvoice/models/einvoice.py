@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
 import os
+import io
 import time
 import logging
 import itertools
 
-from jinja2 import Environment, FileSystemLoader
+from odoo import models, fields, api
 
-from openerp import api, models
+from jinja2 import Environment, FileSystemLoader
 from openerp.exceptions import Warning as UserError
 
 from . import utils
 from ..xades.sri import DocumentXML
 from ..xades.xades import Xades
-
 
 class AccountInvoice(models.Model):
 
@@ -38,8 +38,8 @@ class AccountInvoice(models.Model):
         infoFactura = {
             'fechaEmision': fix_date(invoice.date_invoice),
             'dirEstablecimiento': company.street2,
-            'obligadoContabilidad': 'SI',
-            'tipoIdentificacionComprador': utils.tipoIdentificacion[partner.type_identifier],  # noqa
+            'obligadoContabilidad': 'NO',
+            'tipoIdentificacionComprador': utils.tipoIdentificacion[partner.type_id],  # noqa
             'razonSocialComprador': partner.name,
             'identificacionComprador': partner.identifier,
             'totalSinImpuestos': '%.2f' % (invoice.amount_untaxed),
@@ -47,7 +47,7 @@ class AccountInvoice(models.Model):
             'propina': '0.00',
             'importeTotal': '{:.2f}'.format(invoice.amount_pay),
             'moneda': 'DOLAR',
-            'formaPago': invoice.epayment_id.code,
+            #'formaPago': invoice.epayment_ids.code,
             'valorRetIva': '{:.2f}'.format(invoice.taxed_ret_vatsrv+invoice.taxed_ret_vatb),  # noqa
             'valorRetRenta': '{:.2f}'.format(invoice.amount_tax_ret_ir)
         }
@@ -91,6 +91,36 @@ class AccountInvoice(models.Model):
                 'valorModificacion': self.amount_total
             }
             infoFactura.update(notacredito)
+        else:
+            formaPago = []
+            if self.epayment_ids:
+                for epayment_id in self.epayment_ids:
+                    pago = {
+                        'codigo': epayment_id.code,
+                        'monto': epayment_id.epayment_amount, 
+                    }
+                    if not formaPago:
+                        formaPago.append(pago)
+                    else:
+                        for f in formaPago:
+                            if f['codigo'] == pago['codigo']:
+                                f['monto'] = str(float(f['monto']) + float(pago['monto']))
+                            else:
+                                formaPago.append(pago)
+                
+                infoFactura.update({'formaPago': formaPago})
+            elif self.payment_ids:
+                for payment_id in self.payment_ids:
+                    pago = {
+                        'codigo': payment_id.code,
+                        'monto': payment_id.amount, 
+                    }
+                    formaPago.append(pago)
+                
+                infoFactura.update({'formaPago': formaPago})
+            else:
+                raise UserError('Ingresar Pago')
+
         return infoFactura
 
     def _detalles(self, invoice):
@@ -117,8 +147,8 @@ class AccountInvoice(models.Model):
             detalle = {
                 'codigoPrincipal': codigoPrincipal,
                 'descripcion': fix_chars(line.name.strip()),
-                'cantidad': '%.6f' % (line.quantity),
-                'precioUnitario': '%.6f' % (line.price_unit),
+                'cantidad': '%.2f' % (line.quantity),
+                'precioUnitario': '%.2f' % (line.price_unit),
                 'descuento': '%.2f' % discount,
                 'precioTotalSinImpuesto': '%.2f' % (line.price_subtotal)
             }
@@ -131,7 +161,7 @@ class AccountInvoice(models.Model):
                         'tarifa': tax_line.percent_report,
                         'baseImponible': '{:.2f}'.format(line.price_subtotal),
                         'valor': '{:.2f}'.format(line.price_subtotal *
-                                                 tax_line.amount)
+                                                 tax_line.amount / 100)
                     }
                     impuestos.append(impuesto)
             detalle.update({'impuestos': impuestos})
@@ -140,7 +170,7 @@ class AccountInvoice(models.Model):
 
     def _compute_discount(self, detalles):
         total = sum([float(det['descuento']) for det in detalles['detalles']])
-        return {'totalDescuento': total}
+        return {'totalDescuento': '{:.2f}'.format(total)}
 
     def render_document(self, invoice, access_key, emission_code):
         tmpl_path = os.path.join(os.path.dirname(__file__), 'templates')
@@ -167,7 +197,7 @@ class AccountInvoice(models.Model):
             'comprobante': autorizacion.comprobante
         }
         auth_invoice = einvoice_tmpl.render(auth_xml)
-        return auth_invoice
+        return auth_invoice  
 
     @api.multi
     def action_generate_einvoice(self):
@@ -183,8 +213,10 @@ class AccountInvoice(models.Model):
             self.check_before_sent()
             access_key, emission_code = self._get_codes(name='account.invoice')
             einvoice = self.render_document(obj, access_key, emission_code)
+            self._logger.info(einvoice)
             inv_xml = DocumentXML(einvoice, obj.type)
-            inv_xml.validate_xml()
+            if not inv_xml.validate_xml():
+                raise UserError('Documento no valido')
             xades = Xades()
             file_pk12 = obj.company_id.electronic_signature
             password = obj.company_id.password_electronic_signature
@@ -192,36 +224,46 @@ class AccountInvoice(models.Model):
             ok, errores = inv_xml.send_receipt(signed_document)
             if not ok:
                 raise UserError(errores)
+            self.update_document([access_key, emission_code])
             auth, m = inv_xml.request_authorization(access_key)
             if not auth:
                 msg = ' '.join(list(itertools.chain(*m)))
                 raise UserError(msg)
-            auth_einvoice = self.render_authorized_einvoice(auth)
-            self.update_document(auth, [access_key, emission_code])
-            attach = self.add_attachment(auth_einvoice, auth)
             message = """
             DOCUMENTO ELECTRONICO GENERADO <br><br>
-            CLAVE DE ACCESO: %s <br>
-            NUMERO DE AUTORIZACION %s <br>
-            FECHA AUTORIZACION: %s <br>
-            ESTADO DE AUTORIZACION: %s <br>
-            AMBIENTE: %s <br>
+            CLAVE DE ACCESO / NUMERO DE AUTORIZACION: %s <br>
             """ % (
-                self.clave_acceso,
-                self.numero_autorizacion,
-                self.fecha_autorizacion,
-                self.estado_autorizacion,
-                self.ambiente
+                access_key,
             )
             self.message_post(body=message)
+            self.write({
+                'to_send_einvoice': True,
+            })
+            #self.action_send_einvoice_email()
+
+    @api.multi
+    def action_send_einvoice_email(self):
+        for obj in self:
+            einvoice = self.render_document(obj, self.clave_acceso, self.emission_code)
+            attach = self.add_attachment(einvoice.encode())
+            pdf = self.env.ref('l10n_ec_einvoice.report_einvoice').render_qweb_pdf(self.ids)
+            attach_pdf = self.add_attachment_pdf(pdf)    
             self.send_document(
-                attachments=[a.id for a in attach],
+                attachments=[a.id for a in attach + attach_pdf],
                 tmpl='l10n_ec_einvoice.email_template_einvoice'
             )
+            self.write({
+                'to_send_einvoice': False,
+            })
 
     @api.multi
     def invoice_print(self):
-        return self.env['report'].get_action(
-            self,
-            'l10n_ec_einvoice.report_einvoice'
+        return self.env.ref('l10n_ec_einvoice.report_einvoice').report_action(self)
+
+    payment_move_line_ids = fields.Many2many(
+        'account.move.line', 
+        string='Payment Move Lines',
+        readonly = True,
+        store = True,
         )
+            

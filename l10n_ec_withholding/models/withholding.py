@@ -2,6 +2,7 @@
 # © <2016> <Cristian Salamea>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
 from datetime import datetime
 
 from odoo import (
@@ -18,6 +19,11 @@ from . import utils
 
 class AccountWithdrawing(models.Model):
     """ Implementacion de documento de retencion """
+
+    _name = 'account.retention'
+    _description = 'Withdrawing Documents'
+    _order = 'date DESC'
+    _logger = logging.getLogger(_name)
 
     @api.multi
     @api.depends('tax_ids.amount')
@@ -55,13 +61,28 @@ class AccountWithdrawing(models.Model):
             company = self.env['res.company']._company_default_get('account.invoice')  # noqa
             auth_ret = company.partner_id.get_authorisation('ret_in_invoice')
             return auth_ret
+    @api.one
+    @api.depends('state','name')
+    def _compute_withholidng_number(self):
+        if self.name:
+            self.withholding_number = '{0}{1}{2}'.format(
+                self.auth_inv_id.serie_entidad,
+                self.auth_inv_id.serie_emision,
+                self.name
+            )
+        else:
+            self.withholding_number = '*'
+        self._logger.info(self.withholding_number)
 
     STATES_VALUE = {'draft': [('readonly', False)]}
 
-    _name = 'account.retention'
-    _description = 'Withdrawing Documents'
-    _order = 'date DESC'
-
+    withholding_number = fields.Char(
+        compute = '_compute_withholidng_number',
+        string = 'Numero Documento',
+        store = True,
+        readonly = True,
+        copy = False
+        )
     name = fields.Char(
         'Número',
         size=64,
@@ -81,7 +102,7 @@ class AccountWithdrawing(models.Model):
         states=STATES_VALUE,
         default=True
         )
-    auth_id = fields.Many2one(
+    auth_inv_id = fields.Many2one(
         'account.authorisation',
         'Autorizacion',
         readonly=True,
@@ -197,11 +218,11 @@ class AccountWithdrawing(models.Model):
     @api.constrains('date')
     def _check_date(self):
         if self.date and self.invoice_id:
-            inv_date = datetime.strptime(self.invoice_id.date_invoice, '%Y-%m-%d')  # noqa
-            ret_date = datetime.strptime(self.date, '%Y-%m-%d')  # noqa
+            inv_date = datetime.strptime(self.invoice_id.date_invoice, '%Y-%m-%d')  # noqa            
+            ret_date = datetime.strptime(datetime.now().strftime('%Y-%m-%d'), '%Y-%m-%d') # noqa  #Date == Today MAYBE IT IS BETTER date - date_invoice
             days = ret_date - inv_date
-            if days.days not in range(1, 6):
-                raise ValidationError(utils.CODE_701)  # noqa
+            if days.days not in list(range(0,6)):
+                raise ValidationError(utils.CODE701)  # noqa
 
     @api.onchange('name')
     @api.constrains('name')
@@ -216,7 +237,7 @@ class AccountWithdrawing(models.Model):
         if not len(self.name) == length[self.type] or not self.name.isdigit():
             raise UserError(u'Nro incorrecto. Debe ser de 15 dígitos.')
         if self.in_type == 'ret_in_invoice':
-            if not self.auth_id.is_valid_number(int(self.name)):
+            if not self.auth_inv_id.is_valid_number(int(self.name)):
                 raise UserError('Nro no pertenece a la secuencia.')
 
     @api.multi
@@ -245,7 +266,7 @@ class AccountWithdrawing(models.Model):
             if wd.to_cancel:
                 raise UserError('El documento fue marcado para anular.')
 
-            sequence = wd.auth_id.sequence_id
+            sequence = wd.auth_inv_id.sequence_id
             if self.type != 'out_invoice' and not number:
                 number = sequence.next_by_id()
             wd.write({'name': number})
@@ -329,13 +350,13 @@ class AccountWithdrawing(models.Model):
         for ret in self:
             if ret.move_ret_id:
                 raise UserError(utils.CODE703)
-            elif ret.auth_id.is_electronic:
+            elif ret.auth_inv_id.is_electronic:
                 raise UserError(u'No puede anular un documento electrónico.')
             data = {'state': 'cancel'}
             if ret.to_cancel:
                 # FIXME
-                if len(ret.name) == 9 and ret.auth_id.is_valid_number(int(ret.name)):  # noqa
-                    number = ret.auth_id.serie_entidad + ret.auth_id.serie_emision + ret.name  # noqa
+                if len(ret.name) == 9 and ret.auth_inv_id.is_valid_number(int(ret.name)):  # noqa
+                    number = ret.auth_inv_id.serie_entidad + ret.auth_inv_id.serie_emision + ret.name  # noqa
                     data.update({'name': number})
                 else:
                     raise UserError(utils.CODE702)
@@ -349,9 +370,6 @@ class AccountWithdrawing(models.Model):
         return True
 
     @api.multi
-    def action_print(self):
+    def action_print(self,data):
         # Método para imprimir comprobante contable
-        return self.env['report'].get_action(
-            self.move_id,
-            'l10n_ec_withholding.account_withholding'
-        )
+        return self.env.ref('l10n_ec_withholding.account_withholding').report_action(self, data=data)

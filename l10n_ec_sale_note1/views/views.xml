@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <!-- 
+          Sale Notes Graph
+        -->
+
+        <record id="view_account_sale_note_graph" model="ir.ui.view">
+            <field name="name">account.sale_note.graph</field>
+            <field name="model">account.sale_note</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="Notas de Venta" type="bar">
+                    <field name="partner_id"/>
+                    <field name="amount_total" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!--
+            Sale Note Search View
+        -->
+
+        <record id="view_account_sale_note_search" model="ir.ui.view">
+            <field name="name">account.sale_note.search</field>
+            <field name="model">account.sale_note</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                    <field name="name"/>
+                    <field name="invoice_id"/>
+                    <group expand="1" string="Group By">
+                        <filter name="group_by_partner_id" string="Cliente" context="{'group_by':'partner_id'}"/>
+                        <filter name="group_by_state" string="Estado" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+            Sale Note Tree View
+        -->
+
+        <record id="view_account_sale_note_tree" model="ir.ui.view">
+            <field name="name">account.sale_note.tree</field>
+            <field name="model">account.sale_note</field>
+            <field name="arch" type="xml">
+                <tree string="Notas de Venta" decoration-info="state == 'draft'">
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="invoice_number"/>
+                    <field name="user_id"/>
+                    <field name="date_due"/>
+                    <field name="origin"/>
+                    <field name="amount_total"/>
+                    <field name="residual_signed"/>
+                    <field name="state"/>
+                    <!--field name="sale_type_id" string="Nota de Venta" invisible="context.get('type',True)"/-->
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            Sale Note Form View
+        -->
+
+        <record id="view_account_sale_note_form" model="ir.ui.view">
+            <field name="name">view.account.sale_note.form</field>
+            <field name="model">account.sale_note</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Notas de Venta">
+                    <header>
+                        <button name="action_cancel" string="Anular" type="object" states="draft,done"/>
+                        <button name="button_validate" string="Validar" class="oe_highlight" type="object" states="draft"/>
+                        <button name="action_print" string="Retención" type="object" states="done" class="btn btn-primary" icon="fa-print"/>
+                        <button name="action_draft" string="Volver a Borrador" type="object" states="cancel"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                </form>
+            </field>
+        </record-->
+
+        <!--
+            Supplier Withholding Action Window
+        -->
+
+        <record id="action_account_sale_note_tree" model="ir.actions.act_window">
+            <field name="name">Notas de Venta</field>
+            <field name="res_model">account.sale_note</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_sale_note_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_account_sale_note_form" />
+            <field name="act_window_id" ref="action_account_sale_note_tree"/>
+        </record>
+
+        <record id="action_sale_note_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_account_sale_note_tree" />
+            <field name="act_window_id" ref="action_account_sale_note_tree"/>
+        </record>
+
+        <!--
+            Supplier Withholding Menu
+        -->
+
+        <menuitem action="action_account_sale_note_tree" id="menu_action_sale_note" parent="account.menu_finance_receivables_documents"/>
+
+    
+    </data>
+</odoo>

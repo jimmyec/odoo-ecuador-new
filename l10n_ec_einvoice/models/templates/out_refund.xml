@@ -61,6 +61,6 @@
     {% endfor %}
   </detalles>
   <infoAdicional>
-      <campoAdicional nombre="EMAIL">a.suin@lacolina.com.ec</campoAdicional>
+      <campoAdicional nombre="EMAIL">raspberrypiocv@gmail.com</campoAdicional>
   </infoAdicional>
 </notaCredito>

@@ -3128,13 +3128,13 @@
         </record>
 
         <!-- cuentas por defecto -->
-        <function  id="partner_account_receivable_default_set"
+        <!--function  id="partner_account_receivable_default_set"
                    model="ir.values" name="set_default"
                    eval="('res.partner', 'property_account_receivable_id', ref('101020601'))"/>
 
         <function  id="partner_account_payable_default_set"
                    model="ir.values" name="set_default"
-                   eval="('res.partner', 'property_account_payable_id', ref('2020401'))"/>
+                   eval="('res.partner', 'property_account_payable_id', ref('2020401'))"/-->
 
 	<!--
 	    Propiedades de cuentas por cobrar y por pagar
