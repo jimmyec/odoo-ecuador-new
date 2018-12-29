@@ -5,8 +5,13 @@
 Localización de Odoo para Ecuador
 =================================
 
-# Si requieres asesoría para la implementación de Odoo para Ecuador con nuestra versión envía un mail a ventas@prisehub.com y podrás acceder a nuestro servicios empresariales.
+Rama de https://github.com/odoo-ecuador
 
+GRACIAS A LA COMUNIDAD ODOO-ECUADOR!!
+
+Los cambios que he realizado sirven para ejecutar los módulos en Odoo 11.0 y python3.6
+
+---------------------------------------------------------------
 
 Este proyecto implementa todas o casi todas las funcionalidades
 requeridas para que Odoo pueda implementarse en cualquier
@@ -17,13 +22,6 @@ Referencias de Implementación
 -----------------------------
 
 Es importante también recalcar que este proyecto siempre esta activo, esta versión de localización esta en producción en muchos lugares. Te invitamos a incluir en la [Wiki](https://github.com/odoo-ecuador/odoo-ecuador/wiki/Referencia-de-clientes) de referencias a tus clientes en donde has implementado estos módulos, esto lo consideramos importante para dar valor al trabajo en conjunto que se realiza por la comunidad.
-
-Aclaratorio a la Licencia
--------------------------
-
-Este proyecto es un trabajo derivado de AGPL v3, si utilizas este trabajo es necesario que publiques los cambios realizados, si no lo haces debes enviar un tweet con el hashtag [#SoyUnOdooTrollenEcuador](https://twitter.com/search?f=tweets&q=%23SoyUnOdooTrollEnEcuado).
-
-Dedicado a toda esa gente linda de mi país que aplica la viveza criolla y vende este software y cambia el autor.
 
 Estado de Módulos
 -----------------
