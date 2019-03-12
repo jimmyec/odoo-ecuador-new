@@ -26,9 +26,12 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="withheld" invisible="1"/>
+                </xpath>
                 <xpath expr="//button[@name='action_invoice_open'][last()]" position="after"/>
                 <xpath expr="//button[@name='action_invoice_open'][last()]" position="after">
-                    <button name="action_retention_create" string="Retención" type="object" states="paid" class="btn btn-primary"/>
+                    <button name="action_withholding_create" string="Retención" type="object" states="paid" class="btn btn-primary" attrs="{'invisible':['|',('withheld','=',True)]}"/>
                     <button name="print_move" string="Comprobante" type="object" states="paid" class="btn btn-primary" icon="fa-print"/>
                 </xpath>
                 <xpath expr="//field[@name='move_id']" position="after">
@@ -134,7 +137,7 @@
                     <header>
                         <button name="action_cancel" string="Anular" type="object" states="draft,done"/>
                         <button name="button_validate" string="Validar" class="oe_highlight" type="object" states="draft"/>
-                        <button name="action_print" string="Retención" type="object" states="done" class="btn btn-primary" icon="fa-print"/>
+                        <button name="retention_print" string="Retención" type="object" states="done" class="btn btn-primary" icon="fa-print" invisible="1"/>
                         <button name="action_draft" string="Volver a Borrador" type="object" states="cancel"/>
                         <field name="state" widget="statusbar"/>
                     </header>
@@ -574,9 +577,9 @@
                 <xpath expr="//field[@name='date_invoice']" position="attributes">
                     <attribute name="required">1</attribute>
                 </xpath>
-                <xpath expr="//field[@name='fiscal_position_id']" position="attributes">
+                <!--xpath expr="//field[@name='fiscal_position_id']" position="attributes">
                     <attribute name="required">1</attribute>
-                </xpath>
+                </xpath-->
                 <xpath expr="//field[@name='move_id']" position="after">
                     <field name="retention_id"/>
                 </xpath>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="journal_credit_note" model="account.journal">
+            <field name="name">Nota de Credito</field>
+            <field name="type">bank</field>
+            <field name="journal_user">True</field>
+            <field name="code">NCRD</field>
+        </record>
+    </data>
+</odoo>

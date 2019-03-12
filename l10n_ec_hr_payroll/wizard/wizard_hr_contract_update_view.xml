@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="wizard_hr_contract_update_form" model="ir.ui.view">
+            <field name="name">wizard.hr.contract.update.form</field>
+            <field name="model">wizard.hr.contract.update</field>
+            <field name="arch" type="xml">
+                <form string="Update Contract">
+                    <div>
+                        <label string="Please select one of the options." />
+                        <ul>
+                            <li> The option to <strong>Wage Update</strong>, allows to update the value of the salary in the contract of one or several employees</li>
+                            <li> The option to <strong>Job Update</strong>, allows updating the job in the contract of one or several employees</li>
+                        </ul>
+                    </div>
+                    <group>
+                        <field name="option" />
+                    </group>
+                    <group string="Contracts to Update Wage" attrs="{'invisible': [('option', '=', 'job')]}">
+                        <field name="wage_ids" nolabel="1">
+                            <tree string="Update Wage" editable="bottom">
+                                <field name="employee_id" required="1"/>
+                                <field name="date" required="1"/>
+                                <field name="contract_id" readonly="1" send="1"/>
+                                <field name="old_wage" readonly="1" send="1"/>
+                                <field name="wage" required="1"/>
+                                <field name="name" required="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Contracts to Update Job" attrs="{'invisible': [('option', '=', 'wage')]}">
+                        <field name="job_ids" nolabel="1">
+                            <tree string="Update Wage" editable="bottom">
+                                <field name="employee_id" required="1"/>
+                                <field name="date" required="1"/>
+                                <field name="contract_id" readonly="1" send="1"/>
+                                <field name="old_job_id" readonly="1" send="1"/>
+                                <field name="job_id" required="1"/>
+                                <field name="name" required="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="update_contract" string="Update" type="object" class="btn-primary" />
+                        or
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="action_wizard_hr_contract_update">
+            <field name="name">Contract Update</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.hr.contract.update</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem parent="root_hr_menu_contract"
+                  action="action_wizard_hr_contract_update"
+                  id="menu_wizard_hr_contract_update"
+                  sequence="2"/>
+
+
+    </data>
+</odoo>

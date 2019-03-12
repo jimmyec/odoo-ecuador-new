@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <data>
+    <record id="l10n_ec_hr_view_company_form" model="ir.ui.view">
+      <field name="name">l10n_ec_account_view_company_form</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='sequence']" position="after">
+          <page string="Human resources">
+            <group colspan="4" cols="2">
+              <field name="basic_wage"/>
+              <field name="iess_personal"/>
+              <field name="iess_representante_legal"/>
+              <field name="iess_empleador"/>
+              <field name="porcentaje_fondos_reserva"/>
+              <field name="default_payroll_journal_id"/>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

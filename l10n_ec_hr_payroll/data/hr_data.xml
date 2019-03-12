@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_salary_rule__category_inggrav" model="hr.salary.rule.category">
+        <field name="name">Ingresos imputables</field>
+        <field name="code">INGGRAV</field>
+    </record>
+
+    <record id="INGRESONOGRAVADO" model="hr.salary.rule.category">
+        <field name="name">Ingresos no imputables</field>
+        <field name="code">INGRESONOGRAVADO</field>
+    </record>
+
+    <record id="LIQING" model="hr.salary.rule.category">
+        <field name="name">Ingresos de la Liquidación de haberes</field>
+        <field name="code">LIQING</field>
+    </record>
+
+    <record id="LIQDED" model="hr.salary.rule.category">
+        <field name="name">Deducciones de la Liquidación de haberes</field>
+        <field name="code">LIQDED</field>
+    </record>
+
+    <record id="SUBIESS" model="hr.salary.rule.category">
+        <field name="name">Subsidios pagados por el IESS</field>
+        <field name="code">SUBIESS</field>
+    </record>
+
+    <record id="LOAN" model="hr.salary.rule.category">
+        <field name="name">PRESTAMOS/AVANCES</field>
+        <field name="code">LOAN</field>
+    </record>
+
+    <!-- Ingresos -->
+    <record id="hr_payroll.hr_rule_basic" model="hr.salary.rule">
+        <field name="name">Sueldo</field>
+        <field name="sequence" eval="1"/>
+        <field name="code">BASE</field>
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if contract.basic_wage and contract.wage != employee.company_id.basic_wage:
+        contracts = contract.search([('basic_wage', '=', True)])
+        if contracts:
+            contracts.write({'wage': employee.company_id.basic_wage})
+dias = 30
+unpaid = 0
+
+for line in payslip.worked_days_line_ids:
+    if line.code == 'UNPAID':
+        unpaid += line.number_of_days
+
+if worked_days.WORK100:
+    dias = worked_days.WORK100.number_of_days
+sueldo = (contract.wage/30)*(dias - unpaid)
+result = round(sueldo, 2)
+        </field>
+    </record>
+
+    <record id="hr_rule_gratificacion" model="hr.salary.rule">
+        <field name="name">Gratificaciones</field>
+        <field name="sequence" eval="2"/>
+        <field name="code">GRATI</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.ALW:
+    value = inputs.ALW.amount
+elif contract.gratificacion:
+    value = contract.gratificacion
+result = round(value, 2)
+        </field>
+    </record>
+
+    <record id="hr_rule_inggrav" model="hr.salary.rule">
+        <field name="name">Ingresos Imputables</field>
+        <field name="sequence" eval="2"/>
+        <field name="code">INGGRAV</field>
+        <field name="category_id" ref="hr_salary_rule__category_inggrav"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.INGGRAV</field>
+        <field name="amount_select">fix</field>
+    </record>
+
+    <!-- Cobro de Fondos de Reserva en el Rol de Pagos -->
+    <record id="hr_rule_reserve_funds" model="hr.salary.rule">
+        <field name="code">FRPAG</field>
+        <field name="sequence" eval="3"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_select">python</field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+        <field name="amount_select">code</field>
+        <field name="name">Fondos de Reserva</field>
+        <field name="condition_python">
+#dividimos la fecha del contrato en año, mes y dia
+fecha_c = str(contract.date_start)
+anio_c = fecha_c[:4]
+mes_c = fecha_c[5:7]
+dia_c = fecha_c[8:10]
+
+#obtenemos el valor del año del contrato
+val_anio_c = 1950
+validar = 0
+while (validar == 0):
+    val_anio_c = val_anio_c + 1
+    if str(val_anio_c) == anio_c:
+        validar = 1
+
+#obtenemos el valor del mes del contrato
+val_mes_c = 0
+validar = 0
+while (validar == 0):
+    val_mes_c = val_mes_c + 1
+    if (str(val_mes_c) == mes_c) or ('0'+str(val_mes_c) == mes_c):
+        validar = 1
+
+#obtenemos el valor del dia del contrato
+val_dia_c = 0
+validar = 0
+while (validar == 0):
+    val_dia_c = val_dia_c + 1
+    if (str(val_dia_c) == dia_c) or ('0'+str(val_dia_c) == dia_c):
+        validar = 1
+
+#dividimos la fecha de fin del rol de pagos en año, mes y dia
+fecha_p = str(payslip.date_to)
+anio_p = fecha_p[:4]
+mes_p = fecha_p[5:7]
+dia_p = fecha_p[8:10]
+
+#obtenemos el valor del año del rol
+val_anio_p = 1950
+validar = 0
+while (validar == 0):
+    val_anio_p = val_anio_p + 1
+    if str(val_anio_p) == anio_p:
+        validar = 1
+
+#obtenemos el valor del mes del rol
+val_mes_p = 0
+validar = 0
+while (validar == 0):
+    val_mes_p = val_mes_p + 1
+    if (str(val_mes_p) == mes_p) or ('0'+str(val_mes_p) == mes_p):
+        validar = 1
+
+#obtenemos el valor del ultimo dia del rol
+val_dia_p = 0
+validar = 0
+while (validar == 0):
+    val_dia_p = val_dia_p + 1
+    if (str(val_dia_p) == dia_p) or ('0'+str(val_dia_p) == dia_p):
+        validar = 1
+
+#calculamos el total de dias de diferencia entre el contrato y el rol
+dias = ((val_anio_p*365)+(val_mes_p*30)+val_dia_p) - ((val_anio_c*365)+(val_mes_c*30)+val_dia_c)
+
+#si los dias son mayores a 365 o 1 año, se puede proceder a calcular el valor
+result = (dias &gt; 365) and (contract.fondos_reserva_rol == True)
+        </field>
+        <field name="amount_python_compute">fecha_c = str(contract.date_start)
+anio_c = fecha_c[:4]
+mes_c = fecha_c[5:7]
+dia_c = fecha_c[8:10]
+
+#obtenemos el valor del año del contrato
+val_anio_c = 1950
+validar = 0
+while (validar == 0):
+    val_anio_c = val_anio_c + 1
+    if str(val_anio_c) == anio_c:
+        validar = 1
+
+#obtenemos el valor del mes del contrato
+val_mes_c = 0
+validar = 0
+while (validar == 0):
+    val_mes_c = val_mes_c + 1
+    if (str(val_mes_c) == mes_c) or ('0'+str(val_mes_c) == mes_c):
+        validar = 1
+
+#obtenemos el valor del dia del contrato
+val_dia_c = 0
+validar = 0
+while (validar == 0):
+    val_dia_c = val_dia_c + 1
+    if (str(val_dia_c) == dia_c) or ('0'+str(val_dia_c) == dia_c):
+        validar = 1
+
+#dividimos la fecha de fin del rol de pagos en año, mes y dia
+fecha_p = str(payslip.date_to)
+anio_p = fecha_p[:4]
+mes_p = fecha_p[5:7]
+dia_p = fecha_p[8:10]
+
+#obtenemos el valor del año del rol
+val_anio_p = 1950
+validar = 0
+while (validar == 0):
+    val_anio_p = val_anio_p + 1
+    if str(val_anio_p) == anio_p:
+        validar = 1
+
+#obtenemos el valor del mes del rol
+val_mes_p = 0
+validar = 0
+while (validar == 0):
+    val_mes_p = val_mes_p + 1
+    if (str(val_mes_p) == mes_p) or ('0'+str(val_mes_p) == mes_p):
+        validar = 1
+
+#obtenemos el valor del ultimo dia del rol
+val_dia_p = 0
+validar = 0
+while (validar == 0):
+    val_dia_p = val_dia_p + 1
+    if (str(val_dia_p) == dia_p) or ('0'+str(val_dia_p) == dia_p):
+        validar = 1
+
+#calculamos el total de dias de diferencia entre el contrato y el rol
+dias = ((val_anio_p*365)+(val_mes_p*30)+val_dia_p) - ((val_anio_c*365)+(val_mes_c*30)+val_dia_c)
+valor = 0
+
+sub_total = (contract.wage + contract.gratificacion) * (employee.company_id.porcentaje_fondos_reserva / 100)
+
+#si son menos de 30 dias, luego de pasado 1 año de trabajo, se calcula el proporcional a los dias correspondientes, caso contrario se coloca el valor completo
+
+
+if (dias-395)&gt;=0:
+    valor = sub_total
+else:
+    if val_mes_p==1 or val_mes_p==3 or val_mes_p==5 or val_mes_p==7 or val_mes_p==8 or val_mes_p==10 or val_mes_p==12:
+        dias = dias + 1
+    valor = (sub_total/30.0)*(dias-365.0)
+
+laborados = 30
+if worked_days.WORK100:
+    laborados = worked_days.WORK100.number_of_days
+valor = valor * (laborados / 30)
+result = round(valor, 2)
+        </field>
+        <field name="category_id" ref="INGRESONOGRAVADO"/>
+        <field name="quantity">1.0</field>
+    </record>
+
+    <!-- Cobro de Fondos de Reserva como provision-->
+    <record id="hr_rule_reserve_funds_as_contribution" model="hr.salary.rule">
+        <field name="code">FRPROV</field>
+        <field name="sequence" eval="10"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_range">contract.wage</field>
+        <field name="condition_select">python</field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+        <field name="amount_select">code</field>
+        <field name="name">Provisión - Fondos de Reserva</field>
+        <field name="condition_python">
+#dividimos la fecha del contrato en año, mes y dia
+fecha_c = str(contract.date_start)
+anio_c = fecha_c[:4]
+mes_c = fecha_c[5:7]
+dia_c = fecha_c[8:10]
+
+#obtenemos el valor del año del contrato
+val_anio_c = 1950
+validar = 0
+while (validar == 0):
+    val_anio_c = val_anio_c + 1
+    if str(val_anio_c) == anio_c:
+        validar = 1
+
+#obtenemos el valor del mes del contrato
+val_mes_c = 0
+validar = 0
+while (validar == 0):
+    val_mes_c = val_mes_c + 1
+    if (str(val_mes_c) == mes_c) or ('0'+str(val_mes_c) == mes_c):
+        validar = 1
+
+#obtenemos el valor del dia del contrato
+val_dia_c = 0
+validar = 0
+while (validar == 0):
+    val_dia_c = val_dia_c + 1
+    if (str(val_dia_c) == dia_c) or ('0'+str(val_dia_c) == dia_c):
+        validar = 1
+
+#dividimos la fecha de fin del rol de pagos en año, mes y dia
+fecha_p = str(payslip.date_to)
+anio_p = fecha_p[:4]
+mes_p = fecha_p[5:7]
+dia_p = fecha_p[8:10]
+
+#obtenemos el valor del año del rol
+val_anio_p = 1950
+validar = 0
+while (validar == 0):
+    val_anio_p = val_anio_p + 1
+    if str(val_anio_p) == anio_p:
+        validar = 1
+
+#obtenemos el valor del mes del rol
+val_mes_p = 0
+validar = 0
+while (validar == 0):
+    val_mes_p = val_mes_p + 1
+    if (str(val_mes_p) == mes_p) or ('0'+str(val_mes_p) == mes_p):
+        validar = 1
+
+#obtenemos el valor del ultimo dia del rol
+val_dia_p = 0
+validar = 0
+while (validar == 0):
+    val_dia_p = val_dia_p + 1
+    if (str(val_dia_p) == dia_p) or ('0'+str(val_dia_p) == dia_p):
+        validar = 1
+
+#calculamos el total de dias de diferencia entre el contrato y el rol
+dias = ((val_anio_p*365)+(val_mes_p*30)+val_dia_p) - ((val_anio_c*365)+(val_mes_c*30)+val_dia_c)
+
+#si los dias son mayores a 365 o 1 año, se puede proceder a calcular el valor
+result = (dias &gt; 365) and (contract.fondos_reserva_rol == False)
+        </field>
+        <field name="amount_python_compute">
+fecha_c = str(contract.date_start)
+anio_c = fecha_c[:4]
+mes_c = fecha_c[5:7]
+dia_c = fecha_c[8:10]
+
+#obtenemos el valor del año del contrato
+val_anio_c = 1950
+validar = 0
+while (validar == 0):
+    val_anio_c = val_anio_c + 1
+    if str(val_anio_c) == anio_c:
+        validar = 1
+
+#obtenemos el valor del mes del contrato
+val_mes_c = 0
+validar = 0
+while (validar == 0):
+    val_mes_c = val_mes_c + 1
+    if (str(val_mes_c) == mes_c) or ('0'+str(val_mes_c) == mes_c):
+        validar = 1
+
+#obtenemos el valor del dia del contrato
+val_dia_c = 0
+validar = 0
+while (validar == 0):
+    val_dia_c = val_dia_c + 1
+    if (str(val_dia_c) == dia_c) or ('0'+str(val_dia_c) == dia_c):
+        validar = 1
+
+#dividimos la fecha de fin del rol de pagos en año, mes y dia
+fecha_p = str(payslip.date_to)
+anio_p = fecha_p[:4]
+mes_p = fecha_p[5:7]
+dia_p = fecha_p[8:10]
+
+#obtenemos el valor del año del rol
+val_anio_p = 1950
+validar = 0
+while (validar == 0):
+    val_anio_p = val_anio_p + 1
+    if str(val_anio_p) == anio_p:
+        validar = 1
+
+#obtenemos el valor del mes del rol
+val_mes_p = 0
+validar = 0
+while (validar == 0):
+    val_mes_p = val_mes_p + 1
+    if (str(val_mes_p) == mes_p) or ('0'+str(val_mes_p) == mes_p):
+        validar = 1
+
+#obtenemos el valor del ultimo dia del rol
+val_dia_p = 0
+validar = 0
+while (validar == 0):
+    val_dia_p = val_dia_p + 1
+    if (str(val_dia_p) == dia_p) or ('0'+str(val_dia_p) == dia_p):
+        validar = 1
+
+#calculamos el total de dias de diferencia entre el contrato y el rol
+dias = ((val_anio_p*365)+(val_mes_p*30)+val_dia_p) - ((val_anio_c*365)+(val_mes_c*30)+val_dia_c)
+valor = 0
+
+sub_total = (contract.wage + contract.gratificacion) * (employee.company_id.porcentaje_fondos_reserva / 100)
+
+#si son menos de 30 dias, luego de pasado 1 año de trabajo, se calcula el proporcional a los dias correspondientes, caso contrario se coloca el valor completo
+if (dias-395)&gt;=0:
+    valor = sub_total
+else:
+    if val_mes_p==1 or val_mes_p==3 or val_mes_p==5 or val_mes_p==7 or val_mes_p==8 or val_mes_p==10 or val_mes_p==12:
+        dias = dias + 1
+    valor = (sub_total/30.0)*(dias-365.0)
+
+laborados = 30
+if worked_days.WORK100:
+    laborados = worked_days.WORK100.number_of_days
+valor = valor * (laborados / 30)
+result = round(valor, 2)
+        </field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="quantity">1.0</field>
+    </record>
+
+    <!-- Cobro de décimos en rol-->
+    <record id="hr_rule_13ing_salary" model="hr.salary.rule">
+        <field name="name">Décimo Tercero</field>
+        <field name="sequence" eval="20"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="code">13PAG</field>
+        <field name="category_id" ref="INGRESONOGRAVADO"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# El representante legal no recibe 13ro.
+if contract.representante_legal:
+    result = False
+else:
+    result = contract.decimo_tercero_rol == True
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+valor = (categories.BASIC + categories.ALW) / 12
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_14ing_salary" model="hr.salary.rule">
+        <field name="name">Décimo Cuarto</field>
+        <field name="sequence" eval="21"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="code">14PAG</field>
+        <field name="category_id" ref="INGRESONOGRAVADO"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# El representante legal no recibe 14to.
+if contract.representante_legal:
+    result = False
+else:
+    result = contract.decimo_cuarto_rol == True
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+dias = 30
+unpaid = 0
+
+for line in payslip.worked_days_line_ids:
+    if line.code == 'UNPAID':
+        unpaid += line.number_of_days
+
+if worked_days.WORK100:
+    dias = worked_days.WORK100.number_of_days
+valor = (employee.company_id.basic_wage/30)*(dias - unpaid) / 12
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Cobro de Fondos de Reserva como provision-->
+    <record id="hr_rule_13_salary" model="hr.salary.rule">
+        <field name="name">Provisión - Décimo Tercero</field>
+        <field name="sequence" eval="20"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="code">13PROV</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# El representante legal no recibe 13ro.
+if contract.representante_legal:
+    result = False
+else:
+    result = contract.decimo_tercero_rol == False
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+valor = (categories.BASIC + categories.ALW) / 12
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_14_salary" model="hr.salary.rule">
+        <field name="name">Provisión - Décimo Cuarto</field>
+        <field name="sequence" eval="21"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="code">14PROV</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# El representante legal no recibe 14to.
+if contract.representante_legal:
+    result = False
+else:
+    result = contract.decimo_cuarto_rol == False
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+dias = 30
+if worked_days.WORK100:
+    dias = worked_days.WORK100.number_of_days
+valor = (employee.company_id.basic_wage/30)*(dias) / 12
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_vacaciones" model="hr.salary.rule">
+        <field name="name">Provisión - Vacaciones</field>
+        <field name="sequence" eval="21"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="code">VAC</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# No se aplica al representante legal.
+if contract.representante_legal:
+    result = False
+else:
+    result = contract.provisionar_vacaciones == True</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+valor = (categories.BASIC + categories.ALW) / 24
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+
+    <!-- Iess patronal -->
+    <record id="hr_rule_company_iess" model="hr.salary.rule">
+        <field name="name">IESS Aporte patronal</field>
+        <field name="sequence" eval="100"/>
+        <field name="appears_on_payslip" eval="False"/>
+        <field name="code">IESSPATRO</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# No se aplica con el porcentaje especial del representante legal.
+if contract.iess_representante_legal:
+    result = False
+else:
+    result = True
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+dias = 30
+if worked_days.WORK100:
+    dias = worked_days.WORK100.number_of_days
+valor = (categories.BASIC + categories.ALW - categories.SUBIESS) * (employee.company_id.iess_empleador / 100) * (dias/30)
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Deduccion IR-->
+    <record id="hr_rule_personal_ir" model="hr.salary.rule">
+        <field name="name">Deducción de IR</field>
+        <field name="sequence" eval="10"/>
+        <field name="code">DEDIR</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.retener_impuesto_renta</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if contract.impuesto_renta:
+    valor = contract.impuesto_renta
+else:
+    valor = sri.tax_rent(contract, payslip.date_from, categories.BASIC, categories.INGGRAV, 0.0945)
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Deducción IESS personal -->
+    <record id="hr_rule_personal_iess" model="hr.salary.rule">
+        <field name="name">IESS aporte personal</field>
+        <field name="sequence" eval="100"/>
+        <field name="code">IESSPER</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# No se aplica con el porcentaje especial del representante legal.
+if contract.iess_representante_legal:
+    result = False
+else:
+    result = True
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+dias = 30
+if worked_days.WORK100:
+    dias = worked_days.WORK100.number_of_days
+
+valor = (categories.BASIC + categories.ALW - categories.SUBIESS) * (employee.company_id.iess_personal / 100) * (dias/30)
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Deducción IESS personal -->
+    <record id="hr_rule_representante_legal_iess" model="hr.salary.rule">
+        <field name="name">IESS aporte personal Rep. Legal</field>
+        <field name="sequence" eval="100"/>
+        <field name="code">IESSREPLEGAL</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.iess_representante_legal</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+dias = 30
+if worked_days.WORK100:
+    dias = worked_days.WORK100.number_of_days
+
+valor = (categories.BASIC + categories.ALW - categories.SUBIESS) * (employee.company_id.iess_representante_legal / 100) * (dias/30)
+result = round(valor, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+
+    <!-- Deducción adelantos-->
+    <record id="hr_rule_adelanto" model="hr.salary.rule">
+        <field name="name">Adelantos</field>
+        <field name="sequence" eval="20"/>
+        <field name="code">ADV</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+for item in contract.prestamos:
+    if item.type == 'adelanto' and item.state == 'run':
+        if payslip.date_from &lt;= item.inicia_pago and payslip.date_to &gt;= item.termina_pago:
+            value = item.monto
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_descuentos" model="hr.salary.rule">
+        <field name="name">Descuentos del empleado</field>
+        <field name="sequence" eval="20"/>
+        <field name="code">DESC</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.DESC:
+    for line in payslip.input_line_ids:
+        if line.code == 'DESC':
+            value += line.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Deducción-->
+    <record id="hr_rule_deducciones" model="hr.salary.rule">
+        <field name="name">Otras deducciones</field>
+        <field name="sequence" eval="20"/>
+        <field name="code">DED</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.DED:
+    for line in payslip.input_line_ids:
+        if line.code == 'DED':
+            value += line.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Deducción por maternidad -->
+    <record id="l10n_ec_hr_payroll.hr_rule_ded_75_exp" model="hr.salary.rule">
+        <field name="name">Deducción de 75% del salario (gasto)</field>
+        <field name="sequence" eval="10"/>
+        <field name="code">DED75</field>
+        <field name="category_id" ref="SUBIESS"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = worked_days.DED75</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if worked_days.DED75:
+    ausencias = 0
+    for line in payslip.worked_days_line_ids:
+        if line.code == 'DED75':
+            ausencias += line.number_of_days
+
+    deduccion = (contract.wage/30) * ausencias * 0.75
+    result = round(deduccion, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="l10n_ec_hr_payroll.hr_rule_ded_66_exp" model="hr.salary.rule">
+        <field name="name">Deducción de 66% del salario (gasto)</field>
+        <field name="sequence" eval="10"/>
+        <field name="code">DED66</field>
+        <field name="category_id" ref="SUBIESS"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = worked_days.DED66</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if worked_days.DED66:
+    ausencias = 0
+    for line in payslip.worked_days_line_ids:
+        if line.code == 'DED66':
+            ausencias += line.number_of_days
+
+    deduccion = (contract.wage/30) * ausencias * 0.66
+    result = round(deduccion, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Préstamos -->
+
+    <record id="salary_rule_" model="hr.salary.rule">
+        <field name="condition_select">python</field>
+        <field name="code">LOAN</field>
+        <field name="amount_select">fix</field>
+        <field name="amount_fix">1.00</field>
+        <field name="sequence">34</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="name">PRESTAMOS/AVANCES</field>
+        <field name="condition_python">result = payslip.credit_note != False and inputs.LOAN</field>
+        <field name="category_id" ref="LOAN"/>
+        <field name="quantity">1.0</field>
+    </record>
+
+    <record id="hr_rule_iess_prestamo_quirografario" model="hr.salary.rule">
+        <field name="name">IESS Quirografario</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">QUIRO</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+for item in contract.prestamos:
+    if item.type == 'prestamo' and item.subtype == 'quirografario' and item.state == 'run':
+        if payslip.date_from &gt;= item.inicia_pago and payslip.date_to &lt;= item.termina_pago:
+           value = item.monto
+result = round(value, 2)
+      </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_iess_prestamo_hipotecario" model="hr.salary.rule">
+        <field name="name">IESS Hipotecario</field>
+        <field name="sequence" eval="40"/>
+        <field name="code">HIPO</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+for item in contract.prestamos:
+    if item.type == 'prestamo' and item.subtype == 'hipotecario' and item.state == 'run':
+        if payslip.date_from &gt;= item.inicia_pago and payslip.date_to &lt;= item.termina_pago:
+            value = item.monto
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <!-- Rules - Net -->
+    <!-- Permite actualizar la regla hr_rule_net -->
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value eval="[('module', '=', 'hr_payroll'), ('name', '=', 'hr_rule_net')]"/>
+        </function>
+        <value eval="{'noupdate': False}" />
+    </function>
+
+    <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
+      <field name="name">Neto a recibir</field>
+      <field name="sequence" eval="300"/>
+      <field name="code">NET</field>
+      <field name="category_id" ref="hr_payroll.NET"/>
+      <field name="condition_select">none</field>
+      <field name="amount_select">code</field>
+      <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.INGGRAV + categories.INGRESONOGRAVADO - categories.DED - categories.SUBIESS</field>
+      <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+      <!-- REGLAS DE LA LIQUIDACIÓN DE HABERES-->
+
+    <record id="hr_rule_liq_bon25" model="hr.salary.rule">
+        <field name="name">Bonificación 25% (gasto)</field>
+        <field name="sequence" eval="10"/>
+        <field name="code">LIQBON25</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQBON25:
+    value = inputs.LIQBON25.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_inddesint" model="hr.salary.rule">
+        <field name="name">Indemnización por despido intempestivo (gasto)</field>
+        <field name="sequence" eval="20"/>
+        <field name="code">LIQINDDESINT</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQINDDESINT:
+    value = inputs.LIQINDDESINT.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_indemb" model="hr.salary.rule">
+        <field name="name">Indemnización por embarazo (gasto)</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">LIQINDEMB</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQINDEMB:
+    value = inputs.LIQINDEMB.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_inddirsin" model="hr.salary.rule">
+        <field name="name">Indemnización por dirigencia sindical (gasto)</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">LIQINDDIRSIN</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQINDDIRSIN:
+    value = inputs.LIQINDDIRSIN.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_indenfnopro" model="hr.salary.rule">
+        <field name="name">Indemnización por enfermedad no profesional (gasto)</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">LIQINDENFNOPROF</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQINDENFNOPROF:
+    value = inputs.LIQINDENFNOPROF.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+
+    <record id="hr_rule_liq_inddis" model="hr.salary.rule">
+        <field name="name">Indemnización por discapacidad (gasto)</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">LIQINDDIS</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQINDDIS:
+    value = inputs.LIQINDDIS.amount
+result = roound(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_indterantpla" model="hr.salary.rule">
+        <field name="name">Indemnización por terminación antes de plazo (gasto)</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">LIQINDTERANTPLA</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQINDTERANTPLA:
+    value = inputs.LIQINDTERANTPLA.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_13" model="hr.salary.rule">
+        <field name="name">Décima tercera remuneración en liquidaciones</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">LIQ13</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQ13:
+    value = inputs.LIQ13.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_14" model="hr.salary.rule">
+        <field name="name">Décimo cuarta remuneración en liquidaciones</field>
+        <field name="sequence" eval="30"/>
+        <field name="code">LIQ14</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQ14:
+    value = inputs.LIQ14.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_vac" model="hr.salary.rule">
+        <field name="name">Vacaciones de años anteriores</field>
+        <field name="sequence" eval="100"/>
+        <field name="code">LIQVAC</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQVAC:
+    value = inputs.LIQVAC.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_vacultper" model="hr.salary.rule">
+        <field name="name">Vacaciones del último periodo</field>
+        <field name="sequence" eval="100"/>
+        <field name="code">LIQVACULTPER</field>
+        <field name="category_id" ref="LIQING"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQVACULTPER:
+    value = inputs.LIQVACULTPER.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_liq_valcaliess" model="hr.salary.rule">
+        <field name="name">Valor calculado que debe aportar al IESS</field>
+        <field name="sequence" eval="100"/>
+        <field name="code">LIQVALCALIESS</field>
+        <field name="category_id" ref="LIQDED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+value = 0
+if inputs.LIQVALCALIESS:
+    value = inputs.LIQVALCALIESS.amount
+result = round(value, 2)
+        </field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_net_liquidacion" model="hr.salary.rule">
+        <field name="name">Valor neto a recibir</field>
+        <field name="sequence" eval="300"/>
+        <field name="code">LIQNET</field>
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.LIQING - categories.LIQDED</field>
+        <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+    </record>
+    <!-- Salary Structures -->
+
+    <!-- Permite que la regla salarial base sea actualizada -->
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value eval="[('module', '=', 'hr_payroll'), ('name', '=', 'structure_base')]"/>
+        </function>
+        <value eval="{'noupdate': False}"/>
+    </function>
+
+    <record id="hr_payroll.structure_base" model="hr.payroll.structure">
+        <field name="code">BASE</field>
+        <field name="name">ESTRUCTURA SALARIAL GENERAL</field>
+        <field eval="[(6, 0, [
+                   ref('hr_payroll.hr_rule_basic'),
+                   ref('hr_rule_inggrav'),
+                   ref('hr_rule_gratificacion'),
+                   ref('hr_rule_reserve_funds'),
+                   ref('hr_rule_reserve_funds_as_contribution'),
+                   ref('hr_rule_13ing_salary'),
+                   ref('hr_rule_14ing_salary'),
+                   ref('hr_rule_personal_ir'),
+                   ref('hr_rule_adelanto'),
+                   ref('hr_rule_personal_iess'),
+                   ref('hr_rule_representante_legal_iess'),
+                   ref('hr_rule_iess_prestamo_quirografario'),
+                   ref('hr_rule_iess_prestamo_hipotecario'),
+                   ref('hr_rule_13_salary'),
+                   ref('hr_rule_14_salary'),
+                   ref('hr_rule_company_iess'),
+                   ref('hr_rule_vacaciones'),
+                   ref('hr_rule_deducciones'),
+                   ref('hr_payroll.hr_rule_net'),
+                   ref('l10n_ec_hr_payroll.hr_rule_ded_75_exp'),
+                   ref('l10n_ec_hr_payroll.hr_rule_ded_66_exp')])]"
+               name="rule_ids"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="l10n_ec_hr_payroll.structure_liquidacion" model="hr.payroll.structure">
+        <field name="code">LIQUIDACION</field>
+        <field name="name">LIQUIDACIÓN DE HABERES PARA GASTOS GENERALES</field>
+        <field eval="[(6, 0, [
+                   ref('hr_rule_net_liquidacion'),
+                   ref('hr_rule_liq_bon25'),
+                   ref('hr_rule_liq_inddesint'),
+                   ref('hr_rule_liq_indemb'),
+                   ref('hr_rule_liq_indemb'),
+                   ref('hr_rule_liq_inddirsin'),
+                   ref('hr_rule_liq_indenfnopro'),
+                   ref('hr_rule_liq_inddis'),
+                   ref('hr_rule_liq_indterantpla'),
+                   ref('hr_rule_liq_13'),
+                   ref('hr_rule_liq_14'),
+                   ref('hr_rule_liq_vac'),
+                   ref('hr_rule_liq_vacultper'),
+                   ref('hr_rule_liq_valcaliess')])]"
+             name="rule_ids"/>
+      <field name="company_id" ref="base.main_company"/>
+    </record>
+</odoo>

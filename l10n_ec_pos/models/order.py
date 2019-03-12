@@ -27,27 +27,61 @@ class Bankstatementepayment(models.Model):
 class PosOrder(models.Model):
     _inherit = 'pos.order'
 
+    @api.model
+    def create_from_ui(self, orders):
+        # Keep only new orders
+        submitted_references = [o['data']['name'] for o in orders]
+        pos_order = self.search([('pos_reference', 'in', submitted_references)])
+        existing_orders = pos_order.read(['pos_reference'])
+        existing_references = set([o['pos_reference'] for o in existing_orders])
+        orders_to_save = [o for o in orders if o['data']['name'] not in existing_references]
+        order_ids = []
+
+        for tmp_order in orders_to_save:
+            order = tmp_order['data']
+            self._match_payment_to_invoice(order)
+            pos_order = self._process_order(order)
+            order_ids.append(pos_order.id)
+
+            try:
+                pos_order.action_pos_order_paid()
+            except psycopg2.OperationalError:
+                # do not hide transactional errors, the order(s) won't be saved!
+                raise
+            except Exception as e:
+                _logger.error('Could not fully process the POS Order: %s', tools.ustr(e))
+            
+            pos_order.action_pos_order_invoice()
+
+            return order_ids
+
     @api.multi
     def action_pos_order_invoice(self):
         super(PosOrder, self).action_pos_order_invoice()
         for order in self:
-            order.invoice_id.auth_inv_id = order.sale_journal.auth_out_invoice_id
-
-            order.invoice_id.reference = order.sale_journal.auth_out_invoice_id.sequence_id.number_next_actual
-            order.sale_journal.sequence_number_next = order.sale_journal.auth_out_invoice_id.sequence_id.number_next_actual
+            if order.order_type  == 'refund':
+                order.invoice_id.auth_inv_id = order.sale_journal.auth_out_refund_id
+                order.invoice_id.reference = order.sale_journal.auth_out_refund_id.sequence_id.number_next_actual
+            else:
+                order.invoice_id.auth_inv_id = order.sale_journal.auth_out_invoice_id
+                order.invoice_id.reference = order.sale_journal.auth_out_invoice_id.sequence_id.number_next_actual
+                order.sale_journal.sequence_number_next = order.sale_journal.auth_out_invoice_id.sequence_id.number_next_actual
+                
             order.invoice_id.reference = order.invoice_id.reference.zfill(9)
-            order.invoice_id.date_invoice = datetime.now() + timedelta(hours=-5)
+            order.invoice_id.date_invoice = order.date_order
 
             for statement_id in order.statement_ids:
-                epayment_line = {
+                pos_payment_line = {
+                    'journal_id': statement_id.journal_id,
                     'code': statement_id.epayment_pos.code,
-                    'name': statement_id.epayment_pos.name,
-                    'epayment_amount': statement_id.amount,
+                    'epayment_id': statement_id.epayment_pos.id,
+                    'payment_amount': statement_id.amount,
                     }
 
-                order.invoice_id.epayment_ids = [(0,0,epayment_line)]
+                order.invoice_id.pos_payment_line_ids = [(0,0,pos_payment_line)]
 
-            #order.invoice_id.action_invoice_open()
+            order.invoice_id.sudo().action_invoice_open()
+            order.account_move = order.invoice_id.move_id
 
     @api.multi
     def add_payment(self,data):

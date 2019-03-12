@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_sri_deduction_ali" model="hr.sri.deduction">
+        <field name="code">ALI</field>
+        <field name="name">ALIMENTACION</field>
+        <field name="description">"Proyección de gastos por concepto de alimentación"</field>
+    </record>
+
+    <record id="hr_sri_deduction_viv" model="hr.sri.deduction">
+        <field name="code">VIV</field>
+        <field name="name">VIVIENDA</field>
+        <field name="description">Proyección de gastos por concepto de vivienda</field>
+    </record>
+
+    <record id="hr_sri_deduction_edu" model="hr.sri.deduction">
+        <field name="code">EDU</field>
+        <field name="name">EDUCACION</field>
+        <field name="description">Proyección de gastos por concepto de educación</field>
+    </record>
+
+    <record id="hr_sri_deduction_sal" model="hr.sri.deduction">
+        <field name="code">SAL</field>
+        <field name="name">SALUD</field>
+        <field name="description">Proyección de gastos por concepto de salud</field>
+    </record>
+
+    <record id="hr_sri_deduction_ves" model="hr.sri.deduction">
+        <field name="code">VES</field>
+        <field name="name">VESTIMENTA</field>
+        <field name="description">Proyección de gastos por concepto de vestimenta</field>
+    </record>
+</odoo>

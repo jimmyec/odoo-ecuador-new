@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © <2016> <Cristian Salamea>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+
 
 import time
 from datetime import datetime
@@ -88,7 +88,8 @@ class AccountAuthorisation(models.Model):
                            ('type_id', '=', values['type_id']),
                            ('serie_entidad', '=', values['serie_entidad']),
                            ('serie_emision', '=', values['serie_emision']),
-                           ('active', '=', True)])
+                           ('active', '=', True),
+                           ('is_electronic', '=', values['is_electronic'])])
         if res:
             MSG = u'Ya existe una autorización activa para %s' % self.type_id.name  # noqa
             raise ValidationError(MSG)
@@ -202,7 +203,8 @@ class ResPartner(models.Model):
         code = map_type[type_document]
         for a in self.authorisation_ids:
             if a.active and a.type_id.code == code:
-                return a
+                #return a
+                return a.type_id.code
         return False
 
 class AccountJournal(models.Model):
@@ -265,14 +267,11 @@ class AccountInvoice(models.Model):
         establecimiento seleccionado
         """
         if self.reference:
-            #if self.type == 'out_invoice':
             self.invoice_number = '{0}{1}{2}'.format(
                 self.auth_inv_id.serie_entidad,
                 self.auth_inv_id.serie_emision,
                 self.reference
             )
-            #else:
-            #    self.invoice_number = self.reference
         else:
             self.invoice_number = '*'
 
@@ -300,11 +299,15 @@ class AccountInvoice(models.Model):
         'account.ats.sustento',
         string='Sustento del Comprobante'
     )
-
+    accion_fisical_document = fields.Boolean(
+        string='Factura Fisica',
+        default=False,
+        store=True,
+    )
     _sql_constraints = [
         (
             'unique_invoice_number',
-            'unique(invoice_number,type,partner_id,state)',
+            'unique(invoice_number,type,partner_id,state,accion_fisical_document)',
             u'El número de factura es único.'
         )
     ]

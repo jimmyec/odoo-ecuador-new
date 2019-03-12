@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="l10n_ec_view_employee_form" model="ir.ui.view">
+            <field name="name">l10n.ec.hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace" >
+                    <field name="name" class="oe_read_only" />
+                    <field name="lastname" placeholder="Father's Lastname" class="oe_edit_only" />
+                    <field name="second_lastname" placeholder="Mother's Lastname" class="oe_edit_only" />
+                    <field name="names" placeholder="Name's" class="oe_edit_only" />
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="after" >
+                    <field name="flag" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="attributes" >
+                    <attribute name="required">1</attribute>
+                    <attribute name="attrs">{'readonly': [('flag', '=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='passport_id']" position="after">
+                    <field name="disability" />
+                    <field name="conadis_id" attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"/>
+                    <field name="disability_type" attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"/>
+                    <field name="disability_percent" attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='address_home_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                    <attribute name="domain">[('vat', '!=', False),('vat', 'in', [identification_id, passport_id])]</attribute>
+                    <attribute name="context">"{'show_address': 1, 'employee_name': name, 'employee_identification': identification_id, 'employee_passport': passport_id}"</attribute>
+                </xpath>
+                <xpath expr="//field[@name='birthday']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='birthday']" position="after">
+                    <field name="age" />
+                    <field name="old_age" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Family Responsibilities">
+                        <field name="family_ids" >
+                            <tree string="Family Responsibilities">
+                                <field name="relation" />
+                                <field name="name" />
+                                <field name="birthday" />
+                                <field name="age" />
+                                <field name="identification_id" />
+                                <field name="passport_id" />
+                                <field name="phone" />
+                            </tree>
+                            <form name="Family Responsibilities">
+                                <div class="oe_title">
+                                    <label for="name" class="oe_edit_only"/>
+                                    <h1>
+                                        <field name="name" placeholder="Family Name"/>
+                                    </h1>
+                                </div>
+                                <group>
+                                    <group>
+                                        <field name="relation" placeholder="Relation" />
+                                        <field name="other" attrs="{'invisible': [('relation', '!=', 'other')], 'required': [('relation', '=', 'other')]}"/>
+                                        <field name="birthday" />
+                                        <field name="age" />
+                                        <field name="gender" />
+                                        <field name="identification_id" />
+                                        <field name="passport_id" />
+                                        <field name="phone" />
+                                    </group>
+                                    <group>
+                                        <field name="date_marriage" attrs="{'invisible': [('relation', '!=', 'spouse')], 'required': [('relation', '=', 'spouse')]}" />
+                                        <field name="years_marriage" attrs="{'invisible': [('relation', '!=', 'spouse')]}" />
+                                        <field name="disability" />
+                                        <field name="conadis_id" attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"/>
+                                        <field name="disability_type" attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"/>
+                                        <field name="disability_percent" attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"/>
+                                        <field name="guardianship" />
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+  </data>
+</odoo>

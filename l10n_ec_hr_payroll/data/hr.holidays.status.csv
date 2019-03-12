@@ -1,0 +1,5 @@
+"id","active","double_validation","color_name","limit","name","code"
+"hr_holidays.holiday_status_cl","True","False","Black","False","AUSENCIAS REMUNERADAS 100%",
+"hr_holidays.holiday_status_sl","True","False","Red","True","AUSENCIAS SUBSIDIADAS 75%","DED75"
+"hr_holidays.holiday_status_comp","True","False","Red","False","AUSENCIAS SUBSIDIADAS 66%","DED66"
+"hr_holidays.holiday_status_unpaid","True","False","Red","True","AUSENCIAS NO REMUNERADAS","UNPAID"

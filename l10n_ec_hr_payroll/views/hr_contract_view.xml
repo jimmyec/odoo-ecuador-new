@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <menuitem id="root_hr_menu_contract"
+                  parent="hr.menu_hr_root"
+                  name="Contracts"
+                  sequence="4"
+                  groups="hr.group_hr_manager"/>
+
+        <menuitem action="hr_contract.action_hr_contract"
+                  id="hr_contract.hr_menu_contract"
+                  parent="root_hr_menu_contract"
+                  name="Contracts"
+                  sequence="1"
+                  groups="hr.group_hr_manager"/>
+
+        <record id="l10n_ec_hr_view_contract_form" model="ir.ui.view">
+            <field name="name">l10n_ec_account_view_contract_form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='wage']" position="before">
+                    <field name="flag" invisible="1"/>
+                    <field name="basic_wage"/>
+                </xpath>
+                <xpath expr="//field[@name='wage']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('flag', '=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='wage']" position="after">
+                    <field name="hour_cost"/>
+                    <field name="representante_legal" />
+                    <field name="iess_representante_legal"
+                           attrs="{'invisible':[('representante_legal','=',False)]}"/>
+          	    <field name="fondos_reserva_rol" />
+          	    <field name="decimo_tercero_rol" />
+          	    <field name="decimo_cuarto_rol" />
+		    <field name="provisionar_vacaciones" />
+		    <field name="retener_impuesto_renta"/>
+                    <field name="impuesto_renta"
+                           attrs="{'invisible':[('retener_impuesto_renta','=',False)]}"/>
+		    <field name="gratificacion"/>
+                </xpath>
+                <xpath expr="//page[@name='information']" position="after">
+                    <page string="Prestamos y adelantos">
+                        <field name="prestamos" nolabel="1" colspan="4">
+                            <tree>
+                                <field name="type"/>
+                                <field name="subtype"/>
+                                <field name="monto"/>
+                                <field name="inicia_pago"/>
+                                <field name="termina_pago"/>
+                                <field name="state"/>
+                            </tree>
+                            <form>
+                                <group colspan="4" col="4">
+                                    <field name="state" widget="statusbar" colspan="4" nolabel="1"/>
+                                    <field name="type" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                    <field name="subtype"
+                                           attrs="{'invisible':[('type','!=','prestamo')],'required':[('type','=','prestamo')],'readonly':[('state','!=','draft')]}"/>
+                                    <field name="monto" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                    <newline/>
+                                    <field name="inicia_pago" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                    <field name="termina_pago" attrs="{'readonly':[('state','!=','draft')]}"/>
+									<field name="create_move" attrs="{'invisible':[('type','=','prestamo')]}"/>
+                                    <group string="Administración financiera" colspan="4" col="2"
+										   attrs="{'invisible':['|',('type','!=','adelanto'),('create_move','!=',True)]}">
+                                        <field name="credit_account_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="debit_account_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="journal_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="move_id" readonly="1"/>
+                                    </group>
+                                    <group colspan="4" col="4">
+                                        <button name="action_draft" type="object"
+                                                string="Reset to draft"
+                                                states="cancel"/>
+                                        <button name="action_run" type="object"
+                                                string="Confirm" class="oe_highlight"
+                                                states="draft"/>
+                                        <button name="action_cancel" type="object"
+                                                string="Cancel"
+                                                states="draft,run"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <page string="Work History">
+                        <group>
+                            <group string="Job History">
+                                <field name="hist_job_ids" nolabel="1" readonly="1">
+                                    <tree string="Job History">
+                                        <field name="contract_id" invisible="1"/>
+                                        <field name="date" />
+                                        <field name="old_job_id" />
+                                        <field name="job_id" />
+                                        <field name="name" />
+                                    </tree>
+                                </field>
+                            </group>
+                            <group string="Wage History">
+                                <field name="hist_wage_ids" nolabel="1" readonly="1">
+                                    <tree string="Wage History">
+                                        <field name="contract_id" invisible="1"/>
+                                        <field name="date" />
+                                        <field name="old_wage" />
+                                        <field name="wage" />
+                                        <field name="name" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <notebook position="inside">
+		    <page string="Tax Rent">
+                        <notebook>
+			    <page string="Annual Projections of Expenses">
+				<field name="projection_ids" nolabel="1" />
+			    </page>
+			    <page string="Tax Rent">
+				<field colspan="4" name="rent_tax_ids" nolabel="1">
+				    <tree string="Tax Rent Detained" create="false" edit="false">
+				        <field name="name" />
+					<field name="year" />
+				    </tree>
+				    <form string="Tax Rent Retained">
+                                        <group>
+					    <field name="name" required="1" />
+					    <field name="year" required="1" />
+					    <field colspan="4" name="line_ids" nolabel="1">
+					        <tree string="Month Retained" editable="bottom">
+						    <field name="year" required="1" />
+						    <field name="month" required="1" />
+						    <field name="projectable" />
+						    <field name="non_projectable" />
+						    <field name="amount" />
+						</tree>
+					    </field>
+                                        </group>
+				    </form>
+				</field>
+			    </page>
+			</notebook>
+		    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

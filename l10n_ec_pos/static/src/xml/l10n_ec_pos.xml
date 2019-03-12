@@ -53,17 +53,6 @@
                         </div>
                     </div>
                     <div class='client-details-right'>
-                        <!--div class='client-detail'>
-                            <span class='label'>P. Fiscal</span>
-                            <select class="detail client-address-country" name="property_account_position_id">
-                                <option value=''>PERSONA NATURAL NO OBLIGADAS A LLEVAR CONT.</option>
-                                <t t-foreach='account_fiscal_position' t-as='fiscal_position'>
-                                    <option t-att-value='fiscal_position.id' t-att-selected="property_account_position_id ? (('fiscal_position.id' === partner.property_account_position_id[1]) ? true : undefined) : undefined">
-                                        <t t-esc='fiscal_position.name'/>
-                                    </option>
-                                </t>
-                            </select>
-                        </div-->
                         <div class='client-detail'>
                             <span class='label'>Email</span>
                             <input class='detail client-email'  name='email'    type='email'    t-att-value='partner.email || ""'></input>
@@ -98,7 +87,7 @@
             <table class='client-list'>
                 <thead>
                     <tr>
-	                <th>Cedula / Ruc</th>
+	                    <th>Cedula / Ruc</th>
                         <th>Name</th>
                         <th>Address</th>
                         <th>Phone</th>
@@ -153,6 +142,10 @@
                             <t t-if='!partner.ean13'>
                                 <span class='detail client-id empty'>N/A</span>
                             </t>
+                        </div>
+                        <div class='client-detail'>
+                            <span class='label'>Crédito</span>
+                            <span class='detail client-address'><t t-esc='partner.refund_credit'/></span>
                         </div>
                     </div>
                 </div>

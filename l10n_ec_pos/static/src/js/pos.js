@@ -46,14 +46,13 @@ odoo.define('l10n_ec_pos', function(require) {
 	    }else{
 		this.set({ client: customer });
 	    }
-	}
-
+	},
     });
 
     for (var i=0; i<pos_models.length; i++){
         var model = pos_models[i];
         if (model.model === 'res.partner') {
-            model.fields.push('identifier', 'type_id', 'tipo_persona');
+            model.fields.push('identifier', 'type_id', 'tipo_persona','refund_credit');
         }
 
 	if (model.model === 'res.company') {

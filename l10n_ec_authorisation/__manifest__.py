@@ -4,7 +4,7 @@
 
 {
     'name': 'Establecimientos y autorizaciones del SRI',
-    'version': '10.0.0.0.0',
+    'version': '11.0.0.1',
     'description': """
         Funcionalidad para controlar establecimientos propios y de partners
     """,
@@ -17,7 +17,7 @@
     'license': 'AGPL-3',
     'category': 'Localization',
     'depends': [
-  	    'l10n_ec_partner',
+        'l10n_ec_partner',
         'account'
     ],
     'data': [
@@ -26,4 +26,6 @@
         'data/account.ats.sustento.csv',
         'security/ir.model.access.csv'
     ],
+    'installable': True,
+    'maintainer': 'cgonzalezbrito',
 }

@@ -1,0 +1,30 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_model_hr_contract_prestamo_base_group_user","access_model_hr_contract_prestamo_base_group_user","model_hr_contract_prestamo","base.group_user",1,0,0,0
+"access_model_hr_contract_prestamo_base_group_hr_user","access_model_hr_contract_prestamo_base_group_hr_user","model_hr_contract_prestamo","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_retention_base_group_user","access_model_hr_sri_retention_base_group_user","model_hr_sri_retention","base.group_user",1,0,0,0
+"access_model_hr_sri_retention_base_group_hr_user","access_model_hr_sri_retention_base_group_hr_user","model_hr_sri_retention","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_retention_line_base_group_user","access_model_hr_sri_retention_line_base_group_user","model_hr_sri_retention_line","base.group_user",1,0,0,0
+"access_model_hr_sri_retention_line_base_group_hr_user","access_model_hr_sri_retention_line_base_group_hr_user","model_hr_sri_retention_line","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_deduction_base_group_user","access_model_hr_sri_deduction_base_group_user","model_hr_sri_deduction","base.group_user",1,0,0,0
+"access_model_hr_sri_deduction_base_group_hr_user","access_model_hr_sri_deduction_base_group_hr_user","model_hr_sri_deduction","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_projection_base_group_user","access_model_hr_sri_projection_base_group_user","model_hr_sri_projection","base.group_user",1,0,0,0
+"access_model_hr_sri_projection_base_group_hr_user","access_model_hr_sri_projection_base_group_hr_user","model_hr_sri_projection","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_annual_projection_base_group_user","access_model_hr_sri_annual_projection_base_group_user","model_hr_sri_annual_projection","base.group_user",1,0,0,0
+"access_model_hr_sri_annual_projection_base_group_hr_user","access_model_hr_sri_annual_projection_base_group_hr_user","model_hr_sri_annual_projection","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_annual_projection_line_base_group_user","access_model_hr_sri_annual_projection_line_base_group_user","model_hr_sri_annual_projection_line","base.group_user",1,0,0,0
+"access_model_hr_sri_annual_projection_line_base_group_hr_user","access_model_hr_sri_annual_projection_line_base_group_hr_user","model_hr_sri_annual_projection_line","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_exoneration_line_base_group_user","access_model_hr_sri_exoneration_line_base_group_user","model_hr_sri_exoneration_line","base.group_user",1,0,0,0
+"access_model_hr_sri_exoneration_line_base_group_hr_user","access_model_hr_sri_exoneration_line_base_group_hr_user","model_hr_sri_exoneration_line","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_annual_rent_tax_base_group_user","access_model_hr_sri_annual_rent_tax_base_group_user","model_hr_sri_annual_rent_tax","base.group_user",1,0,0,0
+"access_model_hr_sri_annual_rent_tax_base_group_hr_user","access_model_hr_sri_annual_rent_tax_base_group_hr_user","model_hr_sri_annual_rent_tax","hr.group_hr_user",1,1,1,1
+"access_model_hr_sri_rent_tax_base_group_user","access_model_hr_sri_rent_tax_base_group_user","model_hr_sri_rent_tax","base.group_user",1,0,0,0
+"access_model_hr_sri_rent_tax_base_group_hr_user","access_model_hr_sri_rent_tax_base_group_hr_user","model_hr_sri_rent_tax","hr.group_hr_user",1,1,1,1
+"access_hr_department_salaryrule_map_user","access_hr_department_salaryrule_map user","model_hr_department_salaryrule_map","account.group_account_user",1,1,1,0
+"access_hr_department_salaryrule_map_manager","access_hr_department_salaryrule_map manager","model_hr_department_salaryrule_map","account.group_account_manager",1,1,1,1
+"access_hr_department_salaryrule_map_hr_user","access_hr_department_salaryrule_map hr_user","model_hr_department_salaryrule_map","hr.group_hr_user",1,0,0,0
+"access_hr_contract_job_all","access_hr_contract_job_all","model_hr_contract_job",,1,0,0,0
+"access_hr_contract_job_manager","access_hr_contract_job_manager","model_hr_contract_job","hr.group_hr_manager",1,1,1,1
+"access_hr_contract_wage_all","access_hr_contract_wage_all","model_hr_contract_wage",,1,0,0,0
+"access_hr_contract_wage_manager","access_hr_contract_wage_manager","model_hr_contract_wage","hr.group_hr_manager",1,1,1,1
+"access_hr_family_all","access_hr_family_all","model_hr_family",,1,0,0,0
+"access_hr_family_manager","access_hr_family_manager","model_hr_family","hr.group_hr_manager",1,1,1,1

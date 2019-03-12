@@ -50,17 +50,23 @@ class AccountWithdrawing(models.Model):
         """
         def get_codigo_retencion(linea):
             if linea.group_id.code in ['ret_vat_b', 'ret_vat_srv']:
-                return utils.tabla21[line.percent]
+                return utils.tabla21[str(line.tax_id.percent_report)]
             else:
                 code = linea.tax_id and linea.tax_id.description or linea.tax_code_id.code  # noqa
                 return code
+
+        def get_line_base(linea):
+            if linea.group_id.code in ['ret_vat_b', 'ret_vat_srv']:
+                return '%.2f' % (linea.base*0.12)
+            else:
+                return '%.2f' % (linea.base)
 
         impuestos = []
         for line in retention.tax_ids:
             impuesto = {
                 'codigo': utils.tabla20[line.group_id.code],
                 'codigoRetencion': get_codigo_retencion(line),
-                'baseImponible': '%.2f' % (line.base),
+                'baseImponible': get_line_base(line),
                 'porcentajeRetener': str(line.tax_id.percent_report),
                 'valorRetenido': '%.2f' % (abs(line.amount)),
                 'codDocSustento': retention.invoice_id.sustento_id.code,
@@ -130,12 +136,19 @@ class AccountWithdrawing(models.Model):
         for obj in self:
             eretention = self.render_document(obj, self.clave_acceso, self.emission_code)
             attach = self.add_attachment(eretention.encode())
-            #pdf = self.env.ref('l10n_ec_einvoice.report_eretention').render_qweb_pdf(self.ids)
-            #attach_pdf = self.add_attachment_pdf(pdf)
-            self.send_document(
-                attachments=[a.id for a in attach],
-                tmpl='l10n_ec_einvoice.email_template_einvoice'
-            )
+            pdf = self.env.ref('l10n_ec_einvoice.report_eretention').render_qweb_pdf(self.ids)
+            attach_pdf = self.add_attachment_pdf(pdf)
+            attachments=[a.id for a in attach + attach_pdf]
+            self.ensure_one()
+            self._logger.info('Enviando documento electronico por correo')
+            template = self.env.ref('l10n_ec_einvoice.email_template_einvoice')
+            self.env['mail.template'].browse(template.id).send_mail(self.id, email_values={'attachment_ids': attachments}, force_send=True, raise_exception=True)
+            self._logger.info('Documento enviado')
+            self.sent = True
+            # self.send_document(
+            #     attachments=[a.id for a in attach + attach_pdf],
+            #     tmpl='l10n_ec_einvoice.email_template_eretention'
+            # )
 
     @api.multi
     def retention_print(self):
@@ -153,8 +166,8 @@ class AccountInvoice(models.Model):
             obj.retention_id.action_generate_document()
 
     @api.multi
-    def action_withholding_create(self):
-        super(AccountInvoice, self).action_withholding_create()
+    def action_retention_create(self):
+        #super(AccountInvoice, self).action_withholding_create()
         for obj in self:
             if obj.type in ['in_invoice', 'liq_purchase']:
                 self.action_generate_eretention()

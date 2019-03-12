@@ -34,5 +34,6 @@
         'views/report_eretention.xml',
         'edi/einvoice_edi.xml',
         'edi/eretention_edi.xml',
+        #'edi/email_template_einvoice_report.xml'
     ],
 }

@@ -13,37 +13,33 @@ from ..xades.sri import SriService
 
 
 class AccountEpayment(models.Model):
-    _inherit = 'account.epayment'
+    _name = 'account.pos.payment'
 
-    epayment_amount = fields.Char(
-        string='Monto'
+    journal_id = fields.Many2one(
+        'account.journal',
+        string='Diario',
+        domain=[('type','in',['bank','cash'])],
+        )
+    code = fields.Char(
+        string='Código',
+        readonly = True,
+        )
+    epayment_id = fields.Many2one(
+        'account.epayment',
+        string='Forma de Pago',
+        readonly = True,
+        )
+    payment_amount = fields.Char(
+        string='Monto',
+        store=True
         )
 
 class AccountPayment(models.Model):
-    _inherit = 'account.payment'
-
-    def _compute_epayment(self):
-        if self.journal_id.type == 'cash':
-            self.epayment_id = self.env['account.epayment'].search([('code','=','01')], limit=1)
-            self.code = '01'
-        elif self.journal_id.type == 'bank':
-            self.epayment_id = self.env['account.epayment'].search([('code','=','19')], limit=1)
-            self.code = '19'
-        else:
-            self.epayment_id = self.env['account.epayment'].search([('code','=','20')], limit=1)
-            self.code = '20'
-
-    code = fields.Char(
-        string='Código',
-        compute = _compute_epayment,
-        readonly = True,
-        )
+    _inherit = 'account.journal'
 
     epayment_id = fields.Many2one(
         'account.epayment',
         string='Forma de Pago',
-        compute = _compute_epayment,
-        readonly = True,
         )
 
 
@@ -80,20 +76,37 @@ class Edocument(models.AbstractModel):
         size=64,
         readonly=True
     )
-    autorizado_sri = fields.Boolean('¿Autorizado SRI?', readonly=True)
+    estado_factura = fields.Selection(
+        [('invalid', 'Documento no válido'),
+         ('send_error', 'Error al enviar'),
+         ('no_auth', 'No Autorizado'),
+         ('process', 'En Proceso'),
+         ('is_auth', 'Autorizado')],
+        string='Estado',
+        readonly=True,
+    )
+    estado_correo = fields.Selection(
+        [('no_send', 'No enviar'),
+         ('to_send', 'Enviar'),
+         ('sent', 'Enviado')],
+        string='Correo',
+        readonly=True,
+    )
+    autorizado_sri = fields.Boolean('Autorizado SRI', readonly=True)
     to_send_einvoice = fields.Boolean('Enviar email',readonly=True)
     security_code = fields.Char('Código de Seguridad', size=8, readonly=True)
     emission_code = fields.Char('Tipo de Emisión', size=1, readonly=True)
-    epayment_ids = fields.Many2many('account.epayment','name',string='Forma de Pago')
+    pos_payment_line_ids = fields.Many2many('account.pos.payment','epayment_id',string='Forma de Pago')
     #epayment_id = fields.Many2one('account.epayment', default=lambda self:self.env['account.epayment'].search([('code','=','01')]))
     sent = fields.Boolean('Enviado?')
+    xlm_auth = fields.Char()
 
     def get_auth(self, document):
         partner = document.company_id.partner_id
         if document._name == 'account.invoice':
             return document.auth_inv_id
         elif document._name == 'account.retention':
-            return partner.get_authorisation('ret_in_invoice')
+            return document.auth_inv_id#partner.get_authorisation('ret_in_invoice')
 
     def get_secuencial(self):
         return getattr(self, self._FIELDS[self._name])[6:]
@@ -198,13 +211,8 @@ class Edocument(models.AbstractModel):
 
     @api.multi
     def update_document(self, codes):
-        #fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         self.write({
             'numero_autorizacion': codes[0],
-            #'estado_autorizacion': auth.estado,
-            #'ambiente': auth.ambiente,
-            #'fecha_autorizacion': fecha,  # noqa
-            'autorizado_sri': True,
             'clave_acceso': codes[0],
             'emission_code': codes[1]
         })

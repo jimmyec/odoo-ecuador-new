@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_sri_root"
+                  parent="hr.menu_human_resources_configuration"
+                  name="SRI"
+                  sequence="9" />
+
+        <record model="ir.ui.view" id="view_l10n_ec_sri_retention_form">
+            <field name="name">hr.sri.retention.form</field>
+            <field name="model">hr.sri.retention</field>
+            <field name="arch" type="xml">
+                <form string="SRI Retention tax table">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" class="oe_inline" select="1" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="year" select="1" />
+                                <field name="max_deductible" />
+                            </group>
+                            <group>
+                                <field name="active" select="1" />
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Table">
+                                <field name="line_ids" nolabel="1" colspan="4">
+                                    <tree editable="bottom" string="Detail">
+                                        <field name="basic_fraction" />
+                                        <field name="excess_up" />
+                                        <field name="basic_fraction_tax" />
+                                        <field name="percent" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Maximum Deductible">
+                                <field name="projection_ids" nolabel="1" />
+                            </page>
+                            <page string="Exoneration's">
+                                <group>
+                                    <field name="old_age"/>
+                                    <field name="exoneration_ids" nolabel="1" colspan="4">
+                                        <tree editable="bottom" string="Detail">
+                                            <field name="excess_from" />
+                                            <field name="excess_up" />
+                                            <field name="percent" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_l10n_ec_sri_retention_tree">
+            <field name="name">hr.sri.retention.view.tree</field>
+            <field name="model">hr.sri.retention</field>
+            <field name="arch" type="xml">
+                <tree string="SRI Retention tax">
+                    <field name="name" select="1" />
+                    <field name="year" select="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_l10n_ec_sri_retention" model="ir.actions.act_window">
+            <field name="name">SRI Retention tax table</field>
+            <field name="res_model">hr.sri.retention</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_l10n_ec_sri_retention"
+                  id="menu_l10n_ec_sri_retention"
+                  parent="menu_sri_root" />
+
+		<record model="ir.ui.view" id="view_l10n_ec_sri_deduction_form">
+			<field name="name">l10n.ec.sri.deduction.form</field>
+			<field name="model">hr.sri.deduction</field>
+			<field name="arch" type="xml">
+				<form string="Tax Rent Deductions">
+                    <sheet>
+                        <group>
+					        <field name="code" select="1" />
+					        <field name="name" select="1" />
+                        </group>
+					    <newline />
+					    <group string="Description" colspan="4">
+						    <field name="description" nolabel="1" select="1" />
+					    </group>
+                    </sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_l10n_ec_sri_deduction_tree">
+			<field name="name">l10n.ec.sri.deduction.tree</field>
+			<field name="model">hr.sri.deduction</field>
+			<field name="arch" type="xml">
+				<tree string="Tax Rent Deductions">
+					<field name="code" select="1" />
+					<field name="name" select="1" />
+			        <field name="description" select="1" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_l10n_ec_sri_deduction" model="ir.actions.act_window">
+			<field name="name">Tax Rent Deductions</field>
+			<field name="res_model">hr.sri.deduction</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="action_l10n_ec_sri_deduction"
+                  id="menu_l10n_ec_sri_deduction"
+			      parent="menu_sri_root" />
+
+
+        <record id="view_l10n_ec_sri_projection_form" model="ir.ui.view">
+            <field name="name">l10n.ec.sri.projection.form</field>
+            <field name="model">hr.sri.projection</field>
+            <field name="arch" type="xml">
+                <form string="Projections">
+                    <field name="name" />
+                    <field name="amount" />
+                </form>
+            </field>
+        </record>
+
+        <record id="view_l10n_ec_sri_projection_tree" model="ir.ui.view">
+            <field name="name">l10n.ec.sri.projection.tree</field>
+            <field name="model">hr.sri.projection</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Projections">
+                    <field name="name" />
+                    <field name="amount" sum="TOTAL" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_l10n_ec_sri_annual_projection_form" model="ir.ui.view">
+			<field name="name">hr.sri.annual.projection.form</field>
+			<field name="model">hr.sri.annual.projection</field>
+			<field name="arch" type="xml">
+				<form string="Annual Projections of Expenses">
+                    <group>
+                        <field name="name" required="1" select="1" />
+					    <field name="year" required="1" />
+                    </group>
+                    <group>
+					    <field name="amount" readonly="1" />
+                    </group>
+					<newline />
+					<field name="line_ids" nolabel="1" colspan="4" />
+				</form>
+			</field>
+		</record>
+
+		<record id="view_l10n_ec_sri_annual_projection_tree" model="ir.ui.view">
+			<field name="name">hr.sri.annual.projection.tree</field>
+			<field name="model">hr.sri.annual.projection</field>
+			<field name="arch" type="xml">
+				<tree string="Tax Rent">
+					<field name="name" />
+					<field name="amount" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_l10n_ec_sri_projection_line_form">
+			<field name="name">hr.sri.annual.projection.line.form</field>
+			<field name="model">hr.sri.annual.projection.line</field>
+			<field name="arch" type="xml">
+				<form string="Annual Projections of Expenses">
+                    <group>
+					    <field name="deduction_id" required="1" select="1" widget="selection" />
+                    </group>
+                    <group>
+					    <field name="amount" required="1" sum="TOTAL" />
+                    </group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_l10n_ec_sri_projection_line_tree">
+			<field name="name">hr.sri.annual.projection.line.view.tree</field>
+			<field name="model">hr.sri.annual.projection.line</field>
+			<field name="arch" type="xml">
+				<tree string="Annual Projections of Expenses">
+					<field name="deduction_id" select="1" widget="selection" />
+					<field name="amount" select="1" />
+				</tree>
+			</field>
+		</record>
+
+    </data>
+</odoo>

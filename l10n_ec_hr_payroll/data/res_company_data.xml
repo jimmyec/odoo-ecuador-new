@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="base.main_company" model="res.company">
+        <field name="basic_wage" eval="375"/>
+        <field name="iess_personal" eval="9.45"/>
+        <field name="iess_representante_legal" eval="17.60"/>
+        <field name="iess_empleador" eval="12.15"/>
+        <field name="porcentaje_fondos_reserva" eval="8.33"/>
+    </record>
+</odoo>

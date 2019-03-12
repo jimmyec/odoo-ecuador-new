@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_l10n_ec_hr_payslip_form" model="ir.ui.view">
+            <field name="name">hr.payslip.form</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="attributes">
+                    <attribute name="create">false</attribute>
+                    <attribute name="edit">false</attribute>
+                </xpath>
+                <xpath expr="//field[@name='worked_days_line_ids']" position="replace">
+                    <field name="worked_days_line_ids" readonly="1">
+                        <tree string="Worked Days" editable="bottom">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="number_of_days" sum="Total Working Days"/>
+                            <field name="number_of_hours" invisible="1"/>
+                            <field name="contract_id"/>
+                            <field name="sequence" invisible="True"/>
+                        </tree>
+                        <form string="Worked Day">
+                            <group col="4">
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="sequence"/>
+                                <field name="number_of_days"/>
+                                <field name="number_of_hours" invisible="1"/>
+                                <field name="contract_id"/>
+                            </group>
+                        </form>
+                    </field>
+                </xpath>
+                <xpath expr="//field[@name='input_line_ids']" position="replace">
+                    <field name="input_line_ids" colspan="4" nolabel="1" readonly="1" >
+                        <tree string="Input Data" editable="bottom">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="amount"/>
+                            <field name="contract_id"/>
+                            <field name="sequence" invisible="True"/>
+                        </tree>
+                        <form string="Payslip Line">
+                            <group col="4">
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="sequence"/>
+                                <field name="amount"/>
+                                <field name="contract_id"/>
+                            </group>
+                        </form>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_l10n_ec_hr_payslip_tree" model="ir.ui.view">
+            <field name="name">l10n.ec.hr.payslip.tree</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                    <attribute name="edit">false</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

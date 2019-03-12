@@ -214,6 +214,12 @@ class AccountWithdrawing(models.Model):
         )
     ]
 
+    @api.onchange('tax_ids')
+    def _onchange_taxids(self):
+        for tax_id in self.tax_ids:
+            if tax_id.name:
+                tax_id.code = tax_id.name
+
     @api.onchange('date')
     @api.constrains('date')
     def _check_date(self):

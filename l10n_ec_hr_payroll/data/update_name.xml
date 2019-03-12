@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <function model="hr.employee" name="update_employee_names"/>
+    </data>
+</odoo>

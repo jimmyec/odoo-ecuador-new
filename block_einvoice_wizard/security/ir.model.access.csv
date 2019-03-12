@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_block_einvoice_wizard_block_einvoice_wizard,block_einvoice_wizard.block_einvoice_wizard,model_block_einvoice_wizard_block_einvoice_wizard,,1,0,0,0

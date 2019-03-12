@@ -234,6 +234,12 @@ class Invoice(models.Model):
         store=True,
         readonly=True
         )
+    withheld = fields.Boolean(
+        string='Retencion creada',
+        store=True,
+        default=False,
+        #readonly=True
+        )
     type = fields.Selection(
         [
             ('out_invoice', 'Customer Invoice'),
@@ -336,6 +342,8 @@ class Invoice(models.Model):
                 raise UserError(u'El número de retención es incorrecto.')
                 # TODO: read next number
 
+            inv.withheld = True
+
             ret_taxes = inv.tax_line_ids.filtered(lambda l: l.tax_id.tax_group_id.code in ['ret_vat_b', 'ret_vat_srv', 'ret_ir'])  # noqa
 
             if inv.retention_id:
@@ -365,6 +373,7 @@ class Invoice(models.Model):
                 withdrawing.action_validate(wd_number)
 
             inv.write({'retention_id': withdrawing.id})
+
         return True
 
     @api.multi

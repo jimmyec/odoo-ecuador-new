@@ -17,6 +17,7 @@
     'depends': [
         'point_of_sale',
         'l10n_ec_authorisation',
+        'account_invoice_refund_link',
     ],
     'data': [
         'data/pos.xml',

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+	<t t-extend="ClientDetails">
+		<t t-jquery=".client-details" t-operation="after">
+			<section class='client-details'>
+				<div class='client-detail'>
+					<span class='label'>Crédito</span>
+					<span class='detail client-address'><t t-esc='partner.refund_credit'/></span>
+				</div>
+			</section>
+		</t>
+	</t>
+	<t t-name="PaymentScreenWidget">
+        <div class='payment-screen screen'>
+            <div class='screen-content'>
+                <div class='top-content'>
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Back
+                    </span>
+                    <h1>Payment</h1>
+                    <span class='button next'>
+                        Validate
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+                </div>
+                <div class='left-content pc40 touch-scrollable scrollable-y'>
+
+                    <div class='paymentmethods-container'>
+                    </div>
+
+                </div>
+                <div class='right-content pc60 touch-scrollable scrollable-y'>
+
+                    <section class='paymentlines-container'>
+                    </section>
+
+                    <section class='payment-numpad'>
+                    </section>
+
+                    <div class='payment-buttons'>
+                        <div class='button js_set_customer'>
+                            <i class='fa fa-user' /> 
+                            <span class='js_customer_name'> 
+                                <t t-if="widget.pos.get_client()">
+                                    <t t-esc="widget.pos.get_client().name" /><br/>
+                                    <span class='label'>Crédito</span>
+                                    <t t-esc='widget.pos.get_client().refund_credit'/>
+                                </t>
+                                <t t-if="!widget.pos.get_client()">
+                                    Customer
+                                </t>
+                            </span>
+                        </div>
+                        <t t-if='widget.pos.config.iface_invoicing'>
+                            <t t-if='widget.pos.get_order()'>
+                                <div t-attf-class='button js_invoice #{ widget.pos.get_order().is_to_invoice() ? "highlight" : ""} '>
+                                    <i class='fa fa-file-text-o' /> Invoice
+                                </div>
+                            </t>
+                        </t>
+                        <t t-if='widget.pos.config.tip_product_id'>
+                            <div class='button js_tip'>
+                                <i class='fa fa-heart' /> Tip 
+                            </div>
+                        </t>
+                        <t t-if='widget.pos.config.iface_cashdrawer'>
+                            <div class='button js_cashdrawer'>
+                                <i class='fa fa-archive' /> Open Cashbox
+                            </div>
+                        </t>
+                     </div>
+                 </div>
+             </div>
+         </div>
+	</t>
+	<t t-name="PaymentScreen-Paymentmethods">
+        <div class='paymentmethods'>
+            <t t-foreach="widget.pos.cashregisters" t-as="cashregister">
+            	<t t-if="cashregister.journal_id[0] == 10">
+            		<t t-if="widget.pos.get_client().refund_credit >> 0">
+                		<div class="button paymentmethod" t-att-data-id="cashregister.journal_id[0]">
+                    		<t t-esc="cashregister.journal_id[1]" />
+                    		<t t-esc="widget.pos.get_client().refund_credit"/>
+                		</div>
+                	</t>
+            	</t>
+            	<t t-if="cashregister.journal_id[0] != 10">
+                	<div class="button paymentmethod" t-att-data-id="cashregister.journal_id[0]">
+                    	<t t-esc="cashregister.journal_id[1]" />
+                	</div>
+            	</t>
+            </t>
+        </div>
+	</t>
+</templates>

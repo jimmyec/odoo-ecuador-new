@@ -10,6 +10,7 @@ from odoo import models, fields, api
 
 from jinja2 import Environment, FileSystemLoader
 from openerp.exceptions import Warning as UserError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 from . import utils
 from ..xades.sri import DocumentXML
@@ -93,11 +94,11 @@ class AccountInvoice(models.Model):
             infoFactura.update(notacredito)
         else:
             formaPago = []
-            if self.epayment_ids:
-                for epayment_id in self.epayment_ids:
+            if self.pos_payment_line_ids:
+                for pos_payment_id in self.pos_payment_line_ids:
                     pago = {
-                        'codigo': epayment_id.code,
-                        'monto': epayment_id.epayment_amount, 
+                        'codigo': pos_payment_id.code,
+                        'monto': pos_payment_id.payment_amount, 
                     }
                     if not formaPago:
                         formaPago.append(pago)
@@ -112,7 +113,7 @@ class AccountInvoice(models.Model):
             elif self.payment_ids:
                 for payment_id in self.payment_ids:
                     pago = {
-                        'codigo': payment_id.code,
+                        'codigo': payment_id.journal_id.epayment_id.code,
                         'monto': payment_id.amount, 
                     }
                     formaPago.append(pago)
@@ -212,49 +213,88 @@ class AccountInvoice(models.Model):
             self.check_date(obj.date_invoice)
             self.check_before_sent()
             access_key, emission_code = self._get_codes(name='account.invoice')
+            if self.estado_factura == 'process':
+                access_key = self.access_key
+                emission_code = self.emission_code
             einvoice = self.render_document(obj, access_key, emission_code)
             self._logger.info(einvoice)
             inv_xml = DocumentXML(einvoice, obj.type)
             if not inv_xml.validate_xml():
-                raise UserError('Documento no valido')
+                self.write({'estado_factura': 'invalid'})
+                return
+                #raise UserError('Documento no valido')
             xades = Xades()
             file_pk12 = obj.company_id.electronic_signature
             password = obj.company_id.password_electronic_signature
             signed_document = xades.sign(einvoice, file_pk12, password)
-            ok, errores = inv_xml.send_receipt(signed_document)
-            if not ok:
-                raise UserError(errores)
             self.update_document([access_key, emission_code])
+            if self.estado_factura != 'process':
+                ok, errores = inv_xml.send_receipt(signed_document)
+                if not ok:
+                    self._logger.info(errores)
+                    self.write({'estado_factura': 'send_error'})
+                    return
+                    #raise UserError(errores)
             auth, m = inv_xml.request_authorization(access_key)
             if not auth:
                 msg = ' '.join(list(itertools.chain(*m)))
-                raise UserError(msg)
+                self._logger.info(msg)
+                self.write({'estado_factura': 'no_auth'})
+                return
+                #raise UserError(msg)
+            if auth.estado == 'EN PROCESO':
+                self.write({'estado_factura': 'process'})
+                return
+
+            fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
+            self.write({
+                'autorizado_sri': True,
+                'to_send_einvoice': True,
+                'estado_correo': 'to_send',
+                'estado_autorizacion': auth.estado,
+                'ambiente': auth.ambiente,
+                'fecha_autorizacion': fecha,  # noqa
+                'estado_factura': 'is_auth',
+            })
+            
             message = """
             DOCUMENTO ELECTRONICO GENERADO <br><br>
             CLAVE DE ACCESO / NUMERO DE AUTORIZACION: %s <br>
+            ESTADO: %s <br>
+            FECHA DE AUTORIZACIÓN: %s <br>
+            AMBIENTE: %s <br>
             """ % (
                 access_key,
+                auth.estado,
+                fecha,
+                auth.ambiente,
             )
             self.message_post(body=message)
-            self.write({
-                'to_send_einvoice': True,
-            })
             #self.action_send_einvoice_email()
 
     @api.multi
     def action_send_einvoice_email(self):
         for obj in self:
+            if obj.type not in ['out_invoice', 'out_refund']:
+                continue
             einvoice = self.render_document(obj, self.clave_acceso, self.emission_code)
             attach = self.add_attachment(einvoice.encode())
             pdf = self.env.ref('l10n_ec_einvoice.report_einvoice').render_qweb_pdf(self.ids)
-            attach_pdf = self.add_attachment_pdf(pdf)    
+            attach_pdf = self.add_attachment_pdf(pdf)
             self.send_document(
                 attachments=[a.id for a in attach + attach_pdf],
                 tmpl='l10n_ec_einvoice.email_template_einvoice'
             )
             self.write({
                 'to_send_einvoice': False,
+                'estado_correo': 'sent'
             })
+            message = """
+            El correo electrónico al cliente ha sido enviado correctamente<br><br>
+            """ 
+            if not self.to_send_einvoice:
+                self.message_post(body=message)
 
     @api.multi
     def invoice_print(self):

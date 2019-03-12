@@ -103,7 +103,7 @@ class DocumentXML(object):
             )
             messages.append([m.identificador, m.mensaje,
                              m.tipo, m.informacionAdicional])
-        if not autorizacion.estado == 'AUTORIZADO':
+        if not autorizacion.estado in ['AUTORIZADO', 'EN PROCESO']:
             return False, messages
         return autorizacion, messages
 

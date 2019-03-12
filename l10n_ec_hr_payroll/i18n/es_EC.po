@@ -1,0 +1,1757 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_ec_hr_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-19 20:17+0000\n"
+"PO-Revision-Date: 2017-07-19 15:38-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_EC\n"
+"X-Generator: Poedit 2.0.2\n"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_contract_job
+msgid ""
+"\n"
+"    Historical record of job changes\n"
+"    "
+msgstr ""
+"\n"
+"    Registro Histórico de Actualización de Cargo \n"
+"    "
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_contract_wage
+msgid ""
+"\n"
+"    Historical record of wage changes\n"
+"    "
+msgstr ""
+"\n"
+"    Registro Historico de Actualizacion de Salario\n"
+"    "
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_wizard_hr_contract_update_job
+#: model:ir.model,name:l10n_ec_hr_payroll.model_wizard_hr_contract_update_wage
+msgid ""
+"\n"
+"    Register salary update to one or more employees\n"
+"    "
+msgstr ""
+"\n"
+"    Registrar la Actualización de Sueldo de uno o mas Empleados\n"
+"    "
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_department_salaryrule_map
+msgid ""
+"\n"
+"    This module contains the accounting detail of the salary rules\n"
+"    by department\n"
+"    "
+msgstr ""
+"\n"
+"    Este modulo contiene el detalle contable de las reglas salariales\n"
+"    por Departamento\n"
+"    "
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_wizard_hr_contract_update
+msgid ""
+"\n"
+"    This wizard allows you to update the work order or the salary of an employee,\n"
+"    either individually or by department\n"
+"    "
+msgstr ""
+"\n"
+"    Este asistente permite asctualizar la informacion con respecto al Cargo o al Salario de los empleados,\n"
+"    ya sea Individual o por Departamento\n"
+"    "
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_porcentaje
+msgid "% Exoneración"
+msgstr "% Exoneración"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_porcentaje
+msgid "% fracción excedente"
+msgstr "% fracción excedente"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.annual.projection,year:0 selection:hr.annual.rent.tax,year:0
+#: selection:hr.rent.tax,year:0 selection:hr.sri.exoneration,year:0
+#: selection:hr.sri.retencion,year:0
+msgid "2016"
+msgstr "2016"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.annual.projection,year:0 selection:hr.annual.rent.tax,year:0
+#: selection:hr.rent.tax,year:0 selection:hr.sri.exoneration,year:0
+#: selection:hr.sri.retencion,year:0
+msgid "2017"
+msgstr "2017"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Abril"
+msgstr "Abril"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:20
+#, python-format
+msgid "Active Contract"
+msgstr "Contrato Activo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_active
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_active
+msgid "Activo"
+msgstr "Activo"
+
+#. module: l10n_ec_hr_payroll
+#: selection:wizard.hr.contract.update,option:0
+msgid "Actualización de Puesto de Trabajo"
+msgstr "Actualización de Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_ids
+msgid "Actualizar Puesto"
+msgstr "Actualizar Puesto"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_ids
+#: selection:wizard.hr.contract.update,option:0
+msgid "Actualizar Salario"
+msgstr "Actualizar Salario"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,type:0
+msgid "Adelanto"
+msgstr "Adelanto"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_payroll.py:450
+#: code:addons/l10n_ec_hr_payroll/models/hr_payroll.py:466
+#, python-format
+msgid "Adjustment Entry"
+msgstr "Ajuste de Entrada"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Administración financiera"
+msgstr "Administración financiera"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:86
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:47
+#, python-format
+msgid "Age"
+msgstr "Edad"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Agosto"
+msgstr "Agosto"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_department.py:32
+#, python-format
+msgid "Analytic Account"
+msgstr "Cuenta Analítica"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_annual_projection
+msgid "Annual Projection"
+msgstr "Annual Projection"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Annual Projections of Expenses"
+msgstr "Annual Projections of Expenses"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_payroll.py:183
+#, python-format
+msgid "Annual Retention"
+msgstr "Annual Retention"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_lastname
+msgid "Apellido"
+msgstr "Apellido"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_wiz_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_wiz_id
+msgid "Asistente"
+msgstr "Asistente"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_projection_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_year
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_year
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_year
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_year
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_year
+msgid "Año"
+msgstr "Año"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_years_marriage
+msgid "Años de Matrimonio"
+msgstr "Años de Matrimonio"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:31
+#, python-format
+msgid "Basic Wage"
+msgstr "Sueldo Básico"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/res_company.py:9
+#, python-format
+msgid "Basic Wage ($)"
+msgstr "Sueldo Básico ($)"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:46
+#, python-format
+msgid "Birthday"
+msgstr "Fecha de Nacimiento"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,state:0
+msgid "Borrador"
+msgstr "Borrador"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:53
+#, python-format
+msgid "Brother"
+msgstr "Hermano(a)"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:96
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:65
+#, python-format
+msgid "CONADIS No"
+msgstr "Nº CONADIS"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_flag
+msgid "Cambio de Puesto de Trabajo"
+msgstr "Cambio de Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_flag
+msgid "Cambios en el Contrato"
+msgstr "Cambios en el Contrato"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,state:0
+msgid "Cancelado"
+msgstr "Cancelado"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:49
+#, python-format
+msgid "Child"
+msgstr "Hijo(a)"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_holidays_status_code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:69
+#, python-format
+msgid "Contact Number"
+msgstr "Número de Contacto"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:91
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:105
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:71
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:100
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_contract
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_hr_contract_id
+#, python-format
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:19
+#, python-format
+msgid "Contract Change"
+msgstr "Cambio de Contrato"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.actions.act_window,name:l10n_ec_hr_payroll.action_wizard_hr_contract_update
+#: model:ir.ui.menu,name:l10n_ec_hr_payroll.menu_wizard_hr_contract_update
+msgid "Contract Update"
+msgstr "Actualización de Contrato"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.menu,name:l10n_ec_hr_payroll.root_hr_menu_contract
+msgid "Contracts"
+msgstr "Contratos"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "Contracts to Update Job"
+msgstr "Contratos a Actualizar el Cargo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "Contracts to Update Wage"
+msgstr "Contratos a Actualizar el Sueldo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_contract_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_contract_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_contract_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_contract_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_contract_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_contract_id
+msgid "Contrato"
+msgstr "Contrato"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_active
+msgid "Contrato Activo"
+msgstr "Contrato Activo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_res_company_iess_empleador
+msgid "Contribución patronal IESS (%)"
+msgstr "Contribución patronal IESS (%)"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_res_company_iess_personal
+msgid "Contribución personal IESS (%)"
+msgstr "Contribución personal IESS (%)"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_create_move
+msgid "Crear movimiento"
+msgstr "Crear movimiento"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_create_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_create_uid
+msgid "Created by"
+msgstr "Creado por:"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_create_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_department.py:39
+#, python-format
+msgid "Credit Account"
+msgstr "Cuenta de Crédito"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_analytic_account_id
+msgid "Cuenta analítica"
+msgstr "Cuenta analítica"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_account_credit
+msgid "Cuenta de Crédito"
+msgstr "Cuenta de Crédito"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_account_debit
+msgid "Cuenta de Débito"
+msgstr "Cuenta de Débito"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_credit_account_id
+msgid "Cuenta de crédito"
+msgstr "Cuenta de crédito"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_debit_account_id
+msgid "Cuenta de debito"
+msgstr "Cuenta de debito"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_code
+msgid "Código"
+msgstr "Código"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,relation:0
+msgid "Cónyugue"
+msgstr "Cónyugue"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:57
+#, python-format
+msgid "Date Of Marriage"
+msgstr "Fecha de Matrimonio"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_department.py:36
+#, python-format
+msgid "Debit Account"
+msgstr "Cuenta de Débito"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_deduccion_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_name
+msgid "Deducción"
+msgstr "Deducción"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.actions.act_window,name:l10n_ec_hr_payroll.action_deduction
+#: model:ir.ui.menu,name:l10n_ec_hr_payroll.hr_menu_base_proyeccion
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_deduction_form
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_deduction_tree
+msgid "Deduction Tax Rent"
+msgstr "Deduction Tax Rent"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_deduction
+msgid "Deductions Taxes for Rent"
+msgstr "Deductions Taxes for Rent"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_res_company_default_payroll_journal_id
+msgid "Default Payroll Journal"
+msgstr "Diario de Nomina por Defecto"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_department_id
+msgid "Departamento"
+msgstr "Departamento"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:21
+#: code:addons/l10n_ec_hr_payroll/models/hr_department.py:27
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:91
+#, python-format
+msgid "Department"
+msgstr "Departamento"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_description
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_name
+msgid "Descripción"
+msgstr "Descripción"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_deduction_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_hr_base_exoneration_form
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_hr_base_retention_form
+msgid "Detail"
+msgstr "Detalle"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_hr_base_exoneration_form
+msgid "Details"
+msgstr "Detalles"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_retencion_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_ids
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_ids
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_retencion_id
+msgid "Detalle"
+msgstr "Detalle"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_journal_id
+msgid "Diario"
+msgstr "Diario"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Diciembre"
+msgstr "Diciembre"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:95
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:64
+#, python-format
+msgid "Disability"
+msgstr "Discapacidad"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:98
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:67
+#, python-format
+msgid "Disability Percent"
+msgstr "Porcentaje Discapacidad"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:97
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:66
+#, python-format
+msgid "Disability Type"
+msgstr "Tipo Discapacidad"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_disability
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_disability
+msgid "Discapacidad"
+msgstr "Discapacidad"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_display_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_age
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_age
+msgid "Edad"
+msgstr "Edad"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_employee_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_employee_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_employee_id
+msgid "Empleado"
+msgstr "Empleado"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:44
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:70
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:99
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_employee
+#, python-format
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,state:0
+msgid "En ejecutar"
+msgstr "En ejecutar"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Enero"
+msgstr "Enero"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_state
+msgid "Estado"
+msgstr "Estado"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_exceso_desde
+msgid "Exceso desde"
+msgstr "Exceso desde"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_exceso_hasta
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_exceso_hasta
+msgid "Exceso hasta"
+msgstr "Exceso hasta"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_exoneration_id
+msgid "Exoneración"
+msgstr "Exoneración"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.actions.act_window,name:l10n_ec_hr_payroll.action_hr_base_exoneration
+#: model:ir.ui.menu,name:l10n_ec_hr_payroll.hr_menu_base_exoneration
+msgid "Exoneración de Impuesto a la Renta"
+msgstr "Exoneración de Impuesto a la Renta"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_tercera_edad
+msgid "Exoneración tercera edad"
+msgstr "Exoneración tercera edad"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_sri_exoneration_line
+msgid "Exoneration Table detail for Taxes Rent"
+msgstr "Exoneration Table detail for Taxes Rent"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_sri_exoneration
+msgid "Exoneration Table for Taxes Rent"
+msgstr "Exoneration Table for Taxes Rent"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:99
+#, python-format
+msgid "Family"
+msgstr "Familia"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_view_employee_form
+msgid "Family Name"
+msgstr "Nombre"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_view_employee_form
+msgid "Family Responsibilities"
+msgstr "Cargas Familiares"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_family_ids
+msgid "Famlia"
+msgstr "Famlia"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:50
+#, python-format
+msgid "Father"
+msgstr "Padre"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_view_employee_form
+msgid "Father's Lastname"
+msgstr "Apellido Paterno"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Febrero"
+msgstr "Febrero"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_date_marriage
+msgid "Fecha de Matrimonio"
+msgstr "Fecha de Matrimonio"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_birthday
+msgid "Fecha de Nacimeinto"
+msgstr "Fecha de Nacimeinto"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_date
+msgid "Fecha de actualización"
+msgstr "Fecha de actualización"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:60
+#, python-format
+msgid "Female"
+msgstr "Femenino"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,gender:0
+msgid "Femenino"
+msgstr "Femenino"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_res_company_porcentaje_fondos_reserva
+msgid "Fondos de reserva (%)"
+msgstr "Fondos de reserva (%)"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_fraccion_basica
+msgid "Fracción básica"
+msgstr "Fracción básica"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:61
+#, python-format
+msgid "Gender"
+msgstr "Genero"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_gender
+msgid "Genero"
+msgstr "Genero"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_gratificacion
+msgid "Gratificación ($)"
+msgstr "Gratificación ($)"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:68
+#, python-format
+msgid "Guardianship"
+msgstr "Tutela"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_department
+msgid "HR Department"
+msgstr "Departamento Recursos Humanos"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,relation:0
+msgid "Hermano(a)"
+msgstr "Hermano(a)"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,relation:0
+msgid "Hijo(a)"
+msgstr "Hijo(a)"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,subtype:0
+msgid "Hipotecario"
+msgstr "Hipotecario"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_hist_job_ids
+msgid "Historial de Puesto de Trabajo"
+msgstr "Historial de Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_hist_wage_ids
+msgid "Historial de Salario"
+msgstr "Historial de Salario"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:32
+#, python-format
+msgid "Hour Cost"
+msgstr "Valor Hora"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_company_form
+msgid "Human resources"
+msgstr "Recursos Humanos"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_value
+msgid "I.R. retenido"
+msgstr "I.R. retenido"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_id_5315
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:62
+#, python-format
+msgid "Identification No"
+msgstr "Nº Identificación"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_account_tax_id
+msgid "Impuesto"
+msgstr "Impuesto"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_line_ids
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_rent_tax_ids
+msgid "Impuesto a la renta"
+msgstr "Impuesto a la renta"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_impuesto_renta
+msgid "Impuesto a la renta a pagar ($)"
+msgstr "Impuesto a la renta a pagar ($)"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_impuesto_fraccion_basica
+msgid "Impuesto fracción básica"
+msgstr "Impuesto fracción básica"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_l10n_ec_hr_payslip_form
+msgid "Input Data"
+msgstr "Datos de entrada"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:93
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:102
+#, python-format
+msgid "Job"
+msgstr "Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:85
+#, python-format
+msgid "Job Change"
+msgstr "Cambio de Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:46
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+#, python-format
+msgid "Job History"
+msgstr "Historial de Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:23
+#, python-format
+msgid "Job Title"
+msgstr "Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:17
+#, python-format
+msgid "Job Update"
+msgstr "Actualización de Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Julio"
+msgstr "Julio"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Junio"
+msgstr "Junio"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job___last_update
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage___last_update
+msgid "Last Modified on"
+msgstr "Fecha de modificación"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_write_uid
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_write_uid
+msgid "Last Updated by"
+msgstr "Ultima Actualización por"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_rent_tax_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_line_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_exoneration_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_line_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_write_date
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_write_date
+msgid "Last Updated on"
+msgstr "Actualizado en"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:83
+#, python-format
+msgid "Lastname"
+msgstr "Apellido"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_holidays_status
+msgid "Leave Type"
+msgstr "Tipo de ausencia"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_maximo_deducible_form
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_maximo_deducible_tree
+msgid "Lines"
+msgstr "Lineas"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_sri_retencion_line
+msgid "Línea de retención de I.R."
+msgstr "Línea de retención de I.R."
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_ids
+msgid "Líneas de proyección"
+msgstr "Líneas de proyección"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,relation:0
+msgid "Madre"
+msgstr "Madre"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:59
+#, python-format
+msgid "Male"
+msgstr "Masculino"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:93
+#, python-format
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Marzo"
+msgstr "Marzo"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,gender:0
+msgid "Masculino"
+msgstr "Masculino"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_projection
+msgid "Max Deduction Value"
+msgstr "Max Deduction Value"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_maximo_deducible
+msgid "Max. Deducible"
+msgstr "Max. Deducible"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_hr_base_retention_form
+msgid "Max. Deduction"
+msgstr "Max. Deduction"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Mayo"
+msgstr "Mayo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_month
+msgid "Mes"
+msgstr "Mes"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Month Retained"
+msgstr "Month Retained"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_monto
+msgid "Monto recurrente"
+msgstr "Monto recurrente"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:51
+#, python-format
+msgid "Mother"
+msgstr "Madre"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_view_employee_form
+msgid "Mother's Lastname"
+msgstr "Apellido Materno"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_name
+msgid "Motivo"
+msgstr "Motivo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_move_id
+msgid "Movimiento"
+msgstr "Movimiento"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_projection_valor_maximo
+msgid "Máximo deducible"
+msgstr "Máximo deducible"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:45
+#, python-format
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:82
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_view_employee_form
+#, python-format
+msgid "Name's"
+msgstr "Nombre(s)"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:54
+#, python-format
+msgid "Nephew"
+msgstr "Sobrino"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_deduction_name
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_name
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_names
+msgid "Nombre(s)"
+msgstr "Nombre(s)"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_payroll.py:69
+#, python-format
+msgid "Normal Working Days paid at 100%"
+msgstr "Dias Normales Trabajados pagados al 100%"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Noviembre"
+msgstr "Noviembre"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_phone
+msgid "Numero de Contacto"
+msgstr "Numero de Contacto"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_conadis_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_conadis_id
+msgid "Nº CONADIS"
+msgstr "Nº CONADIS"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_passport_id
+msgid "Nº Pasaporte"
+msgstr "Nº Pasaporte"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_identification_id
+msgid "Nº identificación"
+msgstr "Nº identificación"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Octubre"
+msgstr "Octubre"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_old_age
+msgid "Old Age"
+msgstr "Tercera Edad"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:92
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:101
+#, python-format
+msgid "Old Job"
+msgstr "Puesto Anterior"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:106
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:72
+#, python-format
+msgid "Old Wage"
+msgstr "Salario Anterior"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_option
+msgid "Opción"
+msgstr "Opción"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:17
+#, python-format
+msgid "Option"
+msgstr "Option"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:56
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:61
+#: selection:hr.family,relation:0
+#, python-format
+msgid "Other"
+msgstr "Otro"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,gender:0
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_other
+msgid "Otro"
+msgstr "Otro"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,relation:0
+msgid "Padre"
+msgstr "Padre"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,state:0
+msgid "Pagado"
+msgstr "Pagado"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_inicia_pago
+msgid "Pagar desde"
+msgstr "Pagar desde"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_decimo_cuarto_rol
+msgid "Pagar décimo cuarto en rol"
+msgstr "Pagar décimo cuarto en rol"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_decimo_tercero_rol
+msgid "Pagar décimo tercero en rol"
+msgstr "Pagar décimo tercero en rol"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_fondos_reserva_rol
+msgid "Pagar fondos de reserva en rol"
+msgstr "Pagar fondos de reserva en rol"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_termina_pago
+msgid "Pagar hasta"
+msgstr "Pagar hasta"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_relation
+msgid "Parentesco"
+msgstr "Parentesco"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:63
+#, python-format
+msgid "Passport No"
+msgstr "Nº Pasaporte"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Nómina"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr "Nómina por Lote"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_l10n_ec_hr_payslip_form
+msgid "Payslip Line"
+msgstr "Línea de nómina"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_payroll.py:389
+#, python-format
+msgid "Payslip of %s"
+msgstr "Rol de %s"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "Please select one of the options."
+msgstr "Por favor seleccione una de las dos opciones"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_disability_percent
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_disability_percent
+msgid "Porcentaje de Discapacidad"
+msgstr "Porcentaje de Discapacidad"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,type:0
+msgid "Prestamos"
+msgstr "Prestamos"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_contract_prestamo
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Prestamos y adelantos"
+msgstr "Prestamos y adelantos"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_provisionar_vacaciones
+msgid "Provisionar vacaciones mensualmente"
+msgstr "Provisionar vacaciones mensualmente"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_sri_retencion_projection_line_ids
+msgid "Proyecciones"
+msgstr "Proyecciones"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_projection_anual_form
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_projection_line_form
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_projection_line_tree
+msgid "Proyección de Impuesto a la Renta"
+msgstr "Proyección de Impuesto a la Renta"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_projection_ids
+msgid "Proyección de gastos personales"
+msgstr "Proyección de gastos personales"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamos
+msgid "Préstamos / Adelantos"
+msgstr "Préstamos / Adelantos"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_old_job_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_old_job_id
+msgid "Puesto Anterior"
+msgstr "Puesto Anterior"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_job_job_id
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_job_job_id
+msgid "Puesto de Trabajo"
+msgstr "Puesto de Trabajo"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.contract.prestamo,subtype:0
+msgid "Quirografario"
+msgstr "Quirografario"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:90
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:104
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:69
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:98
+#, python-format
+msgid "Reason"
+msgstr "Motivo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_rule_id
+msgid "Regla Salarial"
+msgstr "Regla Salarial"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_department_salaryrule_map_ids
+msgid "Reglas salariales"
+msgstr "Reglas salariales"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:55
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_view_employee_form
+#, python-format
+msgid "Relation"
+msgstr "Parentesco"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_aportes_no_proyectables
+msgid "Remuneración no proyectable"
+msgstr "Remuneración no proyectable"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_aportes_proyectables
+msgid "Renuneración unificada (Proyectable)"
+msgstr "Renuneración unificada (Proyectable)"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Reset to draft"
+msgstr "Regresar a Borrador"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_base_retention_tree
+msgid "Retention Base"
+msgstr "Retention Base"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.actions.act_window,name:l10n_ec_hr_payroll.action_hr_base_retention
+#: model:ir.ui.menu,name:l10n_ec_hr_payroll.hr_menu_base_retention
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_hr_base_retention_form
+msgid "Retention Base Table"
+msgstr "Retention Base Table"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.menu,name:l10n_ec_hr_payroll.menu_sri
+msgid "SRI Configuration"
+msgstr "SRI Configuration"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_base_exoneration_tree
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_hr_base_exoneration_form
+msgid "SRI Exoneration Tax Rent"
+msgstr "SRI Exoneration Tax Rent"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_wage
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_wage
+msgid "Salario"
+msgstr "Salario"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_wage_old_wage
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_wizard_hr_contract_update_wage_old_wage
+msgid "Salario Anterior"
+msgstr "Salario Anterior"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_res_company_basic_wage
+msgid "Salario Básico ($)"
+msgstr "Salario Básico ($)"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_department.py:29
+#, python-format
+msgid "Salary Rule"
+msgstr "Salary Rule"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_department.py:15
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_view_department_form
+#, python-format
+msgid "Salary Rules"
+msgstr "Reglas salariales"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:84
+#, python-format
+msgid "Second Lastname"
+msgstr "Segundo Apellido"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_second_lastname
+msgid "Segundo Apellido"
+msgstr "Segundo Apellido"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.rent.tax,month:0
+msgid "Septiembre"
+msgstr "Septiembre"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,relation:0
+msgid "Sobrino"
+msgstr "Sobrino"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:48
+#, python-format
+msgid "Spouse"
+msgstr "Cónyugue"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_subtype
+msgid "Subtype"
+msgstr "Subtipo"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_basic_wage
+msgid "Sueldo Básico"
+msgstr "Sueldo Básico"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_maximo_deducible_tree
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_projection_line_form
+msgid "TOTAL"
+msgstr "TOTAL"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_sri_retencion
+msgid "Tabla de retenciones de I.R."
+msgstr "Tabla de retenciones de I.R."
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_department.py:34
+#, python-format
+msgid "Tax"
+msgstr "Tax"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Tax Detained"
+msgstr "Tax Detained"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_anual_projection_tree_view
+msgid "Tax Rent"
+msgstr "Tax Rent"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Tax Retained"
+msgstr "Tax Retained"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_payroll.py:447
+#, python-format
+msgid "The Expense Journal \"%s\" has not properly configured the Credit Account!"
+msgstr "¡El Diario de Gastos \"%s\" no tiene configurada una Cuenta de Crédito!"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_payroll.py:463
+#, python-format
+msgid "The Expense Journal \"%s\" has not properly configured the Debit Account!"
+msgstr "¡El Diario de Gastos \"%s\" no tiene configurada una Cuenta de Débito!"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:86
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:115
+#, python-format
+msgid "The employee %s has no active contract"
+msgstr "El empleado %s No tiene un Contrato de Trabajo Activo"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:108
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:76
+#, python-format
+msgid "The employee must have an identification number or passport number"
+msgstr "El Empleado debe contar con Un Numero de Identificación o Pasaporte"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:119
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:87
+#, python-format
+msgid "The identification number is wrong"
+msgstr "El Numero de Identificación no es Valido"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:113
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:117
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:81
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:85
+#, python-format
+msgid "The identification number must be unique per employee"
+msgstr "El Numero de Identificación debe ser Único por Empleado"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "The option to <strong>Job Update</strong>, allows updating the job in the contract of one or several employees"
+msgstr "La Opción <strong>Actualizar Puesto</strong>, permite actualizar el Puesto de Trabajo de uno o varios Empleados"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "The option to <strong>Wage Update</strong>, allows to update the value of the salary in the contract of one or several employees"
+msgstr "La Opción <strong>Actualizar Salario</strong>, permite actualizar el valor del Salario en el Contrato de uno o varios Empleados"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:31
+#, python-format
+msgid "The value of the new salary must be greater than the value of the previous salary"
+msgstr "El valor del Nuevo Salario debe ser Mayor que el valor del Salario Anterior"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,help:l10n_ec_hr_payroll.field_hr_holidays_status_code
+msgid "This code should match the code on the payslip rule used to compute the values on the payroll"
+msgstr "Este código debe coincidir con el código de la regla de salario usado para calcular los valores en la nómina"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,help:l10n_ec_hr_payroll.field_res_company_default_payroll_journal_id
+msgid "This journal will be used on payroll creation"
+msgstr "Este diario se utilizará en la creación de nóminas"
+
+#. module: l10n_ec_hr_payroll
+#: selection:hr.family,relation:0
+msgid "Tio"
+msgstr "Tio"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_employee_disability_type
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_disability_type
+msgid "Tipo Discapacidad"
+msgstr "Tipo Discapacidad"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_rent_tax_rent_id
+msgid "Tipo de retención"
+msgstr "Tipo de retención"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_total
+msgid "Total"
+msgstr "Total"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_l10n_ec_hr_payslip_form
+msgid "Total Working Days"
+msgstr "Total de días trabajado"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_family_guardianship
+msgid "Tutela"
+msgstr "Tutela"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_prestamo_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:52
+#, python-format
+msgid "Uncle"
+msgstr "Tio"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_employee.py:101
+#, python-format
+msgid "Union of Fact"
+msgstr "Unión de Hecho"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "Update"
+msgstr "Actualizar"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "Update Contract"
+msgstr "Actualizar Contrato"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:94
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:108
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:74
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:103
+#, python-format
+msgid "Update Date"
+msgstr "Fecha de actualización"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:19
+#, python-format
+msgid "Update Job"
+msgstr "Actualizar Puesto"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:18
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+#, python-format
+msgid "Update Wage"
+msgstr "Actualizar Salario"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_annual_projection_line_value
+msgid "Valor"
+msgstr "Valor"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model.fields,field_description:l10n_ec_hr_payroll.field_hr_contract_hour_cost
+msgid "Valor Hora"
+msgstr "Valor Hora"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:107
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:73
+#, python-format
+msgid "Wage"
+msgstr "Salario"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:47
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+#, python-format
+msgid "Wage History"
+msgstr "Historial de Salario"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:16
+#, python-format
+msgid "Wage Update"
+msgstr "Actualizar Salario"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:68
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:97
+#, python-format
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.l10n_ec_hr_view_contract_form
+msgid "Work History"
+msgstr "Historial de Puesto/Salario"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_l10n_ec_hr_payslip_form
+msgid "Worked Day"
+msgstr "Días trabajados"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.view_l10n_ec_hr_payslip_form
+msgid "Worked Days"
+msgstr "Días Laborados"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_family.py:58
+#, python-format
+msgid "Years Of Marriage"
+msgstr "Años de Matrimonio"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:58
+#, python-format
+msgid "You must select at least one employee to perform the job update"
+msgstr "Debe seleccionar por lo menos un empleado para Realizar la Actualización de Puesto"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_annual_projection_line
+msgid "hr.annual.projection.line"
+msgstr "hr.annual.projection.line"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_annual_rent_tax
+msgid "hr.annual.rent.tax"
+msgstr "hr.annual.rent.tax"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_family
+msgid "hr.family"
+msgstr "hr.family"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.model,name:l10n_ec_hr_payroll.model_hr_rent_tax
+msgid "hr.rent.tax"
+msgstr "hr.rent.tax"
+
+#. module: l10n_ec_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_ec_hr_payroll.wizard_hr_contract_update_form
+msgid "or"
+msgstr "o"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:80
+#, python-format
+msgid "¡You can not save a contract with salary equal to zero!"
+msgstr "¡No puede Guardar un Contrato con Salario Igual a Cero!"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/models/hr_contract.py:74
+#, python-format
+msgid "¡You can only register one active contract per employee!"
+msgstr "¡Solo puede Registrar un Contrato Activo por Empleado!"
+
+#. module: l10n_ec_hr_payroll
+#: code:addons/l10n_ec_hr_payroll/wizard/wizard_hr_contract_update.py:43
+#, python-format
+msgid "¡You must select at least one employee to perform the wage update!"
+msgstr "¡Debe seleccionar por lo menos un empleado para Realizar la Actualización de Salario!"
