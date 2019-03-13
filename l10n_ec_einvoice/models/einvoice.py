@@ -200,6 +200,8 @@ class AccountInvoice(models.Model):
         auth_invoice = einvoice_tmpl.render(auth_xml)
         return auth_invoice  
 
+    #xml_auth = ''
+
     @api.multi
     def action_generate_einvoice(self):
         """
@@ -236,6 +238,7 @@ class AccountInvoice(models.Model):
                     return
                     #raise UserError(errores)
             auth, m = inv_xml.request_authorization(access_key)
+            #xml_auth = auth
             if not auth:
                 msg = ' '.join(list(itertools.chain(*m)))
                 self._logger.info(msg)
@@ -279,6 +282,9 @@ class AccountInvoice(models.Model):
             if obj.type not in ['out_invoice', 'out_refund']:
                 continue
             einvoice = self.render_document(obj, self.clave_acceso, self.emission_code)
+        #    if xml_auth:
+        #        attach = xml_auth
+        #    else:
             attach = self.add_attachment(einvoice.encode())
             pdf = self.env.ref('l10n_ec_einvoice.report_einvoice').render_qweb_pdf(self.ids)
             attach_pdf = self.add_attachment_pdf(pdf)

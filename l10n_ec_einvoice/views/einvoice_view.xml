@@ -126,7 +126,6 @@
                   <field name="fecha_autorizacion"/>
                   <field name="estado_autorizacion" invisible="1"/>
                   <field name="to_send_einvoice"/>
-                  <field name="xml_auth" invisible="1">
                 </group>
               </page>
             </notebook>
