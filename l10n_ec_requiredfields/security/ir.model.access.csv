@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_l10n_ec_requiredfields_l10n_ec_requiredfields,l10n_ec_requiredfields.l10n_ec_requiredfields,model_l10n_ec_requiredfields_l10n_ec_requiredfields,,1,0,0,0

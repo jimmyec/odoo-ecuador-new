@@ -1,0 +1,314 @@
+<odoo>
+    <data>
+	    
+	    <record id="view_account_journal_form" model="ir.ui.view">
+	    	<field name="name">account.journal.form</field>
+	      	<field name="model">account.journal</field>
+	      	<field name="inherit_id" ref="account.view_account_journal_form"/>
+		    <field name="arch" type="xml">
+	       		<field name="sequence_id" position="after">
+			        <field name="auth_out_invoice_id"
+		                string="Facturas Autorizadas"
+		                placeholder="Secuencia de Facturas"
+		                domain="[('in_type','=','internal')]"
+		                context="{'default_in_type': 'internal'}"
+			            attrs="{'invisible': [('type','!=','sale')], 'required': [('type','=','sale')]}"/>
+				    <field name="auth_out_refund_id"
+		                string="Notas de Crédito"
+		                placeholder="Secuencia Notas de Credito"
+		                domain="[('in_type','=','internal')]"
+		                context="{'default_in_type': 'internal'}"
+				        attrs="{'invisible': [('type','!=','sale')]}"/>
+				    <field name="auth_retention_id"
+		                string="Retenciones Autorizados"
+		                placeholder="Documentos para Retenciones"
+		                domain="[('in_type','=','internal')]"
+		                context="{'default_in_type': 'internal'}"
+				        attrs="{'invisible': [('type','!=','purchase')], 'required': [('type','=','purchase')]}"/>
+	        	</field>
+		    </field>
+		</record>
+
+	    <!--
+	        Customer Invoices
+	    -->
+
+	    <record id="view_invoice_reference_customer_form" model="ir.ui.view">
+		    <field name="name">account.invoice.reference.cust.form</field>
+		    <field name="model">account.invoice</field>
+		    <field name="inherit_id" ref="account.invoice_form"/>
+		    <field name="arch" type="xml">
+		        <field name="fiscal_position_id" position="after">
+		        	<field name="auth_inv_id" domain="[('in_type','=','internal')]"
+		                required="1" options="{'no_create':True, 'no_create_edit': True}"/>
+		       	</field>
+		        <field name="fiscal_position_id" position="after">
+		        	<field name="reference" string="Número de Factura"/>
+		        	<field name="accion_fisical_document" string="Factura Física"/>
+		        </field>
+		        <field name="number" position="replace">
+		        	<field name="invoice_number" class="oe_inline"/>
+		        </field>
+		        <field name="auth_inv_id" position="after">
+		        	<field name="auth_number"/>
+		        </field>
+		    </field>
+	    </record>
+
+	    <!--
+	        Supplier Invoices
+	    -->
+
+	    <record id="view_account_invoice_authoris_form" model="ir.ui.view">
+	      <field name="name">account.invoice.authoris.form</field>
+	      <field name="model">account.invoice</field>
+	      <field name="inherit_id" ref="account.invoice_supplier_form"/>
+	      <field name="arch" type="xml">
+	        <field name="number" position="before">
+	          <field name="invoice_number" class="oe_inline"/>
+	        </field>
+	        <field name="reference" position="after">
+	          <field name="auth_number" required="1"/>
+	        </field>
+	        <field name="date_due" position="after">
+	          <field name="sustento_id" class="oe_inline oe_edit_only"
+	                 options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"
+	                 required="1"/>
+	        </field>
+	        <field name="reference" position="attributes">
+	          <attribute name="required">True</attribute>
+	          <attribute name="string">Factura</attribute>
+	          <attribute name="placeholder">000004597</attribute>
+	        </field>
+	        <xpath expr="//field[@name='journal_id']" position="after">
+	          <field name="auth_inv_id" domain="[('partner_id','=',partner_id)]" options='{"no_open":True}'
+	                 context="{'default_partner_id': partner_id}"
+	                 required="1"/>
+	        </xpath>
+	      </field>
+	    </record>
+
+	    <!--
+	        Account Authorisation
+	    -->
+
+	    <record id="view_partner_auth_form" model="ir.ui.view">
+	      <field name="name">account.partner.auth.form</field>
+	      <field name="model">res.partner</field>
+	      <field name="inherit_id" ref="base.view_partner_form"/>
+	      <field name="arch" type="xml">
+	        <notebook position="inside">
+	          <page string="Autorizaciones" attrs="{'invisible': [('supplier','!=',True)]}">
+	            <field name="authorisation_ids" nolabel="1" context="{'in_type':'external', 'default_partner_id': active_id}">
+	              <tree string="Autorizaciones" editable="top">
+	                <field name="is_electronic" help="¿El Documento es Electrónico?"/>
+	                <field name="type_id" help="Tipo de comprobante"/>
+	                <field name="name" attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}"/>
+	                <field name="serie_entidad" help="Serie de Entidad"/>
+	                <field name="serie_emision" help="Serie de Emisión"/>
+	                <field name="num_start" attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}" help="Número en el que empieza la serie"/>
+	                <field name="num_end" attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}" help="Número en el que termina la serie"/>
+	                <field name="expiration_date" attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}"/>
+	              </tree>
+	            </field>
+	          </page>
+	        </notebook>
+	      </field>
+	    </record>
+
+	    <record id="view_account_authorisation_tree" model="ir.ui.view">
+	      <field name="name">account.auth.tree</field>
+	      <field name="model">account.authorisation</field>
+	      <field name="arch" type="xml">
+	        <tree string="Autorizaciones del SRI">
+	          <field name="type_id"/>
+	          <field name="is_electronic"/>
+	          <field name="partner_id"/>
+	          <field name="expiration_date"/>
+	          <field name="serie_entidad"/>
+	          <field name="serie_emision"/>
+	        </tree>
+	      </field>
+	    </record>
+
+	    <record id="view_account_auth_form" model="ir.ui.view">
+	      <field name="name">account.auth.form</field>
+	      <field name="model">account.authorisation</field>
+	      <field name="arch" type="xml">
+	        <form string="Autorizaciones SRI">
+	          <sheet>
+	            <group>
+	              <group>
+	                <field name="is_electronic"/>
+	                <field name="type_id" widget="selection"/>
+	                <field name="in_type"/>
+	                <field name="partner_id" attrs="{'invisible': [('in_type','=','internal')]}" domain="[('supplier','=',True)]"/>
+	                <field name="sequence_id"/>
+	              </group>
+	              <group>
+	                <field name="name" attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}"/>
+	                <field name="expiration_date"
+	                       attrs="{'required': [('is_electronic','!=',True)], 'invisible': [('is_electronic','=',True)]}"/>
+	                <field name="active"/>
+	              </group>
+	            </group>
+	            <group>
+	              <group>
+	                <label string="Establecimiento" for="serie_entidad"/>
+	                <div>
+	                  <field name="serie_entidad" class="oe_inline" placeholder="001"/> -
+	                  <field name="serie_emision" placeholder="001"/>
+	                </div>
+	              </group>
+	              <group>
+	                <label string="Secuencia de Comprobante" for="num_start"
+	                       attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}"/>
+	                <div>
+	                  <field name="num_start" class="oe_inline"
+	                         attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}"/> -
+	                  <field name="num_end" class="oe_inline"
+	                         attrs="{'invisible': [('is_electronic','=',True)], 'required': [('is_electronic','=',False)]}"/>
+	                </div>
+	              </group>
+	            </group>
+	          </sheet>
+	        </form>
+	      </field>
+	    </record>
+
+	    <record id="view_account_auth_filter" model="ir.ui.view">
+	      <field name="name">account.authorisation.select</field>
+	      <field name="model">account.authorisation</field>
+	      <field name="arch" type="xml">
+	        <search string="Buscar Autorizaciones">
+	          <group>
+	            <filter icon="terp-camera_test" string="Activos" domain="[('active','=',True)]" help="Autorizaciones Activas"/>
+	            <separator orientation="vertical"/>
+	            <filter name="unpaid" icon="terp-gtk-media-pause" string="Inactivos" domain="[('active','=',False)]" help="Autorizaciones Inactivas"/>
+	            <separator orientation="vertical"/>
+	            <field name="name"/>
+	            <field name="partner_id"/>
+	            <field name="type_id"/>
+	          </group>
+	          <newline/>
+	          <group expand="0" string="Agrupar por...">
+	            <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
+	            <separator orientation="vertical"/>
+	            <filter string="Tipo" domain="[]" context="{'group_by': 'type_id'}"/>
+	          </group>
+	        </search>
+	      </field>
+	    </record>
+
+	    <record id="action_account_auth_tree" model="ir.actions.act_window">
+	      <field name="name">Comprobantes Autorizados</field>
+	      <field name="res_model">account.authorisation</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	      <field name="search_view_id" ref="view_account_auth_filter"/>
+	      <field name="context">{'in_type': 'external'}</field>
+	      <field name="domain">[('in_type', '=', 'external')]</field>
+	    </record>
+
+	    <menuitem action="action_account_auth_tree"
+	              id="menu_action_authorisation_out"
+	              parent="account.menu_finance_payables_master_data"/>
+
+	    <record id="action_account_authin_tree" model="ir.actions.act_window">
+	      <field name="name">Comprobantes Autorizados</field>
+	      <field name="res_model">account.authorisation</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	      <field name="search_view_id" ref="view_account_auth_filter"/>
+	      <field name="context">{'in_type': 'internal'}</field>
+	      <field name="domain">[('in_type', '=', 'internal')]</field>
+	    </record>
+
+	    <menuitem action="action_account_authin_tree"
+	              id="menu_action_authorisation_in"
+	              parent="account.menu_finance_receivables_master_data"/>
+
+	    <!--
+	        Comprobantes Autorizados
+	    -->
+
+	    <record id="view_account_ats_doc_tree" model="ir.ui.view">
+	      <field name="name">account.ats.doc.tree</field>
+	      <field name="model">account.ats.doc</field>
+	      <field name="type">tree</field>
+	      <field name="arch" type="xml">
+	        <tree string="Comprobantes Autorizados" editable="top">
+	          <field name="code" select="1"/>
+	          <field name="name"/>
+	        </tree>
+	      </field>
+	    </record>
+
+	    <record id="view_account_ats_doc_form" model="ir.ui.view">
+	      <field name="name">account.ats.doc.form</field>
+	      <field name="model">account.ats.doc</field>
+	      <field name="type">form</field>
+	      <field name="arch" type="xml">
+	        <form string="Tipo de Comprobante Autorizado">
+	          <group col="4" colspan="4">
+	            <field name="code" required="1"/>
+	            <field name="name"/>
+	          </group>
+	        </form>
+	      </field>
+	    </record>
+
+	    <record id="action_account_ats_doc" model="ir.actions.act_window">
+	      <field name="name">Comprobantes</field>
+	      <field name="res_model">account.ats.doc</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	    </record>
+
+	    <menuitem action="action_account_ats_doc"
+	              id="menu_action_account_ats_doc"
+	              parent="account.account_account_menu"/>
+
+	    <!--
+	          Sustento del Comprobante
+	    -->
+
+	    <record id="view_account_ats_sustento_tree" model="ir.ui.view">
+	      <field name="name">account.ats.sustento.tree</field>
+	      <field name="model">account.ats.sustento</field>
+	      <field name="type">tree</field>
+	      <field name="arch" type="xml">
+	        <tree string="Sustento del Comprobante" editable="top">
+	          <field name="code" select="1"/>
+	          <field name="type"/>
+	        </tree>
+	      </field>
+	    </record>
+
+	    <record id="view_account_ats_sustent_form" model="ir.ui.view">
+	      <field name="name">account.ats.sustento.form</field>
+	      <field name="model">account.ats.sustento</field>
+	      <field name="type">form</field>
+	      <field name="arch" type="xml">
+	        <form string="Sustento del Comprobante">
+	          <group col="4" colspan="4">
+	            <field name="code" required="1"/>
+	            <field name="type"/>
+	          </group>
+	        </form>
+	      </field>
+	    </record>
+
+	    <record id="action_account_ats_sustent" model="ir.actions.act_window">
+	      <field name="name">Sustento del Comprobante</field>
+	      <field name="res_model">account.ats.sustento</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	    </record>
+
+	    <menuitem action="action_account_ats_sustent"
+	              id="menu_action_account_ats_sustento"
+	              parent="account.account_account_menu"/>
+
+    </data>
+</odoo>

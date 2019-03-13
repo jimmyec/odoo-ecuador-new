@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+      
+    <record id="view_account_pos_payment_tree" model="ir.ui.view">
+      <field name="name">view.account.pos.payment.tree</field>
+      <field name="model">account.pos.payment</field>
+      <field name="arch" type="xml">
+        <tree string="Forma de Pago" editable="top">
+          <field name="code"/>
+          <field name="journal_id"/>
+          <field name="epayment_id"/>
+          <field name="payment_amount"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_journal_payment_form" model="ir.ui.view">
+      <field name="name">view.account.journal.form</field>
+      <field name="model">account.journal</field>
+      <field name="inherit_id" ref="account.view_account_journal_form"/>
+      <field name="arch" type="xml">
+        <field name="code" position="after">
+          <field name="epayment_id" string="Forma de Pago" attrs="{'invisible':[('type','!=','cash'),('type','!=','bank')], 'required': ['|',('type','=','cash'),('type','=','bank')]}"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- Contingency Key Tree -->
+    <record id="view_contingency_key_tree" model="ir.ui.view">
+      <field name="name">res.company.contingency.key.tree</field>
+      <field name="model">res.company.contingency.key</field>
+      <field name="arch" type="xml">
+        <tree string="Claves de Contingencia">
+          <field name="key"/>
+          <field name="used"/>
+          <field name="company_id" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Contingency Key Form -->
+    <record id="view_contingency_key_form" model="ir.ui.view">
+      <field name="name">res.company.contingency.key.form</field>
+      <field name="model">res.company.contingency.key</field>
+      <field name="arch" type="xml">
+        <form string="Clave de Contingencia">
+          <group>
+            <field name="key" required="1"/>
+            <field name="used"/>
+            <field name="company_id"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    
+    <!-- Contingency Key -->
+    <record id="action_contingency_key" model="ir.actions.act_window">
+      <field name="name">Claves de Contingencia</field>
+      <field name="res_model">res.company.contingency.key</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Contingency Key MenuItem -->
+    <menuitem action="action_contingency_key"
+              id="menu_action_contingency_key"
+              parent="payment.root_payment_menu"/>
+
+    <record id="view_account_einvoice_filter" model="ir.ui.view">
+        <field name="name">account.einvoice.filter</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='unpaid']" position="after">
+                <filter name="einvoiced" string="Electrónicas" domain="[('autorizado_sri','=',True)]" help="Facturas electrónicas"/>
+                <filter name="einvoiced" string="No enviadas al cliente" domain="[('to_send_einvoice','=',True)]" help="Facturas electrónicas enviadas al cliente"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_epayment_form" model="ir.ui.view">
+        <field name="name">account.invoice.payment.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+          <notebook>
+              <page string="Pagos">
+                <field name="pos_payment_line_ids" colspan="4" nolabel="1">
+                  <tree editable="bottom" string="epayment lines">
+                    <field name="code"/>
+                    <field name="journal_id"/>
+                    <field name="epayment_id"/>
+                    <field name="payment_amount"/>
+                  </tree>
+                </field>
+              </page>
+          </notebook>
+        </field>
+    </record>
+
+    <!-- Button-->
+    <record id="view_account_einvoice_form" model="ir.ui.view">
+        <field name="name">account.einvoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_sent']" position="replace"/>
+            <xpath expr="//button[@name='action_invoice_sent']" position="replace">
+                <button name="action_generate_einvoice" type="object" attrs="{'invisible':['|',('autorizado_sri','=',True),('state','=','draft')]}"
+                        string="Generar Doc. Electrónica" class="oe_highlight"/>
+                <button name="action_send_einvoice_email" type="object" attrs="{'invisible':[('to_send_einvoice','!=',True)]}"
+                        string="Enviar Correo Electrónico" class="oe_highlight"/>
+            </xpath>
+            <notebook>
+              <page string="Facturación Electrónica" name="electronic_invoice">
+                <group colspan="2">
+                  <field name="clave_acceso"/>
+                  <field name="ambiente"/>
+                  <field name="autorizado_sri"/>
+                  <field name="estado_factura"/>
+	                <field name="estado_correo"/>
+                </group>
+                <group colspan="2">
+                  <field name="numero_autorizacion" invisible="1"/>
+                  <field name="fecha_autorizacion"/>
+                  <field name="estado_autorizacion" invisible="1"/>
+                  <field name="to_send_einvoice"/>
+                </group>
+              </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- eRetention Form -->
+    <record id="view_account_eretention_form" model="ir.ui.view">
+        <field name="name">account.eretention.form</field>
+        <field name="model">account.retention</field>
+        <field name="inherit_id" ref="l10n_ec_withholding.view_account_retention_form"/>
+        <field name="arch" type="xml">
+          <!--xpath expr="//field[@name='name']" position="after">
+              <button name="retention_print" string="Imprimir" type="object" icon="fa-print" class="oe_inline oe_stat_button oe_right" states="done" attrs="{'invisible': [('in_type','=','ret_out_invoice')]}"/>
+          </xpath-->
+          <xpath expr="//button[@name='retention_print']" position="before"/>
+          <xpath expr="//button[@name='retention_print']" position="before">
+              <button name="action_generate_document" string="Retención Electrónica" type="object" states="done" class="btn btn-primary"/>
+              <button name="action_send_eretention_email" string="Correo" type="object" states="done" class="btn btn-primary"/>
+              <button name="retention_print" string="Imprimir Retención" type="object" states="done" class="btn btn-primary" icon="fa-print" attrs="{'invisible':[('autorizado_sri','!=',True)]}"/>
+          </xpath>
+
+          <xpath expr="//field[@name='move_id']" position="after">
+              <field name="clave_acceso"/>
+              <field name="numero_autorizacion"/>
+              <field name="fecha_autorizacion"/>
+              <field name="estado_autorizacion"/>
+              <field name="ambiente"/>
+              <field name="autorizado_sri"/>
+          </xpath>
+
+        </field>
+    </record>
+
+  </data>
+</odoo>
