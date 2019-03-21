@@ -127,17 +127,20 @@ class AccountWithdrawing(models.Model):
             if not auth:
                 msg = ' '.join(list(itertools.chain(*m)))
                 raise UserError(msg)
+            auth_eretention = self.render_authorized_document(auth)
             self.update_document([access_key, emission_code])
+            self.add_attachment(auth_eretention.encode(),self.name)
             self.action_send_eretention_email()
             return True
 
     @api.multi
     def action_send_eretention_email(self):
         for obj in self:
-            eretention = self.render_document(obj, self.clave_acceso, self.emission_code)
-            attach = self.add_attachment(eretention.encode())
+            ret_name = str(self.name + '.xml')
+            attach_ids = self.env['ir.attachment'].search([('name','=',ret_name)])
+            attach = attach_ids[0]
             pdf = self.env.ref('l10n_ec_einvoice.report_eretention').render_qweb_pdf(self.ids)
-            attach_pdf = self.add_attachment_pdf(pdf)
+            attach_pdf = self.add_attachment_pdf(pdf,self.name)
             attachments=[a.id for a in attach + attach_pdf]
             self.ensure_one()
             self._logger.info('Enviando documento electronico por correo')

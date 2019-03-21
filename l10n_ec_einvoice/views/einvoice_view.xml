@@ -79,26 +79,6 @@
         </field>
     </record>
 
-    <record id="view_account_epayment_form" model="ir.ui.view">
-        <field name="name">account.invoice.payment.form</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form"/>
-        <field name="arch" type="xml">
-          <notebook>
-              <page string="Pagos">
-                <field name="pos_payment_line_ids" colspan="4" nolabel="1">
-                  <tree editable="bottom" string="epayment lines">
-                    <field name="code"/>
-                    <field name="journal_id"/>
-                    <field name="epayment_id"/>
-                    <field name="payment_amount"/>
-                  </tree>
-                </field>
-              </page>
-          </notebook>
-        </field>
-    </record>
-
     <!-- Button-->
     <record id="view_account_einvoice_form" model="ir.ui.view">
         <field name="name">account.einvoice.form</field>
@@ -113,6 +93,16 @@
                         string="Enviar Correo Electrónico" class="oe_highlight"/>
             </xpath>
             <notebook>
+              <page string="Pagos">
+                <field name="pos_payment_line_ids" colspan="4" nolabel="1">
+                  <tree editable="bottom" string="epayment lines">
+                    <field name="code"/>
+                    <field name="journal_id"/>
+                    <field name="epayment_id"/>
+                    <field name="payment_amount"/>
+                  </tree>
+                </field>
+              </page>
               <page string="Facturación Electrónica" name="electronic_invoice">
                 <group colspan="2">
                   <field name="clave_acceso"/>
@@ -126,6 +116,8 @@
                   <field name="fecha_autorizacion"/>
                   <field name="estado_autorizacion" invisible="1"/>
                   <field name="to_send_einvoice"/>
+                  <field name="store_fname" invisible="1"/>
+                  <field name="xml_file" filename="store_fname" class="oe_link" attrs="{'invisible':[('autorizado_sri','!=',True)]}"/>
                 </group>
               </page>
             </notebook>

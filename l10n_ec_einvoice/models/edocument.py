@@ -92,13 +92,15 @@ class Edocument(models.AbstractModel):
         string='Correo',
         readonly=True,
     )
-    autorizado_sri = fields.Boolean('Autorizado SRI', readonly=True)
+    autorizado_sri = fields.Boolean('Autorizado SRI',readonly=True)
     to_send_einvoice = fields.Boolean('Enviar email',readonly=True)
     security_code = fields.Char('Código de Seguridad', size=8, readonly=True)
     emission_code = fields.Char('Tipo de Emisión', size=1, readonly=True)
     pos_payment_line_ids = fields.Many2many('account.pos.payment','epayment_id',string='Forma de Pago')
     #epayment_id = fields.Many2one('account.epayment', default=lambda self:self.env['account.epayment'].search([('code','=','01')]))
     sent = fields.Boolean('Enviado?')
+    xml_file = fields.Binary('XML')
+    store_fname = fields.Char(string="Factura")
 
     def get_auth(self, document):
         partner = document.company_id.partner_id
@@ -217,33 +219,34 @@ class Edocument(models.AbstractModel):
         })
 
     @api.one
-    def add_attachment(self, xml_element):
+    def add_attachment(self, xml_element,xml_name):
         buf = io.BytesIO()
         buf.write(xml_element)
         document = base64.encodestring(buf.getvalue())
         buf.close()
+        file_name = str(xml_name) + '.xml'
         attach = self.env['ir.attachment'].create(
             {
-                'name': 'factura.xml'.format(self.clave_acceso),
+                'name': file_name.format(self.clave_acceso),
                 'datas': document,
-                'datas_fname':  'factura.xml'.format(self.clave_acceso),
+                'datas_fname':  file_name.format(self.clave_acceso),
                 'res_model': self._name,
                 'res_id': self.id,
                 'type': 'binary',
-
             },
         )
         return attach
 
     @api.one
-    def add_attachment_pdf(self, pdf_file):
+    def add_attachment_pdf(self, pdf_file,pdf_name):
         b64_pdf = base64.b64encode(pdf_file[0])
+        file_name = str(pdf_name) + '.pdf'
         attach = self.env['ir.attachment'].create(
             {
-                'name': 'factura.pdf'.format(self.clave_acceso),
+                'name': file_name.format(self.clave_acceso),
                 'type': 'binary',
                 'datas': b64_pdf,
-                'datas_fname':  'factura.pdf'.format(self.clave_acceso),
+                'datas_fname':  file_name.format(self.clave_acceso),
                 'store_fname': 'ride',
                 'res_model': self._name,
                 'res_id': self.id,

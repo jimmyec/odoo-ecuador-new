@@ -20,6 +20,7 @@
         'mail',
         'web',
         'contacts',
+        'l10n_ec_pos',
     ],
     'data': [
         #'security/ir.model.access.csv',
@@ -34,6 +35,6 @@
         'views/report_eretention.xml',
         'edi/einvoice_edi.xml',
         'edi/eretention_edi.xml',
-        #'edi/email_template_einvoice_report.xml'
+        'edi/email_template_einvoice_report.xml'
     ],
 }

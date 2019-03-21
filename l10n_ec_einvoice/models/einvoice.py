@@ -100,14 +100,7 @@ class AccountInvoice(models.Model):
                         'codigo': pos_payment_id.code,
                         'monto': pos_payment_id.payment_amount, 
                     }
-                    if not formaPago:
-                        formaPago.append(pago)
-                    else:
-                        for f in formaPago:
-                            if f['codigo'] == pago['codigo']:
-                                f['monto'] = str(float(f['monto']) + float(pago['monto']))
-                            else:
-                                formaPago.append(pago)
+                    formaPago.append(pago)
                 
                 infoFactura.update({'formaPago': formaPago})
             elif self.payment_ids:
@@ -200,8 +193,6 @@ class AccountInvoice(models.Model):
         auth_invoice = einvoice_tmpl.render(auth_xml)
         return auth_invoice  
 
-    #xml_auth = ''
-
     @api.multi
     def action_generate_einvoice(self):
         """
@@ -216,7 +207,7 @@ class AccountInvoice(models.Model):
             self.check_before_sent()
             access_key, emission_code = self._get_codes(name='account.invoice')
             if self.estado_factura == 'process':
-                access_key = self.access_key
+                access_key = self.clave_acceso
                 emission_code = self.emission_code
             einvoice = self.render_document(obj, access_key, emission_code)
             self._logger.info(einvoice)
@@ -238,7 +229,6 @@ class AccountInvoice(models.Model):
                     return
                     #raise UserError(errores)
             auth, m = inv_xml.request_authorization(access_key)
-            #xml_auth = auth
             if not auth:
                 msg = ' '.join(list(itertools.chain(*m)))
                 self._logger.info(msg)
@@ -274,6 +264,10 @@ class AccountInvoice(models.Model):
                 auth.ambiente,
             )
             self.message_post(body=message)
+            auth_einvoice = self.render_authorized_einvoice(auth)
+            xml_attach = self.add_attachment(auth_einvoice.encode(),self.clave_acceso)
+            self.store_fname = xml_attach[0].datas_fname
+            self.xml_file = xml_attach[0].datas
             #self.action_send_einvoice_email()
 
     @api.multi
@@ -281,15 +275,13 @@ class AccountInvoice(models.Model):
         for obj in self:
             if obj.type not in ['out_invoice', 'out_refund']:
                 continue
-            einvoice = self.render_document(obj, self.clave_acceso, self.emission_code)
-        #    if xml_auth:
-        #        attach = xml_auth
-        #    else:
-            attach = self.add_attachment(einvoice.encode())
+            inv_name = str(self.clave_acceso + '.xml')
+            attach_ids = self.env['ir.attachment'].search([('name','=',inv_name)])
+            attach = attach_ids[0]
             pdf = self.env.ref('l10n_ec_einvoice.report_einvoice').render_qweb_pdf(self.ids)
-            attach_pdf = self.add_attachment_pdf(pdf)
+            attach_pdf = self.add_attachment_pdf(pdf,self.clave_acceso)
             self.send_document(
-                attachments=[a.id for a in attach + attach_pdf],
+                attachments=[a.id for a in attach + attach_pdf[0]],
                 tmpl='l10n_ec_einvoice.email_template_einvoice'
             )
             self.write({
