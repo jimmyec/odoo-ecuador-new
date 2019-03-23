@@ -18,10 +18,14 @@
         'point_of_sale',
         'l10n_ec_authorisation',
         'account_invoice_refund_link',
+        'pos_refund_credit'
     ],
     'data': [
         'data/pos.xml',
-        'views.xml'
+        'views.xml',
+        'ticket_layout.xml',
+        'close_control_report.xml',
+        'report_closing_control.xml',
     ],
     'qweb': [
         'static/src/xml/l10n_ec_pos.xml',

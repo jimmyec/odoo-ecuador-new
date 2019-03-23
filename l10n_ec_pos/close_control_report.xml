@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <report
+          id="report_closing_control"
+          model="pos.session"
+          string="Control de Cierre"
+          report_type="qweb-pdf"
+          name="l10n_ec_pos.report_control"
+          file="l10n_ec_pos.report_control"
+          menu="False"
+          paperformat="ticket"
+      />
+  </data>
+</odoo>

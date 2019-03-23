@@ -2,9 +2,9 @@
 <templates id="template" xml:space="preserve">
     <t t-name="PosTicket">
         <div class="pos-sale-ticket">
-	    <div>
-		<h4 style="text-align: center;"><t t-esc="widget.pos.company.name"/></h4>
-		<h4 style="text-align: center;">RUC: <t t-esc="widget.pos.company.vat"/></h4>
+	    <div class="emph">
+		  <h4 style="text-align: center;"><t t-esc="widget.pos.company.name"/></h4>
+		  <h4 style="text-align: center;">RUC: <t t-esc="widget.pos.company.vat"/></h4>
 	    </div>
 	    Dirección: <t t-esc="widget.pos.company.street || ''"/><br/>
             Telef: <t t-esc="widget.pos.company.phone || ''"/><br />

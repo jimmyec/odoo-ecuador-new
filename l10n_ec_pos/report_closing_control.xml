@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_control">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.internal_layout">
+                <div class="pos-sale-ticket">
+                    <div>
+                        <h4 style="text-align: center;"><t t-esc="res_company.name"/></h4> <br/>
+                        <h4 style="text-align: center;">RUC: <t t-esc="res_company.partner_id.identifier"/></h4>
+                    </div>
+                    
+                    <t t-foreach="o.statement_ids" t-as="line">
+
+                        <div class="row" style="text-align: center; margin-bottom: 10px;">
+                            <div>
+                                <span><strong>DIARIO</strong></span>
+                            </div>
+                            <div>
+                                <span t-esc="line.journal_id.name"/>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center; margin-bottom: 10px;">
+                            <div>
+                                <span><strong>SUBTOTAL TRANSACCIONES</strong></span>
+                            </div>
+                            <div>
+                                <span t-esc="'%.2f' % line.total_entry_encoding"/>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center; margin-bottom: 10px;">
+                            <div>
+                                <span><strong>SALDO FINAL</strong></span>
+                            </div>
+                            <div>
+                                <span t-esc="'%.2f' % line.balance_end_real"/>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center; margin-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid darkgray;">
+                            <div>
+                                <span><strong>DIFERENCIA</strong></span>
+                            </div>
+                            <div>
+                                <span t-esc="'%.2f' % line.difference"/>
+                            </div>
+                        </div>
+                        
+                    </t>
+                    <br/>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</odoo>
