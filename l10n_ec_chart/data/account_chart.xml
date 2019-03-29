@@ -3,13 +3,13 @@
     <data>
 
         <!-- Account Types -->
-        <record model="account.account.type" id="data_account_type_capital">
+        <!--record model="account.account.type" id="account.data_account_type_equity">
             <field name="name">CAPITAL</field>
             <field name="type">other</field>
             <field name="include_initial_balance" eval="True"/>
-        </record>
+        </record-->
         <record model="account.account.type" id="account.data_account_type_stock">
-            <field name="name">INVENTARIO</field>
+            <field name="name">Inventario</field>
             <field name="type">other</field>
             <field name="include_initial_balance" eval="True"/>
         </record>
@@ -624,41 +624,41 @@
             <field name="name">CAPITAL</field>
             <field name="code">3010101</field>
             <field name="reconcile" eval="False"/>
-            <field ref="data_account_type_capital" name="user_type_id"/>
+            <field ref="account.data_account_type_equity" name="user_type_id"/>
         </record>
         <record model="account.account.template" id="30201">
             <field name="name">RESERVA LEGAL</field>
             <field name="code">30201</field>
             <field name="reconcile" eval="False"/>
-            <field ref="data_account_type_capital" name="user_type_id"/>
+            <field ref="account.data_account_type_equity" name="user_type_id"/>
             <field name="chart_template_id" ref="l10n_ec_chart.account_ec_chart_template"/>
         </record>
         <record model="account.account.template" id="30301">
             <field name="name">UTILIDAD ACUMULADA</field>
             <field name="code">30301</field>
             <field name="reconcile" eval="False"/>
-            <field ref="data_account_type_capital" name="user_type_id"/>
+            <field ref="account.data_account_type_equity" name="user_type_id"/>
             <field name="chart_template_id" ref="l10n_ec_chart.account_ec_chart_template"/>
         </record>
         <record model="account.account.template" id="30302">
             <field name="name">PERDIDA ACUMULADA</field>
             <field name="code">30302</field>
             <field name="reconcile" eval="False"/>
-            <field ref="data_account_type_capital" name="user_type_id"/>
+            <field ref="account.data_account_type_equity" name="user_type_id"/>
             <field name="chart_template_id" ref="l10n_ec_chart.account_ec_chart_template"/>
         </record>
         <record model="account.account.template" id="30303">
             <field name="name">UTILIDAD DEL EJERCICIO</field>
             <field name="code">30303</field>
             <field name="reconcile" eval="False"/>
-            <field ref="data_account_type_capital" name="user_type_id"/>
+            <field ref="account.data_account_type_equity" name="user_type_id"/>
             <field name="chart_template_id" ref="l10n_ec_chart.account_ec_chart_template"/>
         </record>
         <record model="account.account.template" id="30304">
             <field name="name">PERDIDA DEL EJERCICIO</field>
             <field name="code">30304</field>
             <field name="reconcile" eval="False"/>
-            <field ref="data_account_type_capital" name="user_type_id"/>
+            <field ref="account.data_account_type_equity" name="user_type_id"/>
             <field name="chart_template_id" ref="l10n_ec_chart.account_ec_chart_template"/>
         </record>
         <record model="account.account.template" id="40101">
