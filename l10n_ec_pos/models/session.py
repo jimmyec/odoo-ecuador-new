@@ -8,3 +8,4 @@ class PosSession(models.Model):
 
 	def closing_control_print(self):
 		return self.env.ref('l10n_ec_pos.report_closing_control').report_action(self)
+		

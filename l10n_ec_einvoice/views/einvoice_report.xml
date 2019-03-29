@@ -9,6 +9,8 @@
           name="l10n_ec_einvoice.account_report_einvoice"
           file="l10n_ec_einvoice.account_report_einvoice"
           menu="False"
+          attachment_use="True"
+          attachment="((object.clave_acceso or '').replace('/','')+'.pdf')"
       />
   </data>
 </odoo>

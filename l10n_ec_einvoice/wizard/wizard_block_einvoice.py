@@ -32,5 +32,3 @@ class account_einvoice_wizard(models.TransientModel):
 			self._logger.info('Factura %s', invoice.invoice_number)
 			invoice.sudo().action_send_einvoice_email()
 			invoice.to_send_einvoice = False
-
-

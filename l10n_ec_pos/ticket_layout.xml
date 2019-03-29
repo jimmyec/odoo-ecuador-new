@@ -5,7 +5,7 @@
             <field name="name">Formato Control Cierre</field>
             <field name="default" eval="True"/>
             <field name="format">custom</field>
-            <field name="page_height">240</field>
+            <field name="page_height">320</field>
             <field name="page_width">120</field>
             <field name="orientation">Portrait</field>
             <field name="margin_top">20</field>

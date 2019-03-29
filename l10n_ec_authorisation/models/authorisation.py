@@ -203,8 +203,7 @@ class ResPartner(models.Model):
         code = map_type[type_document]
         for a in self.authorisation_ids:
             if a.active and a.type_id.code == code:
-                #return a
-                return a.type_id.code
+                return a
         return False
 
 class AccountJournal(models.Model):

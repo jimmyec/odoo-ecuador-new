@@ -275,13 +275,14 @@ class AccountInvoice(models.Model):
         for obj in self:
             if obj.type not in ['out_invoice', 'out_refund']:
                 continue
-            inv_name = str(self.clave_acceso + '.xml')
-            attach_ids = self.env['ir.attachment'].search([('name','=',inv_name)])
-            attach = attach_ids[0]
+            inv_name = str(self.clave_acceso) + '.xml'
+            attach = self.env['ir.attachment'].search([('name','=',inv_name)])
+            #attach = attach_ids[0]
             pdf = self.env.ref('l10n_ec_einvoice.report_einvoice').render_qweb_pdf(self.ids)
-            attach_pdf = self.add_attachment_pdf(pdf,self.clave_acceso)
+            pdf_name = str(self.clave_acceso) + '.pdf'
+            attach_pdf = self.env['ir.attachment'].search([('name','=',pdf_name)])#self.add_attachment_pdf(pdf,self.clave_acceso)
             self.send_document(
-                attachments=[a.id for a in attach + attach_pdf[0]],
+                attachments=[a.id for a in attach[0] + attach_pdf[0]],
                 tmpl='l10n_ec_einvoice.email_template_einvoice'
             )
             self.write({

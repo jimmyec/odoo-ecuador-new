@@ -97,7 +97,7 @@ class Edocument(models.AbstractModel):
     security_code = fields.Char('Código de Seguridad', size=8, readonly=True)
     emission_code = fields.Char('Tipo de Emisión', size=1, readonly=True)
     pos_payment_line_ids = fields.Many2many('account.pos.payment','epayment_id',string='Forma de Pago')
-    #epayment_id = fields.Many2one('account.epayment', default=lambda self:self.env['account.epayment'].search([('code','=','01')]))
+    epayment_id = fields.Many2one('account.epayment', default=lambda self:self.env['account.epayment'].search([('code','=','01')]))
     sent = fields.Boolean('Enviado?')
     xml_file = fields.Binary('XML')
     store_fname = fields.Char(string="Factura")
