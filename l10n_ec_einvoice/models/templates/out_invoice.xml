@@ -53,6 +53,10 @@
       <pago>
         <formaPago>{{ pago['codigo'] }}</formaPago>
         <total>{{ pago['monto'] }}</total>
+        {% if pago['plazo'] %}
+        <plazo>{{ pago['plazo'] }}</plazo>
+        <unidadTiempo>{{ pago['unidadTiem'] }}</unidadTiempo>
+        {% endif %}
       </pago>
       {% endfor %}
     </pagos>

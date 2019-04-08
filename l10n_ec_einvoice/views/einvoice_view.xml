@@ -148,9 +148,7 @@
               <field name="ambiente"/>
               <field name="autorizado_sri"/>
           </xpath>
-
         </field>
     </record>
-
   </data>
 </odoo>

@@ -113,7 +113,23 @@ class AccountInvoice(models.Model):
                 
                 infoFactura.update({'formaPago': formaPago})
             else:
-                raise UserError('Ingresar Pago')
+                plazo = 0
+                if invoice.payment_term_id:
+                    for terms in invoice.payment_term_id.line_ids:
+                        plazo += terms.days
+                else:
+                    raise UserError('Ingresar Pago o Plazos de pago')
+                
+                pago = {
+                    'codigo': '20',
+                    'monto': '{:.2f}'.format(invoice.amount_pay),
+                    'plazo': str(plazo),
+                    'unidadTiem': 'dias',
+                }
+
+                formaPago.append(pago)
+                infoFactura.update({'formaPago': formaPago})
+                #raise UserError('Ingresar Pago')
 
         return infoFactura
 
