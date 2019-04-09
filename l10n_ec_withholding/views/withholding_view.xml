@@ -115,7 +115,7 @@
             <field name="arch" type="xml">
                 <tree string="Retenciones" decoration-info="state == 'draft'">
                     <field name="name"/>
-                    <field name="partner_id"/>
+                    <field name="partner_id" string="Proveedor"/>
                     <field name="date"/>
                     <field name="invoice_id"/>
                     <field name="amount_total"/>
@@ -154,7 +154,8 @@
                             <group>
                                 <field name="partner_id" select="1"
                                        domain="[('supplier', '=', True)]"
-                                       attrs="{'required':[('to_cancel','=',False)]}"/>
+                                       attrs="{'required':[('to_cancel','=',False)]}"
+                                       string="Proveedor"/>
                                 <field name="invoice_id"
                                        domain="[('partner_id','=',partner_id),('type','=','in_invoice'),('retention_id','=',False)]"
                                        options="{'no_create': True, 'no_create_edit': True}"
@@ -223,7 +224,8 @@
                             <group>
                                 <field name="partner_id" domain="[('customer','=',True)]"
 				                               options="{'no_create': True, 'no_create_edit': True}"
-                                       attrs="{'required':[('to_cancel','=',False)]}"/>
+                                       attrs="{'required':[('to_cancel','=',False)]}"
+                                       string="Cliente"/>
                                 <field name="name" placeholder="001001000234768"/>
                                 <field name="invoice_id"
                                        domain="[('partner_id','=',partner_id),('type','=','out_invoice'),('retention_id','=',False)]"

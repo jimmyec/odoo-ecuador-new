@@ -101,6 +101,7 @@ class AccountInvoice(models.Model):
                         'monto': pos_payment_id.payment_amount, 
                     }
                     formaPago.append(pago)
+                    self.payment_term = pos_payment_id.epayment_id.name
                 
                 infoFactura.update({'formaPago': formaPago})
             elif self.payment_ids:
@@ -110,6 +111,7 @@ class AccountInvoice(models.Model):
                         'monto': payment_id.amount, 
                     }
                     formaPago.append(pago)
+                    self.payment_term = payment_id.journal_id.epayment_id.name
                 
                 infoFactura.update({'formaPago': formaPago})
             else:
@@ -129,6 +131,7 @@ class AccountInvoice(models.Model):
 
                 formaPago.append(pago)
                 infoFactura.update({'formaPago': formaPago})
+                self.payment_term = 'OTROS CON UTILIZACION DEL SISTEMA FINANCIERO'
                 #raise UserError('Ingresar Pago')
 
         return infoFactura

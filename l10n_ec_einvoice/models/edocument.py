@@ -99,6 +99,7 @@ class Edocument(models.AbstractModel):
     pos_payment_line_ids = fields.Many2many('account.pos.payment','epayment_id',string='Forma de Pago')
     epayment_id = fields.Many2one('account.epayment', default=lambda self:self.env['account.epayment'].search([('code','=','01')]))
     sent = fields.Boolean('Enviado?')
+    payment_term = fields.Char()
     xml_file = fields.Binary('XML')
     store_fname = fields.Char(string="Factura")
 

@@ -118,6 +118,7 @@
                   <field name="to_send_einvoice"/>
                   <field name="store_fname" invisible="1"/>
                   <field name="xml_file" filename="store_fname" class="oe_link" attrs="{'invisible':[('autorizado_sri','!=',True)]}"/>
+                  <field name="payment_term" invisible="1"/>
                 </group>
               </page>
             </notebook>

@@ -111,7 +111,7 @@
                             <span><strong>Dirección: </strong></span><span t-esc="o.partner_id.street or '**'"/><br/>
                             <span><strong>Teléfono: </strong></span><span t-esc="o.partner_id.phone or '**'"/><br/>
                             <span><strong>Email: </strong></span><span t-esc="o.partner_id.email"/><br/>
-                            <span><strong>Forma de Pago: </strong></span><!--span t-esc="o.payment_ids.name"/--><br/>
+                            <span><strong>Forma de Pago: </strong></span><span t-esc="o.payment_term"/><br/>
                         </div>
                         <div class="col-xs-5">
                             <div class="row" style="text-align: right;">
