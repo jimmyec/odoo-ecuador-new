@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-	<t t-extend="ClientDetails">
+	<!--t t-extend="ClientDetails">
 		<t t-jquery=".client-details" t-operation="after">
 			<section class='client-details'>
 				<div class='client-detail'>
@@ -9,7 +9,7 @@
 				</div>
 			</section>
 		</t>
-	</t>
+	</t-->
 	<t t-name="PaymentScreenWidget">
         <div class='payment-screen screen'>
             <div class='screen-content'>

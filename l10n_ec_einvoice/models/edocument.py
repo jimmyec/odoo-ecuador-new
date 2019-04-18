@@ -93,6 +93,8 @@ class Edocument(models.AbstractModel):
         readonly=True,
     )
     autorizado_sri = fields.Boolean('Autorizado SRI',readonly=True)
+    is_credit = fields.Boolean('Crédito',readonly=True)
+    is_credit_payment = fields.Boolean('Crédito',readonly=True)
     to_send_einvoice = fields.Boolean('Enviar email',readonly=True)
     security_code = fields.Char('Código de Seguridad', size=8, readonly=True)
     emission_code = fields.Char('Tipo de Emisión', size=1, readonly=True)

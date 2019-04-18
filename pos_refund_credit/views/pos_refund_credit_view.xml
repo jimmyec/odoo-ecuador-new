@@ -35,21 +35,13 @@
                     <button name="action_credit_invoice" type="object" attrs="{'invisible':[('state','!=','draft')]}"
                         string="Nota de Crédito" class="oe_highlight"/>
                 </xpath>
+                <xpath expr="//button[@name='refund']" position="attributes">
+                    <attribute name="attrs">{'invisible':['|',('order_type', '=', 'refund'),('returned','=',True)]}</attribute>
+                </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="returned_order_id" attrs="{'invisible':[('returned_order_id', '=', False)]}"/>
                     <field name="order_type" attrs="{'invisible':True}"/>
-                </xpath>
-            </field>
-        </record>
-
-        <!-- REFUND INVOICE -->
-        <record id="refund_invoice_form_view" model="ir.ui.view">
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="is_credit" attrs="{'invisible':True}"/>
-                    <field name="is_credit_payment" attrs="{'invisible':True}"/>
+                    <field name="returned" attrs="{'invisible':True}"/>
                 </xpath>
             </field>
         </record>

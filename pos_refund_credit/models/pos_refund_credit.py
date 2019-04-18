@@ -2,25 +2,9 @@
 
 import logging
 
-from odoo import models, fields, api
+from odoo import models, fields, api#, _
 from odoo.exceptions import Warning as UserError
         
-class RefundInvoice(models.Model):
-    """docstring for ClassName"""
-    _inherit = 'account.invoice'
-
-    is_credit = fields.Boolean(
-        string='Credito',
-        default=False,
-        readonly=True,
-    )
-
-    is_credit_payment = fields.Boolean(
-        string='Pagado con crédito',
-        default=False,
-        readonly=True,
-    )
-
 class PosRefundCredit(models.Model):
     _inherit = 'res.partner'
 
@@ -29,10 +13,18 @@ class PosRefundCredit(models.Model):
         """
         Metodo ...
         """
-        refund_invoices = self.env['account.invoice'].search([('partner_id.id','=',self.id),('type','=','out_refund'),('is_credit','=',True)])
-        
+        self.refund_credit = 0
+        refund_invoices = self.env['account.invoice'].search([('partner_id.id','=',self.id),('type','=','out_refund')])
         for refund_invoice in refund_invoices:
             self.refund_credit += refund_invoice.amount_total
+        credit_invoices = self.env['account.invoice'].search([('partner_id.id','=',self.id),('type','=','out_invoice'),('state','=','open')])
+        for credit_invoice in credit_invoices:
+            for payment_line_id in credit_invoice.pos_payment_line_ids:
+                if payment_line_id.journal_id.code == 'NCRD':
+                    self.refund_credit -= float(payment_line_id.payment_amount)
+        credit_payments = self.env['account.payment'].search([('partner_id.id','=',self.id),('payment_type','=','outbound')])
+        for credit_payment in credit_payments:
+            self.refund_credit -= float(credit_payment.amount)
 
     refund_credit = fields.Monetary(
         string='Credito',
@@ -40,11 +32,6 @@ class PosRefundCredit(models.Model):
         store=True,
         help='Crédito en Devoluciones o Notas de Crédito',
     )
-   # property_account_refund_id = fields.Many2one(
-   #     comodel_name='account.account',
-   #     string='Cuenta de devoluciones',
-   #     required=False,
-   # )
 
 class ProductCat(models.Model):
     """docstring for ProductCat"""
@@ -84,6 +71,9 @@ class PosOrder(models.Model):
         readonly=True,
         default='sale'
         )
+    returned = fields.Boolean(
+        string='Retornado',
+        readonly=True,)
 
     def refund(self):
         # Call super to use original refund algorithm (session management, ...)
@@ -97,18 +87,21 @@ class PosOrder(models.Model):
         
     def action_credit_invoice(self):
         #Nota de Crédito
-        payment_context = {"active_ids": self.id, "active_id": self.id}
+        journal = self.env['account.journal'].search([('code','=','NCRD')])
+        payment_context = {
+            "active_ids": self.id, 
+            "active_id": self.id
+        }
         payment = self.env['pos.make.payment'].with_context(**payment_context).create({
             'amount': self.amount_total,
-            #'journal_id': self.env['account.journal'].search([('code','=','NCRD')], limit=1)
+            'journal_id':journal.id,
+            'epayment_pos':journal.epayment_id,
         })
 
         payment.with_context(**payment_context).check()
 
         self.action_pos_order_invoice()
-        self.invoice_id.is_credit = True
         self.invoice_id.origin = self.returned_order_id.invoice_id.move_id.name
-        #self.invoice_id.account_id = self.partner_id.property_account_refund_id
         self.invoice_id.type = 'out_refund'
         for product in self.invoice_id.invoice_line_ids:
             if product.product_id.property_account_product_refund_id:
@@ -116,8 +109,8 @@ class PosOrder(models.Model):
             elif product.product_id.categ_id.property_account_refund_categ_id:
                 product.account_id = product.product_id.categ_id.property_account_refund_categ_id
 
+        self.returned_order_id.returned = True
         self.partner_id.compute_refund_credit()
-        #self.invoice_id.sudo().action_invoice_open()
 
     @api.multi
     def add_payment(self,data):
@@ -125,12 +118,14 @@ class PosOrder(models.Model):
         for order in self:
             for statement_id in order.statement_ids:
                 if statement_id.journal_id.code == 'NCRD' and order.order_type == 'sale':
+                    order.partner_id.compute_refund_credit()
                     if order.partner_id.refund_credit <= 0:
                         self._logger.info('El Cliente no tiene crédito')
-                        #raise UserError('El Cliente no tiene crédito')
+                        # mess= {
+                        #     'title':_('Sin crédito!'),
+                        #     'message':_('El Cliente no tiene crédito')
+                        # }
+                        # return {'warning': mess}
                     else:
-                        refund_invoices = self.env['account.invoice'].search([('partner_id.id','=',self.partner_id.id),('type','=','out_refund'),('is_credit','=',True)])
-                        for refund_invoice in refund_invoices:
-                            refund_invoice.is_credit = False
                         order.partner_id.compute_refund_credit()
                         print(order.partner_id.refund_credit)

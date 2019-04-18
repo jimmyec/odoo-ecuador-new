@@ -17,10 +17,10 @@
     ],
     'data': [
         'data/credit.xml',
-        'views/header.xml',
+        #'views/header.xml',
         'views/pos_refund_credit_view.xml',
     ],
     'qweb': [
-        'static/src/xml/pos_refund_credit.xml'
+    #    'static/src/xml/pos_refund_credit.xml'
     ],
 }
