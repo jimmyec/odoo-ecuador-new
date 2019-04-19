@@ -95,7 +95,7 @@ class PosOrder(models.Model):
         payment = self.env['pos.make.payment'].with_context(**payment_context).create({
             'amount': self.amount_total,
             'journal_id':journal.id,
-            'epayment_pos':journal.epayment_id,
+            'epayment_pos':journal.epayment_id.id,
         })
 
         payment.with_context(**payment_context).check()
@@ -103,12 +103,6 @@ class PosOrder(models.Model):
         self.action_pos_order_invoice()
         self.invoice_id.origin = self.returned_order_id.invoice_id.move_id.name
         self.invoice_id.type = 'out_refund'
-        for product in self.invoice_id.invoice_line_ids:
-            if product.product_id.property_account_product_refund_id:
-                product.account_id = product.product_id.property_account_product_refund_id
-            elif product.product_id.categ_id.property_account_refund_categ_id:
-                product.account_id = product.product_id.categ_id.property_account_refund_categ_id
-
         self.returned_order_id.returned = True
         self.partner_id.compute_refund_credit()
 

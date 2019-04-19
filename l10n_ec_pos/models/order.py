@@ -62,13 +62,19 @@ class PosOrder(models.Model):
             if order.order_type  == 'refund':
                 order.invoice_id.auth_inv_id = order.sale_journal.auth_out_refund_id
                 order.invoice_id.reference = order.sale_journal.auth_out_refund_id.sequence_id.number_next_actual
+                for product in order.invoice_id.invoice_line_ids:
+                    if product.product_id.property_account_product_refund_id:
+                        product.account_id = product.product_id.property_account_product_refund_id
+                    elif product.product_id.categ_id.property_account_refund_categ_id:
+                        product.account_id = product.product_id.categ_id.property_account_refund_categ_id
             else:
                 order.invoice_id.auth_inv_id = order.sale_journal.auth_out_invoice_id
                 order.invoice_id.reference = order.sale_journal.auth_out_invoice_id.sequence_id.number_next_actual
                 order.sale_journal.sequence_number_next = order.sale_journal.auth_out_invoice_id.sequence_id.number_next_actual
                 
             order.invoice_id.reference = order.invoice_id.reference.zfill(9)
-            order.invoice_id.date_invoice = order.date_order
+            #order.invoice_id.date_invoice = order.date_order
+            order.invoice_id.date_invoice = datetime.now() + timedelta(hours=-5)
 
             for statement_id in order.statement_ids:
                 pos_payment_line = {
