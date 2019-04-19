@@ -130,17 +130,17 @@ class WizardAts(models.TransientModel):
         retServ100 = 0
         for tax in invoice.tax_line_ids:
             if tax.group_id.code == 'ret_vat_b':
-                if tax.percent == '10':
-                    retBien10 += abs(tax.tax_amount)
+                if tax.percent_report == '10':
+                    retBien10 += abs(tax.amount)
                 else:
-                    retBien += abs(tax.tax_amount)
+                    retBien += abs(tax.amount)
             if tax.group_id.code == 'ret_vat_srv':
-                if tax.percent == '100':
-                    retServ100 += abs(tax.tax_amount)
-                elif tax.percent == '20':
-                    retServ20 += abs(tax.tax_amount)
+                if tax.percent_report == '100':
+                    retServ100 += abs(tax.amount)
+                elif tax.percent_report == '20':
+                    retServ20 += abs(tax.amount)
                 else:
-                    retServ += abs(tax.tax_amount)
+                    retServ += abs(tax.amount)
         return retBien10, retServ20, retBien, retServ, retServ100
 
     def get_withholding(self, wh):
@@ -162,10 +162,10 @@ class WizardAts(models.TransientModel):
             ('number', '=', invoice.origin)
         ])
         if refund:
-            auth = refund.auth_inv_id
+            #auth = refund.auth_inv_id
             return {
                 'docModificado': '01',
-                'estabModificado': refund.invoice_number[0:3],
+                'estabModificado': refund[0].invoice_number[0:3],
                 'ptoEmiModificado': refund.invoice_number[3:6],
                 'secModificado': refund.supplier_invoice_number,
                 'autModificado': refund.reference,
