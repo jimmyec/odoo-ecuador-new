@@ -19,7 +19,7 @@ class ResPartner(models.Model):
 
     @api.multi
     def update_identifiers(self):
-        sql = """UPDATE res_partner SET identifier='9999999999'
+        sql = """UPDATE res_partner SET identifier='9999999999999'
         WHERE identifier is NULL"""
         self.env.cr.execute(sql)
 
@@ -103,7 +103,10 @@ class ResPartner(models.Model):
             selection=[
                 ('cedula', 'CEDULA'),
                 ('ruc', 'RUC'),
-                ('pasaporte', 'PASAPORTE')
+                ('pasaporte', 'PASAPORTE'),
+                ('venta_consumidor_final', 'CONSUMIDOR FINAL'),
+                ('identificacion_exterior', 'IDENTIFICACIÓN EXTERIOR'),
+                ('placa','PLACA')
             ],
             default='pasaporte'
     )
@@ -131,7 +134,10 @@ class ResCompany(models.Model):
     accountant_id = fields.Many2one('res.partner', 'Contador')
     sri_id = fields.Many2one('res.partner', 'SRI')
     cedula_rl = fields.Char('Cédula Rep. Legal', size=10)
-    forced_account = fields.Boolean(string="Obligado a llevar contabilidad",
-            default=False)
+    forced_account = fields.Selection(
+        [('NO', 'NO'),
+         ('SI', 'SI')],
+        string="Obligado a llevar contabilidad",
+        required=True,)
     artesano = fields.Boolean(string="Calificación Artesanal", default=False)
     numart = fields.Char(string="Número")

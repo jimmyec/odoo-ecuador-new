@@ -53,8 +53,8 @@
                     <field name="namerl"/>
                     <field name="cedula_rl"/>
                     <field name="forced_account"/>
-                    <field name="accountant_id" attrs="{'invisible':[('forced_account','=',False)]}"/>
-                    <field name="sri_id" attrs="{'invisible':[('forced_account','=',False)]}"/>
+                    <field name="accountant_id" attrs="{'invisible':[('forced_account','in',[False,'NO'])]}"/>
+                    <field name="sri_id" attrs="{'invisible':[('forced_account','in',[False,'NO'])]}"/>
                     <field name="artesano"/>
                     <field name="numart" attrs="{'invisible':[('artesano','=',False)]}"/>
                 </field>
