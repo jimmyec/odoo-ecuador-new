@@ -123,7 +123,7 @@ class Edocument(models.AbstractModel):
         infoTributaria = {
             'ambiente': self.env.user.company_id.env_service,
             'tipoEmision': emission_code,
-            'razonSocial': company.name,
+            'razonSocial': company.namerl,
             'nombreComercial': company.name,
             'ruc': company.partner_id.identifier,
             'claveAcceso':  access_key,
@@ -222,7 +222,7 @@ class Edocument(models.AbstractModel):
         })
 
     @api.one
-    def add_attachment(self, xml_element,xml_name):
+    def add_attachment(self, xml_element, xml_name):
         buf = io.BytesIO()
         buf.write(xml_element)
         document = base64.encodestring(buf.getvalue())
@@ -241,7 +241,7 @@ class Edocument(models.AbstractModel):
         return attach
 
     @api.one
-    def add_attachment_pdf(self, pdf_file,pdf_name):
+    def add_attachment_pdf(self, pdf_file, pdf_name):
         b64_pdf = base64.b64encode(pdf_file[0])
         file_name = str(pdf_name) + '.pdf'
         attach = self.env['ir.attachment'].create(

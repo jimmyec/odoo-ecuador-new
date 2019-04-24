@@ -39,7 +39,7 @@ class AccountInvoice(models.Model):
         infoFactura = {
             'fechaEmision': fix_date(invoice.date_invoice),
             'dirEstablecimiento': company.street2,
-            'obligadoContabilidad': 'NO',
+            'obligadoContabilidad': company.forced_account,
             'tipoIdentificacionComprador': utils.tipoIdentificacion[partner.type_id],  # noqa
             'razonSocialComprador': partner.name,
             'identificacionComprador': partner.identifier,
@@ -224,10 +224,12 @@ class AccountInvoice(models.Model):
                 continue
             self.check_date(obj.date_invoice)
             self.check_before_sent()
-            access_key, emission_code = self._get_codes(name='account.invoice')
-            if self.estado_factura == 'process':
+            if self.clave_acceso:
+            #if self.estado_factura == 'process':
                 access_key = self.clave_acceso
                 emission_code = self.emission_code
+            else:
+                access_key, emission_code = self._get_codes(name='account.invoice')
             einvoice = self.render_document(obj, access_key, emission_code)
             self._logger.info(einvoice)
             inv_xml = DocumentXML(einvoice, obj.type)

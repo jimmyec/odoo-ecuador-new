@@ -14,7 +14,7 @@ class account_einvoice_wizard(models.TransientModel):
 		"""
 		Metodo ...
 		"""
-		invoices = self.env['account.invoice'].search([('autorizado_sri','=',False),('type','=',['out_invoice', 'out_refund'])])   
+		invoices = self.env['account.invoice'].search([('autorizado_sri','=',False),('type','in',['out_invoice', 'out_refund'])])   
 
 		for invoice in reversed(invoices):
 			self._logger.info('Factura %s', invoice.invoice_number)
@@ -26,9 +26,25 @@ class account_einvoice_wizard(models.TransientModel):
 		"""
 		Metodo ...
 		"""
-		invoices = self.env['account.invoice'].search([('to_send_einvoice','=',True),('type','=',['out_invoice','out_refund'])])   
+		invoices = self.env['account.invoice'].search([('to_send_einvoice','=',True),('type','in',['out_invoice','out_refund'])])   
 
 		for invoice in reversed(invoices):
 			self._logger.info('Factura %s', invoice.invoice_number)
 			invoice.sudo().action_send_einvoice_email()
 			invoice.to_send_einvoice = False
+
+	# @api.multi
+	# def action_report_failures(self):
+	# 	"""
+	# 	Metodo ...
+	# 	"""
+	# 	invoices_sri = self.env['account.invoice'].search([('autorizado_sri','=',False),('type','in',['out_invoice', 'out_refund'])])
+
+	# 	if invoices_sri:
+	# 		self._logger.info('Las Facturas: ')
+	# 		for invoice in invoices_sri:
+	# 			self._logger.info('%s', invoice.invoice_number)
+	# 		self._logger.info('No han sido autorizadas por el SRI. Por favor revisar.')
+	# 		#self.ensure_one()
+ #        	template = self.env.ref('l10n_ec_einvoice.email_template_einvoice_report')
+ #        	#self.env['mail.template'].browse(template.id).send_mail(invoices_sri, force_send=True, raise_exception=True)

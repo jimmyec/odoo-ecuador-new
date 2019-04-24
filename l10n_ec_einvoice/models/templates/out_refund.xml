@@ -4,7 +4,7 @@
     <ambiente>{{ ambiente }}</ambiente>
     <tipoEmision>{{ tipoEmision }}</tipoEmision>
     <razonSocial>{{ razonSocial }}</razonSocial>
-    <nombreComercial>{{ razonSocial }}</nombreComercial>
+    <nombreComercial>{{ nombreComercial }}</nombreComercial>
     <ruc>{{ ruc }}</ruc>
     <claveAcceso>{{ claveAcceso }}</claveAcceso>
     <codDoc>{{ codDoc }}</codDoc>
