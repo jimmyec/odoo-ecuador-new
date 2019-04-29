@@ -3,23 +3,28 @@
     <t t-name="PosTicket">
         <div class="pos-sale-ticket">
             <div class="emph">
-                <h4 style="text-align: center;"><t t-esc="widget.pos.company.name"/></h4>
-                <h4 style="text-align: center;"><t t-esc="widget.pos.company.namerl"/></h4>
-                <h4 style="text-align: center;">RUC: <t t-esc="widget.pos.company.vat"/></h4>
+                <h4 style="text-align: center;"><t t-esc="widget.pos.company.name"/><br/><t t-esc="widget.pos.company.namerl"/><br/>RUC: <t t-esc="widget.pos.company.vat"/></h4>
             </div>
-            Factura Electronica: <br/>
-            Ambiente: <br/>
+            <div class="pos-center-align"><t t-esc="moment().format('L LT')"/></div>
+            <br/>
+            <div class="pos-center-align">FACTURA ELECTRÓNICA</div>
+            Documento Número: <strong><t t-esc="widget.get_invoice_number()"/></strong><br/>
+            Ambiente: <strong><t t-esc="widget.get_env_service()"/></strong><br/>
+            Clave de acceso:<br/>
+            <div class="pos-center-align"><strong><t t-esc="widget.get_clave_start()"/><br/>
+            <t t-esc="widget.get_clave_end()"/></strong></div><br/>
+            Producción: <strong>NORMAL</strong><br/>
             Dirección: <t t-esc="widget.pos.company.street || ''"/><br/>
             Telef: <t t-esc="widget.pos.company.phone || ''"/><br />
             Atendido por: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/>
             <br/>
             <br/>
-            <div class="pos-center-align"><t t-esc="moment().format('L LT')"/></div>
-            <br/>
+            <div class="pos-center-align">DATOS DE CLIENTE</div>
             CÉDULA/RUC: <t t-esc="order.get_client().identifier || ''"/><br/>
             Cliente: <t t-esc="order.get_client().name || ''"/><br/>
             Dirección: <t t-esc="order.get_client().street || ''"/><br/>
             Telef: <t t-esc="order.get_client().phone || ''"/><br/>
+            Correo: <t t-esc="order.get_client().email || ''"/><br/><br/>
             <t t-if="receipt.header">
                 <div style='text-align:center'>
                     <t t-esc="receipt.header" />
@@ -33,7 +38,7 @@
                     <col width='20%' />
                     <col width='20%' />
                 </colgroup>
-                <tr style="border-bottom: 1px solid black;">
+                <tr style="border-bottom: 1px solid black; border-top: 1px solid black;">
         		    <td><strong>ITEM</strong></td>
         		    <td class="pos-right-align"><strong>CANT</strong></td>
         		    <td class="pos-right-align"><strong>P.UNIT</strong></td>
@@ -89,6 +94,8 @@
                 </tr>
             </table>
             <br />
+            <br />
+            <br />
             <table class='receipt-paymentlines'>
                 <t t-foreach="paymentlines" t-as="line">
                   <tr>
@@ -111,9 +118,9 @@
             <div class="pos-center-align" style="border-top: 1px solid black;">Este comprobante no posee validez tributaria</div>
             <div class="pos-center-align">Su factura se enviara a: <br/><t t-esc="order.get_client().email || ''"/><br/><br/></div>
             Puede consultar sus facturas electrónicas en https://srienlinea.sri.gob.ec/comprobantes-electronicos-internet/publico/validezComprobantes.jsf con la siguiente clave de acceso<br/><br/>
-            <div class="pos-center-align"><t t-esc="widget.get_clave_start()"/><br/>
+            <div class="pos-center-align" style="border-bottom: 1px solid black;"><t t-esc="widget.get_clave_start()"/><br/>
             <t t-esc="widget.get_clave_end()"/></div><br/>
-            
+            <div class="pos-center-align">GRACIAS POR SU COMPRA!</div>
             <t t-if="receipt.footer">
                 <br />
                 <div style='text-align:center'>

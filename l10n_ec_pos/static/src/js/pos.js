@@ -6,6 +6,7 @@ odoo.define('l10n_ec_pos', function(require) {
     var screens = require('point_of_sale.screens');
 
     var clave_acceso;
+    var number;
 
     PosDB.include({
 
@@ -57,18 +58,6 @@ odoo.define('l10n_ec_pos', function(require) {
         },
     });
 
-    models.PosModel = models.PosModel.extend({
-        push_order: function (order, opts) {
-            _super_pos_model.push_order.call(this, order, opts);
-            console.log('CLARO QUE PUEDO, SOY INGENIER0');
-            // rpc.query({
-            //     model: 'pos.order',
-            //     method: 'set_access_key',
-            //     args: [[''],[clave_acceso],],
-            // });
-        },
-    });
-
     screens.ReceiptScreenWidget.include({
         render_receipt: function(){
 
@@ -91,9 +80,10 @@ odoo.define('l10n_ec_pos', function(require) {
                     [journal],
                 ],
             }).then(function(numero){
+                number = numero
                 rpc.query({
                     model: 'account.invoice',
-                    method: 'get_code',
+                    method: 'get_pos_code',
                     args:[{
                         'arg1': '',
                     }],
@@ -103,12 +93,7 @@ odoo.define('l10n_ec_pos', function(require) {
                     clave_acceso += mod;
                     self.$('.pos-receipt-container').html(QWeb.render('PosTicket', self.get_receipt_render_env()));    
                     console.log(clave_acceso)
-                    //alert('ALERTA')
-                    rpc.query({
-                        model: 'pos.accesskey',
-                        method: 'set_access_key',
-                        args: [[''],[clave_acceso],[numero]],
-                    });
+                    // alert('ALERTA')
                 });
             });
         },
@@ -124,13 +109,19 @@ odoo.define('l10n_ec_pos', function(require) {
                 }
             }
             var mod = 11 - total%11;
-            return mod;
+            if (mod === 11){return 0;} else if (mod === 10 ) {return 1;} else {return mod;}
         },
         get_clave_start: function(){
             return clave_acceso.substr(0,25)
         },
         get_clave_end: function(){
             return clave_acceso.substr(26,49);
+        },
+        get_invoice_number: function(){
+            return number
+        },
+        get_env_service: function(){
+            if (this.pos.company.env_service === 2) {return 'PRODUCCIÓN'} else {return 'PRUEBAS'}
         },
     });
 
@@ -140,7 +131,7 @@ odoo.define('l10n_ec_pos', function(require) {
             model.fields.push('identifier', 'type_id', 'tipo_persona','refund_credit');
         }
         if (model.model === 'res.company') {
-	        model.fields.push('street', 'env_service');
+	        model.fields.push('street', 'env_service', 'namerl');
         }
     }
 });

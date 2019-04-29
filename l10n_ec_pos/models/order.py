@@ -41,12 +41,13 @@ class pos_accesskey(models.Model):
 
     @api.multi
     def set_access_key(self, acc_key, i_number):
-        print('set_access_key')
+        do_search = self.env['pos.order'].search([])
+        for reference in do_search:
+            print(reference.name)
         sql = ' '.join([
             "INSERT INTO pos_accesskey (access_key,inv_number) VALUES ('%s','%s')" % (acc_key[0],i_number[0])
         ])
         self.env.cr.execute(sql)
-        print(acc_key[0])
         return
         
        
@@ -63,10 +64,47 @@ class PosOrder(models.Model):
         inv_number = entidad + emision + inv_number
         return inv_number
 
-    # @api.multi
-    # def set_access_key(self, acc_key, i_number):
-    #     self.access_key = acc_key[0]
-    #     print(i_number[0])
+    def _eval_mod11(self, modulo):
+        if modulo == 11:
+            return 0
+        elif modulo == 10:
+            return 1
+        else:
+            return modulo
+
+    def compute_mod11(self, dato):
+        """
+        Calculo mod 11
+        return int
+        """
+        total = 0
+        weight = 2
+
+        for item in reversed(dato):
+            total += int(item) * weight
+            weight += 1
+            if weight > 7:
+                weight = 2
+        mod = 11 - total % 11
+
+        mod = self._eval_mod11(mod)
+        return mod
+
+    def get_access_key(self, journal_id, date_invoice):
+        auth = self.company_id.partner_id.get_authorisation('out_invoice')
+        ld = date_invoice.split('-')
+        number = self.get_inv_number([journal_id])
+        ld.reverse()
+        date = ''.join(ld)
+        tcomp = self.invoice_id.auth_inv_id.type_id.code
+        ruc = self.company_id.partner_id.identifier
+        codigo_numero = self.invoice_id.get_code()
+        tipo_emision = self.company_id.emission_code
+        env = self.company_id.env_service
+        access_key = ''.join([date, tcomp, ruc] + [env] + [number, codigo_numero, tipo_emision])
+        modulo = self.compute_mod11(access_key)
+        access_key = ''.join([access_key, str(modulo)])
+        return access_key
 
     @api.model
     def create_from_ui(self, orders):
@@ -128,14 +166,7 @@ class PosOrder(models.Model):
 
                 order.invoice_id.pos_payment_line_ids = [(0,0,pos_payment_line)]
 
-            secuencial = self.get_inv_number([order.sale_journal.id])
-            print(secuencial)
-
-            do_search = self.env['pos.accesskey'].search([])
-            print(do_search)
-            for akey in do_search:
-                print(akey.access_key)
-                order.access_key = akey.access_key
+            order.access_key = order.get_access_key(order.sale_journal.id,order.invoice_id.date_invoice)
             order.invoice_id.clave_acceso = order.access_key
             order.invoice_id.sudo().action_invoice_open()
             order.account_move = order.invoice_id.move_id
