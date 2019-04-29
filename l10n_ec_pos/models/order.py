@@ -22,10 +22,51 @@ class Bankstatementepayment(models.Model):
     _inherit = 'account.bank.statement.line'
 
     epayment_pos = fields.Many2one('account.epayment', 'Forma de Pago')
-        
 
+class pos_accesskey(models.Model):
+    """docstring for pos_access_key"""
+
+    _name = 'pos.accesskey'
+
+    inv_number = fields.Char( 
+        'Número de Factura',
+        size=15,
+        store=True
+    )
+    access_key = fields.Char(
+        'Clave de Acceso',
+        size=49,
+        store=True
+    )   
+
+    @api.multi
+    def set_access_key(self, acc_key, i_number):
+        print('set_access_key')
+        sql = ' '.join([
+            "INSERT INTO pos_accesskey (access_key,inv_number) VALUES ('%s','%s')" % (acc_key[0],i_number[0])
+        ])
+        self.env.cr.execute(sql)
+        print(acc_key[0])
+        return
+        
+       
 class PosOrder(models.Model):
     _inherit = 'pos.order'
+
+    access_key = fields.Char('Clave de Acceso', size=49,)  
+
+    def get_inv_number(self,journal):
+        inv_number = self.env['account.journal'].search([('id','in',journal)])
+        entidad = inv_number.auth_out_invoice_id.serie_entidad
+        emision = inv_number.auth_out_invoice_id.serie_emision
+        inv_number = str(inv_number.auth_out_invoice_id.sequence_id.number_next_actual).zfill(9)
+        inv_number = entidad + emision + inv_number
+        return inv_number
+
+    # @api.multi
+    # def set_access_key(self, acc_key, i_number):
+    #     self.access_key = acc_key[0]
+    #     print(i_number[0])
 
     @api.model
     def create_from_ui(self, orders):
@@ -57,6 +98,7 @@ class PosOrder(models.Model):
 
     @api.multi
     def action_pos_order_invoice(self):
+        print('action_pos_order_invoice')
         super(PosOrder, self).action_pos_order_invoice()
         for order in self:
             if order.order_type  == 'refund':
@@ -86,6 +128,15 @@ class PosOrder(models.Model):
 
                 order.invoice_id.pos_payment_line_ids = [(0,0,pos_payment_line)]
 
+            secuencial = self.get_inv_number([order.sale_journal.id])
+            print(secuencial)
+
+            do_search = self.env['pos.accesskey'].search([])
+            print(do_search)
+            for akey in do_search:
+                print(akey.access_key)
+                order.access_key = akey.access_key
+            order.invoice_id.clave_acceso = order.access_key
             order.invoice_id.sudo().action_invoice_open()
             order.account_move = order.invoice_id.move_id
 
@@ -100,3 +151,5 @@ class PosOrder(models.Model):
                     statement_id.epayment_pos = self.env['account.epayment'].search([('code','=','19')], limit=1)
                 else:
                     statement_id.epayment_pos = self.env['account.epayment'].search([('code','=','20')], limit=1)
+
+

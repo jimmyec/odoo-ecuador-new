@@ -2,22 +2,24 @@
 <templates id="template" xml:space="preserve">
     <t t-name="PosTicket">
         <div class="pos-sale-ticket">
-	    <div class="emph">
-		  <h4 style="text-align: center;"><t t-esc="widget.pos.company.name"/></h4>
-		  <h4 style="text-align: center;">RUC: <t t-esc="widget.pos.company.vat"/></h4>
-	    </div>
-	    Dirección: <t t-esc="widget.pos.company.street || ''"/><br/>
+            <div class="emph">
+                <h4 style="text-align: center;"><t t-esc="widget.pos.company.name"/></h4>
+                <h4 style="text-align: center;"><t t-esc="widget.pos.company.namerl"/></h4>
+                <h4 style="text-align: center;">RUC: <t t-esc="widget.pos.company.vat"/></h4>
+            </div>
+            Factura Electronica: <br/>
+            Ambiente: <br/>
+            Dirección: <t t-esc="widget.pos.company.street || ''"/><br/>
             Telef: <t t-esc="widget.pos.company.phone || ''"/><br />
-            Cajero: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/><br />
-            <br />
-            <div class="pos-center-align"><t t-esc="moment().format('L LT')"/> <t t-esc="order.name"/></div>
-            <div class="pos-center-align">ESTE COMPROBANTE NO POSEE VALIDEZ TRIBUTARIA</div>
+            Atendido por: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/>
+            <br/>
+            <br/>
+            <div class="pos-center-align"><t t-esc="moment().format('L LT')"/></div>
             <br/>
             CÉDULA/RUC: <t t-esc="order.get_client().identifier || ''"/><br/>
             Cliente: <t t-esc="order.get_client().name || ''"/><br/>
             Dirección: <t t-esc="order.get_client().street || ''"/><br/>
             Telef: <t t-esc="order.get_client().phone || ''"/><br/>
-            Clave: <t t-esc="order.invoice_number"/><br/>
             <t t-if="receipt.header">
                 <div style='text-align:center'>
                     <t t-esc="receipt.header" />
@@ -31,12 +33,12 @@
                     <col width='20%' />
                     <col width='20%' />
                 </colgroup>
-		<tr style="border-bottom: 1px solid black;">
-		    <td><strong>ITEM</strong></td>
-		    <td class="pos-right-align"><strong>CANT</strong></td>
-		    <td class="pos-right-align"><strong>P.UNIT</strong></td>
-		    <td class="pos-right-align"><strong>TOTAL</strong></td>
-		</tr>
+                <tr style="border-bottom: 1px solid black;">
+        		    <td><strong>ITEM</strong></td>
+        		    <td class="pos-right-align"><strong>CANT</strong></td>
+        		    <td class="pos-right-align"><strong>P.UNIT</strong></td>
+        		    <td class="pos-right-align"><strong>TOTAL</strong></td>
+                </tr>
                 <tr t-foreach="orderlines" t-as="orderline">
                     <td>
                         <t t-esc="orderline.get_product().display_name"/>
@@ -103,10 +105,15 @@
             <table class='receipt-change'>
                 <tr><td>Change:</td><td class="pos-right-align">
                     <t t-esc="widget.format_currency(order.get_change())"/>
-                    </td></tr>
+                </td></tr>
             </table>
             <br/>
-            <div>Su factura se enviara a: <t t-esc="order.get_client().email || ''"/><br/></div>
+            <div class="pos-center-align" style="border-top: 1px solid black;">Este comprobante no posee validez tributaria</div>
+            <div class="pos-center-align">Su factura se enviara a: <br/><t t-esc="order.get_client().email || ''"/><br/><br/></div>
+            Puede consultar sus facturas electrónicas en https://srienlinea.sri.gob.ec/comprobantes-electronicos-internet/publico/validezComprobantes.jsf con la siguiente clave de acceso<br/><br/>
+            <div class="pos-center-align"><t t-esc="widget.get_clave_start()"/><br/>
+            <t t-esc="widget.get_clave_end()"/></div><br/>
+            
             <t t-if="receipt.footer">
                 <br />
                 <div style='text-align:center'>

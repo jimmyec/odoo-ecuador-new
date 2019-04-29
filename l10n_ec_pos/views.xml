@@ -34,6 +34,9 @@
       <xpath expr="//field[@name='amount']" position="before">
         <field name="epayment_pos"/>
       </xpath>
+      <xpath expr="//field[@name='sale_journal']" position="after">
+          <field name="access_key"/>
+      </xpath>
     </field>
   </record>
 
