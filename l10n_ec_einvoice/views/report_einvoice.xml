@@ -14,7 +14,8 @@
                             <span><strong>DIRECCION: </strong></span><strong></strong><span t-esc="res_company.street"/><br/>
                             <span><strong>Contribuyente Especial Nro.: </strong></span>
                             <span t-esc="res_company.company_registry or '000' "/><br/>
-                            <span><strong>Obligado a Llevar contabilidad: </strong> SI</span>
+                            <span><strong>Obligado a Llevar contabilidad: </strong></span>
+                            <span t-esc="res_company.forced_account"/>
                         </div>
                         <div class="col-xs-7">
                             <span><strong>RUC </strong></span> <span t-esc="res_company.partner_id.identifier"/><br/>
