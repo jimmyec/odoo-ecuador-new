@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- consumidor final por defecto -->
-    <!--function  id="partner_consumidor_final_default_set"
-               model="ir.values" name="set_default"
-               eval="('pos.order', 'partner_id', ref('l10n_ec_partner.partner_consumidor_final'))"/-->
+    
+    <record id="sequence_pos_edocuments_code" model="ir.sequence">
+      <field name="name">Secuencia POS de Facturas Electronicas</field>
+      <field eval="8" name="padding"/>
+      <field name="code">pos.edocuments.code</field>
+      <field name="number_next_actual">100</field>
+    </record>
+
 </odoo>

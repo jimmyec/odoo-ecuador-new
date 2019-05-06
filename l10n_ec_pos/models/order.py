@@ -54,7 +54,15 @@ class pos_accesskey(models.Model):
 class PosOrder(models.Model):
     _inherit = 'pos.order'
 
-    access_key = fields.Char('Clave de Acceso', size=49,)  
+    access_key = fields.Char('Clave de Acceso', size=49,)
+
+    def get_pos_code(self):
+        code = self.env['ir.sequence'].search([('code','=','pos.edocuments.code')])
+        return str(code.number_next_actual).zfill(8)
+
+    def get_code(self):
+        code = self.env['ir.sequence'].next_by_code('pos.edocuments.code')
+        return code
 
     def get_inv_number(self,journal):
         inv_number = self.env['account.journal'].search([('id','in',journal)])
@@ -98,7 +106,7 @@ class PosOrder(models.Model):
         date = ''.join(ld)
         tcomp = self.invoice_id.auth_inv_id.type_id.code
         ruc = self.company_id.partner_id.identifier
-        codigo_numero = self.invoice_id.get_code()
+        codigo_numero = self.get_code()
         tipo_emision = self.company_id.emission_code
         env = self.company_id.env_service
         access_key = ''.join([date, tcomp, ruc] + [env] + [number, codigo_numero, tipo_emision])
@@ -132,7 +140,7 @@ class PosOrder(models.Model):
             
             pos_order.action_pos_order_invoice()
 
-            return order_ids
+        return order_ids
 
     @api.multi
     def action_pos_order_invoice(self):
