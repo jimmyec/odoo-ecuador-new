@@ -60,7 +60,7 @@ class PosOrder(models.Model):
         code = self.env['ir.sequence'].search([('code','=','pos.edocuments.code')])
         return str(code.number_next_actual).zfill(8)
 
-    def get_code(self):
+    def get_code_increse(self):
         code = self.env['ir.sequence'].next_by_code('pos.edocuments.code')
         return code
 
@@ -106,7 +106,7 @@ class PosOrder(models.Model):
         date = ''.join(ld)
         tcomp = self.invoice_id.auth_inv_id.type_id.code
         ruc = self.company_id.partner_id.identifier
-        codigo_numero = self.get_code()
+        codigo_numero = self.get_code_increse()
         tipo_emision = self.company_id.emission_code
         env = self.company_id.env_service
         access_key = ''.join([date, tcomp, ruc] + [env] + [number, codigo_numero, tipo_emision])

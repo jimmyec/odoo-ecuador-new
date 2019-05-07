@@ -136,6 +136,11 @@ class Edocument(models.AbstractModel):
         return infoTributaria
 
     def get_code(self):
+        code = self.env['ir.sequence'].search([('code','=','edocuments.code')])
+        code = str(code.number_next_actual).zfill(8)
+        return code
+
+    def get_code_and_increase(self):
         code = self.env['ir.sequence'].next_by_code('edocuments.code')
         return code
 

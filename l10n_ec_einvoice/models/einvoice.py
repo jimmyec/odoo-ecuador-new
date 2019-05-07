@@ -224,10 +224,10 @@ class AccountInvoice(models.Model):
                 continue
             self.check_date(obj.date_invoice)
             self.check_before_sent()
-            if self.clave_acceso:
-            #if self.estado_factura == 'process':
+            #if self.clave_acceso:
+            if self.estado_factura == 'process':
                 access_key = self.clave_acceso
-                emission_code = self.emission_code
+                emission_code = obj.company_id.emission_code
             else:
                 access_key, emission_code = self._get_codes(name='account.invoice')
             einvoice = self.render_document(obj, access_key, emission_code)
@@ -261,6 +261,7 @@ class AccountInvoice(models.Model):
                 return
 
             fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+            self.env['ir.sequence'].next_by_code('edocuments.code')
 
             self.write({
                 'autorizado_sri': True,
