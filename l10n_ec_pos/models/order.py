@@ -138,6 +138,7 @@ class PosOrder(models.Model):
             except Exception as e:
                 _logger.error('Could not fully process the POS Order: %s', tools.ustr(e))
             
+            pos_order.sale_journal = pos_order.session_id.config_id.invoice_journal_id
             pos_order.action_pos_order_invoice()
 
         return order_ids

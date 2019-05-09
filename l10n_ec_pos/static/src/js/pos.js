@@ -157,6 +157,7 @@ odoo.define('l10n_ec_pos', function(require) {
             return clave_acceso.substr(24,25);
         },
         get_invoice_number: function(){
+            inv_number = ('000000000000000' + inv_number).slice(-15);
             return inv_number;
         },
         get_env_service: function(){
