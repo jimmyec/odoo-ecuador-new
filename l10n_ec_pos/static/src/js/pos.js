@@ -47,6 +47,8 @@ odoo.define('l10n_ec_pos', function(require) {
 
     var first_receipt = true;
 
+    var sequence_array = new Array();
+
     models.Order = models.Order.extend({
 
 	    initialize: function(attributes,options){
@@ -65,6 +67,7 @@ odoo.define('l10n_ec_pos', function(require) {
 
             var self = this;
             
+            var order = this.pos.get_order();
             var date = moment().format('DDMMYYYY');
             var tcomp = '01';
             var ruc = this.pos.company.vat;
@@ -85,7 +88,6 @@ odoo.define('l10n_ec_pos', function(require) {
                     ],
                 }).then(function(res_inv_number){
                     inv_number = res_inv_number;
-                    console.log(inv_number);
                     rpc.query({
                         model: 'pos.order',
                         method: 'get_pos_code',
@@ -94,7 +96,6 @@ odoo.define('l10n_ec_pos', function(require) {
                         }],
                     }).then(function (res_sequence){
                         sequence = res_sequence;
-                        console.log(sequence);
                         clave_acceso = date + tcomp + ruc + env + inv_number + sequence + '1';
                         mod = self.compute_mod11(clave_acceso);
                         clave_acceso += mod;
@@ -103,9 +104,9 @@ odoo.define('l10n_ec_pos', function(require) {
                         // alert('ALERTA')
                     });
                 });
+                sequence_array[sequence_array.length] = order.sequence_number;
             } else {
                 self.$('.pos-receipt-container').html(QWeb.render('PosTicket', self.get_receipt_render_env()));    
-                console.log(clave_acceso);
             }
         },
         render_change: function(){
@@ -119,14 +120,14 @@ odoo.define('l10n_ec_pos', function(require) {
             } else {
                 button_print_invoice.hide();
             }
-
-            var date = moment().format('DDMMYYYY');
-            var tcomp = '01';
-            var ruc = this.pos.company.vat;
-            var env = this.pos.company.env_service;
-            var journal = this.pos.config.invoice_journal_id[0];
-            var mod;
-            if (!first_receipt) {
+            
+            if (!first_receipt && !sequence_array.includes(order.sequence_number)) {
+                var date = moment().format('DDMMYYYY');
+                var tcomp = '01';
+                var ruc = this.pos.company.vat;
+                var env = this.pos.company.env_service;
+                var journal = this.pos.config.invoice_journal_id[0];
+                var mod;
                 inv_number = Number(inv_number) + 1;
                 sequence = Number(sequence) + 1;
                 sequence = ('00000000' + sequence).slice(-8);
@@ -134,7 +135,9 @@ odoo.define('l10n_ec_pos', function(require) {
                 mod = self.compute_mod11(clave_acceso);
                 clave_acceso += mod;
                 console.log(clave_acceso);
+                sequence_array[sequence_array.length] = order.sequence_number;
             }
+            console.log(sequence_array)
         },
         compute_mod11: function(value){
             var total = 0;
