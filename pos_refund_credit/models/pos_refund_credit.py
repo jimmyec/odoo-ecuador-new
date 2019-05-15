@@ -82,6 +82,7 @@ class PosOrder(models.Model):
         new_order = self.browse(res['res_id'])
         new_order.returned_order_id = self
         new_order.order_type = 'refund'
+        new_order.sale_journal = new_order.session_id.config_id.invoice_journal_id
 
         return res
         
