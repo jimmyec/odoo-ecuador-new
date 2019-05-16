@@ -106,7 +106,10 @@ class PosOrder(models.Model):
         date = ''.join(ld)
         tcomp = self.invoice_id.auth_inv_id.type_id.code
         ruc = self.company_id.partner_id.identifier
-        codigo_numero = self.get_code_increse()
+        if self.order_type  == 'refund':
+            codigo_numero = self.get_pos_code()
+        else:
+            codigo_numero = self.get_code_increse()
         tipo_emision = self.company_id.emission_code
         env = self.company_id.env_service
         access_key = ''.join([date, tcomp, ruc] + [env] + [number, codigo_numero, tipo_emision])
