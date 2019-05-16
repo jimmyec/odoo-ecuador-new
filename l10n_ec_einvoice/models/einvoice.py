@@ -15,6 +15,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from . import utils
 from ..xades.sri import DocumentXML
 from ..xades.xades import Xades
+from ..xades.xades import CheckDigit
 
 class AccountInvoice(models.Model):
 
@@ -224,10 +225,14 @@ class AccountInvoice(models.Model):
                 continue
             self.check_date(obj.date_invoice)
             self.check_before_sent()
-            #if self.clave_acceso:
+            
+            aux_acces_key = str(self.clave_acceso)
+            emission_code = obj.company_id.emission_code
             if self.estado_factura == 'process':
                 access_key = self.clave_acceso
-                emission_code = obj.company_id.emission_code
+            elif self.clave_acceso:
+                self.SriServiceObj.set_active_env(self.env.user.company_id.env_service)
+                access_key = self.clave_acceso
             else:
                 access_key, emission_code = self._get_codes(name='account.invoice')
             einvoice = self.render_document(obj, access_key, emission_code)
@@ -247,8 +252,37 @@ class AccountInvoice(models.Model):
                 if not ok:
                     self._logger.info(errores)
                     self.write({'estado_factura': 'send_error'})
+                    if errores == 'ERROR CLAVE ACCESO REGISTRADA ' or errores == 'ERROR ERROR SECUENCIAL REGISTRADO ':
+
+                        self.write({
+                            'autorizado_sri': True,
+                            'to_send_einvoice': True,
+                            'estado_correo': 'to_send',
+                            'estado_autorizacion': 'Autorizado',
+                            'ambiente': 'PRODUCCION',
+                            #'fecha_autorizacion': fecha,  # noqa
+                            'estado_factura': 'is_auth',
+                        })
+                        
+                        message = """
+                        DOCUMENTO ELECTRONICO GENERADO <br><br>
+                        CLAVE DE ACCESO / NUMERO DE AUTORIZACION: %s <br>
+                        ESTADO: AUTORIZADO <br>
+                        FECHA DE AUTORIZACIÓN:  <br>
+                        AMBIENTE: PRODUCCION <br>
+                        """ % (
+                            aux_acces_key,
+                        )
+                        
+                        self.message_post(body=message)
+                        self.clave_acceso = aux_acces_key
+                        xml_attach = self.add_attachment(einvoice.encode(),aux_acces_key)
+                        self.store_fname = xml_attach[0].datas_fname
+                        self.xml_file = xml_attach[0].datas
+                        
                     return
                     #raise UserError(errores)
+
             auth, m = inv_xml.request_authorization(access_key)
             if not auth:
                 msg = ' '.join(list(itertools.chain(*m)))
@@ -261,6 +295,47 @@ class AccountInvoice(models.Model):
                 return
 
             fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
+            self.write({
+                'autorizado_sri': True,
+                'to_send_einvoice': True,
+                'estado_correo': 'to_send',
+                'estado_autorizacion': auth.estado,
+                'ambiente': auth.ambiente,
+                'fecha_autorizacion': fecha,  # noqa
+                'estado_factura': 'is_auth',
+            })
+            
+            message = """
+            DOCUMENTO ELECTRONICO GENERADO <br><br>
+            CLAVE DE ACCESO / NUMERO DE AUTORIZACION: %s <br>
+            ESTADO: %s <br>
+            FECHA DE AUTORIZACIÓN: %s <br>
+            AMBIENTE: %s <br>
+            """ % (
+                access_key,
+                auth.estado,
+                fecha,
+                auth.ambiente,
+            )
+            self.message_post(body=message)
+            auth_einvoice = self.render_authorized_einvoice(auth)
+            xml_attach = self.add_attachment(auth_einvoice.encode(),self.clave_acceso)
+            self.store_fname = xml_attach[0].datas_fname
+            self.xml_file = xml_attach[0].datas
+            #self.action_send_einvoice_email()auth, m = inv_xml.request_authorization(access_key)
+            if not auth:
+                msg = ' '.join(list(itertools.chain(*m)))
+                self._logger.info(msg)
+                self.write({'estado_factura': 'no_auth'})
+                return
+                #raise UserError(msg)
+            if auth.estado == 'EN PROCESO':
+                self.write({'estado_factura': 'process'})
+                return
+
+            fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
             self.env['ir.sequence'].next_by_code('edocuments.code')
 
             self.write({
@@ -290,7 +365,7 @@ class AccountInvoice(models.Model):
             xml_attach = self.add_attachment(auth_einvoice.encode(),self.clave_acceso)
             self.store_fname = xml_attach[0].datas_fname
             self.xml_file = xml_attach[0].datas
-            #self.action_send_einvoice_email()
+            #self.action_send_einvoice_email()vv
 
     @api.multi
     def action_send_einvoice_email(self):
