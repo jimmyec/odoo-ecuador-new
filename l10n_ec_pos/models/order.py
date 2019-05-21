@@ -68,7 +68,10 @@ class PosOrder(models.Model):
         inv_number = self.env['account.journal'].search([('id','in',journal)])
         entidad = inv_number.auth_out_invoice_id.serie_entidad
         emision = inv_number.auth_out_invoice_id.serie_emision
-        inv_number = str(inv_number.auth_out_invoice_id.sequence_id.number_next_actual).zfill(9)
+        if self.order_type  == 'refund':
+            inv_number = str(inv_number.auth_out_invoice_id.sequence_id.number_next_actual).zfill(9)
+        else:
+            inv_number = str(inv_number.auth_out_refund_id.sequence_id.number_next_actual).zfill(9)
         inv_number = entidad + emision + inv_number
         return inv_number
 
@@ -148,7 +151,6 @@ class PosOrder(models.Model):
 
     @api.multi
     def action_pos_order_invoice(self):
-        print('action_pos_order_invoice')
         super(PosOrder, self).action_pos_order_invoice()
         for order in self:
             if order.order_type  == 'refund':
