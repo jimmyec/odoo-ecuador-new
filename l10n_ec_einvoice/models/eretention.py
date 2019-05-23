@@ -35,7 +35,7 @@ class AccountWithdrawing(models.Model):
         infoCompRetencion = {
             'fechaEmision': time.strftime('%d/%m/%Y', time.strptime(withdrawing.date, '%Y-%m-%d')),  # noqa
             'dirEstablecimiento': company.street,
-            'obligadoContabilidad': 'SI',
+            'obligadoContabilidad': company.forced_account,
             'tipoIdentificacionSujetoRetenido': utils.tipoIdentificacion[partner.type_id],  # noqa
             'razonSocialSujetoRetenido': partner.name,
             'identificacionSujetoRetenido': partner.identifier,
@@ -110,51 +110,111 @@ class AccountWithdrawing(models.Model):
         for obj in self:
             self.check_date(obj.date)
             self.check_before_sent()
-            access_key, emission_code = self._get_codes(name='account.retention')
+
+            emission_code = obj.company_id.emission_code
+            if self.estado_factura == 'process':
+                access_key = self.clave_acceso
+            else:
+                access_key, emission_code = self._get_codes(name='account.retention')
+
             ewithdrawing = self.render_document(obj, access_key, emission_code)
+            self._logger.info(ewithdrawing)
             inv_xml = DocumentXML(ewithdrawing, 'withdrawing')
-            #if not inv_xml.validate_xml():
-            #    raise UserError('Documento no valido')
+            if not inv_xml.validate_xml():
+                self.write({'estado_factura': 'invalid'})
+                return
+                #raise UserError('Documento no valido')
             xades = Xades()
             file_pk12 = obj.company_id.electronic_signature
             password = obj.company_id.password_electronic_signature
             signed_document = xades.sign(ewithdrawing, file_pk12, password)
-            self._logger.info(signed_document)
-            ok, errores = inv_xml.send_receipt(signed_document)
-            if not ok:
-                raise UserError(errores)
+            self.update_document([access_key, emission_code])
+            if self.estado_factura != 'process':
+                ok, errores = inv_xml.send_receipt(signed_document)
+                    if not ok:
+                        self._logger.info(errores)
+                        self.write({'estado_factura': 'send_error'})
+                        if errores == 'ERROR CLAVE ACCESO REGISTRADA ' or errores == 'ERROR ERROR SECUENCIAL REGISTRADO ':
+
+                        self.write({
+                            'autorizado_sri': True,
+                            'to_send_einvoice': True,
+                            'estado_correo': 'to_send',
+                            'estado_autorizacion': 'Autorizado',
+                            'ambiente': 'PRODUCCION',
+                            #'fecha_autorizacion': fecha,  # noqa
+                            'estado_factura': 'is_auth',
+                        })
+                        
+                        message = """
+                        DOCUMENTO ELECTRONICO GENERADO <br><br>
+                        CLAVE DE ACCESO / NUMERO DE AUTORIZACION: %s <br>
+                        ESTADO: AUTORIZADO <br>
+                        FECHA DE AUTORIZACIÓN:  <br>
+                        AMBIENTE: PRODUCCION <br>
+                        """ % (
+                            aux_acces_key,
+                        )
+                        
+                        self.message_post(body=message)
+                        self.clave_acceso = aux_acces_key
+                        xml_attach = self.add_attachment(einvoice.encode(),aux_acces_key)
+                        self.store_fname = xml_attach[0].datas_fname
+                        self.xml_file = xml_attach[0].datas
+                        
+                    return
+
             auth, m = inv_xml.request_authorization(access_key)
             if not auth:
                 msg = ' '.join(list(itertools.chain(*m)))
-                raise UserError(msg)
-            auth_eretention = self.render_authorized_document(auth)
-            self.update_document([access_key, emission_code])
+                self._logger.info(msg)
+                self.write({'estado_factura': 'no_auth'})
+                return
+            if auth.estado == 'EN PROCESO':
+                self.write({'estado_factura': 'process'})
+                return
+
+            fecha = auth.fechaAutorizacion.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
+            self.write({
+                'autorizado_sri': True,
+                'to_send_einvoice': True,
+                'estado_correo': 'to_send',
+                'estado_autorizacion': auth.estado,
+                'ambiente': auth.ambiente,
+                'fecha_autorizacion': fecha,  # noqa
+                'estado_factura': 'is_auth',
+            })
+
+            auth_eretention = self.render_authorized_document(auth)            
             xml_attach = self.add_attachment(auth_eretention.encode(),self.clave_acceso)
             self.store_fname = xml_attach[0].datas_fname
             self.xml_file = xml_attach[0].datas
-            #self.add_attachment(auth_eretention.encode(),self.name)
-            self.action_send_eretention_email()
-            return True
+            #self.action_send_eretention_email()
 
     @api.multi
     def action_send_eretention_email(self):
         for obj in self:
-            ret_name = str(self.clave_acceso + '.xml')
+            ret_name = str(self.clave_acceso) + '.xml'
             attach = self.env['ir.attachment'].search([('name','=',ret_name)])
             #attach = attach_ids[0]
             pdf = self.env.ref('l10n_ec_einvoice.report_eretention').render_qweb_pdf(self.ids)
             attach_pdf = self.add_attachment_pdf(pdf,self.name)
             attachments=[a.id for a in attach[0] + attach_pdf[0]]
-            self.ensure_one()
-            self._logger.info('Enviando documento electronico por correo')
-            template = self.env.ref('l10n_ec_einvoice.email_template_einvoice')
-            self.env['mail.template'].browse(template.id).send_mail(self.id, email_values={'attachment_ids': attachments}, force_send=True, raise_exception=True)
-            self._logger.info('Documento enviado')
-            self.sent = True
-            # self.send_document(
-            #     attachments=[a.id for a in attach + attach_pdf],
-            #     tmpl='l10n_ec_einvoice.email_template_eretention'
-            # )
+            self.send_document(
+                attachments=[a.id for a in attach[0] + attach_pdf[0]],
+                tmpl='l10n_ec_einvoice.email_template_eretention'
+            )
+            self.write({
+                'to_send_einvoice': False,
+                'estado_correo': 'sent'
+            })
+
+            # self._logger.info('Enviando documento electronico por correo')
+            # template = self.env.ref('l10n_ec_einvoice.email_template_eretention')
+            # self.env['mail.template'].browse(template.id).send_mail(self.id, email_values={'attachment_ids': attachments}, force_send=True, raise_exception=True)
+            # self._logger.info('Documento enviado')
+            # self.sent = True
 
     @api.multi
     def retention_print(self):
