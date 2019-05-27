@@ -9,6 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from openerp import models, api
 from openerp.exceptions import Warning as UserError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 from . import utils
 from ..xades.sri import DocumentXML
@@ -111,6 +112,7 @@ class AccountWithdrawing(models.Model):
             self.check_date(obj.date)
             self.check_before_sent()
 
+            aux_acces_key = str(self.clave_acceso)
             emission_code = obj.company_id.emission_code
             if self.estado_factura == 'process':
                 access_key = self.clave_acceso
@@ -131,10 +133,10 @@ class AccountWithdrawing(models.Model):
             self.update_document([access_key, emission_code])
             if self.estado_factura != 'process':
                 ok, errores = inv_xml.send_receipt(signed_document)
-                    if not ok:
-                        self._logger.info(errores)
-                        self.write({'estado_factura': 'send_error'})
-                        if errores == 'ERROR CLAVE ACCESO REGISTRADA ' or errores == 'ERROR ERROR SECUENCIAL REGISTRADO ':
+                if not ok:
+                    self._logger.info(errores)
+                    self.write({'estado_factura': 'send_error'})
+                    if errores == 'ERROR CLAVE ACCESO REGISTRADA ' or errores == 'ERROR ERROR SECUENCIAL REGISTRADO ':
 
                         self.write({
                             'autorizado_sri': True,
@@ -146,22 +148,11 @@ class AccountWithdrawing(models.Model):
                             'estado_factura': 'is_auth',
                         })
                         
-                        message = """
-                        DOCUMENTO ELECTRONICO GENERADO <br><br>
-                        CLAVE DE ACCESO / NUMERO DE AUTORIZACION: %s <br>
-                        ESTADO: AUTORIZADO <br>
-                        FECHA DE AUTORIZACIÓN:  <br>
-                        AMBIENTE: PRODUCCION <br>
-                        """ % (
-                            aux_acces_key,
-                        )
-                        
-                        self.message_post(body=message)
                         self.clave_acceso = aux_acces_key
-                        xml_attach = self.add_attachment(einvoice.encode(),aux_acces_key)
+                        xml_attach = self.add_attachment(ewithdrawing.encode(),aux_acces_key)
                         self.store_fname = xml_attach[0].datas_fname
                         self.xml_file = xml_attach[0].datas
-                        
+                    
                     return
 
             auth, m = inv_xml.request_authorization(access_key)

@@ -154,7 +154,6 @@
             </group>
             <group colspan="2">
               <field name="numero_autorizacion" invisible="1"/>
-              <field name="estado_autorizacion" invisible="1"/>
               <field name="store_fname" invisible="1"/>
               <field name="fecha_autorizacion"/>
               <field name="to_send_einvoice"/>

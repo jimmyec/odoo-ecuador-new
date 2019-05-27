@@ -14,7 +14,7 @@ class account_einvoice_wizard(models.TransientModel):
 		"""
 		Metodo ...
 		"""
-		invoices = self.env['account.invoice'].search([('autorizado_sri','=',False),('type','in',['out_invoice', 'out_refund'])])   
+		invoices = self.env['account.invoice'].search([('autorizado_sri','=',False),('type','in',['out_invoice', 'out_refund']),('state','!=','draft')])   
 
 		for invoice in reversed(invoices):
 			self._logger.info('Factura %s', invoice.invoice_number)
@@ -32,6 +32,31 @@ class account_einvoice_wizard(models.TransientModel):
 			self._logger.info('Factura %s', invoice.invoice_number)
 			invoice.sudo().action_send_einvoice_email()
 			invoice.to_send_einvoice = False
+
+	@api.multi
+	def action_automatic_eretention(self):
+		"""
+		Metodo ...
+		"""
+		retentions = self.env['account.retention'].search([('autorizado_sri','=',False),('in_type','=','ret_in_invoice')])   
+
+		for ret in reversed(retentions):
+			self._logger.info('Retencion %s', ret.withholding_number)
+			ret.sudo().action_generate_document()
+			#invoice.to_send_einvoice = True
+
+	@api.multi
+	def action_automatic_send_ret_email(self):
+		"""
+		Metodo ...
+		"""
+		retentions = self.env['account.retention'].search([('to_send_einvoice','=',True),('in_type','=','ret_in_invoice')])   
+
+		for ret in reversed(retentions):
+			self._logger.info('Retencion %s', ret.withholding_number)
+			ret.sudo().action_send_eretention_email()
+			ret.to_send_einvoice = False
+
 
 	# @api.multi
 	# def action_report_failures(self):
