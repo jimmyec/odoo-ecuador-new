@@ -44,9 +44,10 @@ class AccountPayment(models.Model):
         Validate numbering
         Print from journal check template
         """
-        for payment in self:
-            report = payment.journal_id.check_report_id
-            return self.env['report'].get_action(
-                payment,
-                report.report_name
-            )
+        return self.env.ref('l10n_ec_check_printing.check_report_pacifico').report_action(self)
+        # for payment in self:
+        #     report = payment.journal_id.check_report_id
+        #     return self.env.ref("l10n_ec_check_printing.reporte_cheque_pacifico").report_action(
+        #         payment,
+        #         report.report_name
+        #     )

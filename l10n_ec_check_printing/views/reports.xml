@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <template id="l10n_ec_check_printing.check_layout">
+        <!--template id="l10n_ec_check_printing.check_layout">
             <t t-raw="0"/>
-        </template>
+        </template-->
 
         <record id="check_ec_paperformat" model="report.paperformat">
             <field name="name">Formato Cheque Ecuador</field>
@@ -20,15 +20,16 @@
 
         <report
             id="check_report_pacifico"
-            string="Cheque Pacifico"
             model="account.payment"
+            string="Cheque Pacifico"
             report_type="qweb-pdf"
             name="l10n_ec_check_printing.reporte_cheque_pacifico"
             file="l10n_ec_check_printing.reporte_cheque_pacifico"
+            paperformat="check_ec_paperformat"
             />
 
-        <record id="check_report_pacifico" model="ir.actions.report.xml">
+        <!--record id="check_report_pacifico" model="ir.actions.report.xml">
             <field name="paperformat_id" ref="check_ec_paperformat"/>
-        </record>
+        </record-->
     </data>
 </odoo>
