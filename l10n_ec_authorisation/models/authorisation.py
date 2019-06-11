@@ -241,6 +241,7 @@ class AccountInvoice(models.Model):
                 str(self.auth_inv_id.sequence_id.number_next_actual).zfill(9)
             )
             self.reference = number
+            self.fisical_document = not self.auth_inv_id.is_electronic
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
@@ -298,7 +299,7 @@ class AccountInvoice(models.Model):
         'account.ats.sustento',
         string='Sustento del Comprobante'
     )
-    accion_fisical_document = fields.Boolean(
+    fisical_document = fields.Boolean(
         string='Factura Fisica',
         default=False,
         store=True,
@@ -306,7 +307,7 @@ class AccountInvoice(models.Model):
     _sql_constraints = [
         (
             'unique_invoice_number',
-            'unique(invoice_number,type,partner_id,state,accion_fisical_document)',
+            'unique(invoice_number,type,partner_id,state)',
             u'El número de factura es único.'
         )
     ]

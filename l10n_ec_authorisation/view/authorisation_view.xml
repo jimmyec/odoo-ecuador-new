@@ -44,7 +44,7 @@
 		       	</field>
 		        <field name="fiscal_position_id" position="after">
 		        	<field name="reference" string="Número de Factura"/>
-		        	<field name="accion_fisical_document" string="Factura Física"/>
+		        	<field name="fisical_document" string="Factura Física" invisible="True"/>
 		        </field>
 		        <field name="number" position="replace">
 		        	<field name="invoice_number" class="oe_inline"/>
