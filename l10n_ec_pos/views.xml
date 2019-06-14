@@ -11,18 +11,39 @@
     <field name="model">pos.config</field>
     <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
     <field name="arch" type="xml">
-      <field name="module_pos_restaurant" position="after">
-        <div class="row mt16 o_settings_container">
-            <div class="col-xs-12 col-md-6 o_setting_box" id="default_partner">
-                <div class="o_setting_right_pane">
-                    <label string="Default Partner"/>
-                    <div class="content-group mt16">
-                            <field name="default_partner_id" colspan="4"/>
+      <sheet>
+        <h2 name="order">POS Ecuador</h2>
+            <div class="row mt16 o_settings_container" id="pos_ec" modifiers="{}">
+                <div class="col-xs-12 col-md-6 o_setting_box" modifiers="{}">
+                  <div class="o_setting_right_pane" modifiers="{}">
+                    <label for="pos_ec" class="col-md-3" string="Default Partner" modifiers="{}"/>
+                    <div class="content-group mt16" modifiers="{}">
+                      <field name="default_partner_id" can_create="true" can_write="true" modifiers="{}"/>
                     </div>
+                  </div>
+                  <div class="o_setting_right_pane" modifiers="{}">
+                    <label for="pos_ec" class="col-md-3" string="Dirección Sucursal" modifiers="{}"/>
+                    <div class="content-group mt16" modifiers="{}">
+                      <field name="sucursal" can_create="true" can_write="true" modifiers="{}"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-6 o_setting_box" modifiers="{}">
+                  <div class="o_setting_right_pane" modifiers="{}">
+                    <label for="pos_ec" class="col-md-3" string="Diario" modifiers="{}"/>
+                    <div class="content-group mt16" modifiers="{}">
+                      <field name="invoice_journal_id"/>
+                    </div>
+                  </div>
+                  <div class="o_setting_right_pane" modifiers="{}">
+                    <label for="pos_ec" class="col-md-3" string="Seq Clave de Acceso" modifiers="{}"/>
+                    <div class="content-group mt16" modifiers="{}">
+                      <field name="seq_access_key" can_create="true" can_write="true" modifiers="{}"/>
+                    </div>
+                  </div>
                 </div>
             </div>
-        </div>
-	    </field>
+      </sheet>
     </field>
   </record>
 

@@ -18,7 +18,7 @@
         'point_of_sale',
         'l10n_ec_authorisation',
         'account_invoice_refund_link',
-        'pos_refund_credit'
+        'l10n_ec_pos_refund'
     ],
     'data': [
         'data/pos.xml',

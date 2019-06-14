@@ -16,6 +16,8 @@ class PosConfig(models.Model):
     _inherit = 'pos.config'
 
     default_partner_id = fields.Many2one('res.partner', 'Default Partner')
+    sucursal = fields.Char(string="Dirección Sucursal")
+    seq_access_key = fields.Many2one('ir.sequence', default=lambda self:self.env['ir.sequence'].search([('code','=','pos.edocuments.code')]))
 
 class Bankstatementepayment(models.Model):
     """docstring for Bankstatementepayment"""
@@ -69,9 +71,9 @@ class PosOrder(models.Model):
         entidad = inv_number.auth_out_invoice_id.serie_entidad
         emision = inv_number.auth_out_invoice_id.serie_emision
         if self.order_type  == 'refund':
-            inv_number = str(inv_number.auth_out_invoice_id.sequence_id.number_next_actual).zfill(9)
-        else:
             inv_number = str(inv_number.auth_out_refund_id.sequence_id.number_next_actual).zfill(9)
+        else:
+            inv_number = str(inv_number.auth_out_invoice_id.sequence_id.number_next_actual).zfill(9)
         inv_number = entidad + emision + inv_number
         return inv_number
 
@@ -183,6 +185,9 @@ class PosOrder(models.Model):
             order.access_key = order.get_access_key(order.sale_journal.id,order.invoice_id.date_invoice)
             order.invoice_id.clave_acceso = order.access_key
             order.invoice_id.sudo().action_invoice_open()
+            for statement_id in order.statement_ids:
+                if statement_id.journal_id.code == 'NCRD' and order.order_type == 'sale':
+                    order.partner_id.compute_refund_credit()
             order.account_move = order.invoice_id.move_id
 
     @api.multi
@@ -196,5 +201,7 @@ class PosOrder(models.Model):
                     statement_id.epayment_pos = self.env['account.epayment'].search([('code','=','19')], limit=1)
                 else:
                     statement_id.epayment_pos = self.env['account.epayment'].search([('code','=','20')], limit=1)
+                if statement_id.journal_id.code == 'NCRD':
+                    statement_id.epayment_pos = self.env['account.epayment'].search([('code','=','01')], limit=1)
 
 
