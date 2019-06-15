@@ -59,11 +59,11 @@ class PosOrder(models.Model):
     access_key = fields.Char('Clave de Acceso', size=49,)
 
     def get_pos_code(self):
-        code = self.env['ir.sequence'].search([('code','=','pos.edocuments.code')])
+        code = self.env['ir.sequence'].search([('code','=',self.config_id.seq_access_key.code)])
         return str(code.number_next_actual).zfill(8)
 
     def get_code_increse(self):
-        code = self.env['ir.sequence'].next_by_code('pos.edocuments.code')
+        code = self.env['ir.sequence'].next_by_code(self.config_id.seq_access_key.code)
         return code
 
     def get_inv_number(self,journal):
