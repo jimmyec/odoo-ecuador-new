@@ -25,6 +25,24 @@
             </field>
         </record>
 
+        <!-- REFUND TREE VIEW-->
+
+        <record id="refund_tree_view" model="ir.ui.view">
+            <field name="name">refund.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <tree string="Notas de Crédito" decoration-info="state == 'draft'">
+                    <field name="partner_id" string="Cliente"/>
+                    <field name="date"/>
+                    <field name="invoice_number"/>
+                    <field name="origin"/>
+                    <field name="amount_total_signed"/>
+                    <field name="residual_signed"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
         <!-- POS ORDER REFUND -->
         <record id="pos_order_form_view" model="ir.ui.view">
             <field name="model">pos.order</field>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets" inherit_id="point_of_sale.assets_backend" name="pos_refund assets">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/l10n_ec_pos_refund/static/src/js/pos_refund.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>
