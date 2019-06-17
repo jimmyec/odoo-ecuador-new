@@ -5,7 +5,7 @@
         <t t-foreach="docs" t-as="o">
             <t t-call="web.internal_layout">
                 <div class="page">
-                    <p style="font-size: 8pt"><strong>Comprobante Contable Nro. : </strong><t t-esc="o.retention_id.name"></t></p>
+                    <p style="font-size: 8pt"><strong>Comprobante Contable Nro. : </strong><t t-esc="o.name"></t></p>
                     <p style="font-size: 8pt"><strong>Diario : </strong><t t-esc="o.journal_id.name"></t></p>
                     <table class="table" style="font-size: 8pt">
                         <tbody>
@@ -19,7 +19,7 @@
                                 <td><strong>Empresa:</strong></td>
                                 <td><t t-esc="o.partner_id.name"></t></td>
                                 <td><strong>Referencia:</strong></td>
-                                <td><t t-esc="o.name"></t></td>
+                                <td><t t-esc="o.number"></t></td>
                             </tr>
                         </tbody>
                     </table>
@@ -28,67 +28,55 @@
                     <table class="table-striped" style="font-size: 8pt">
                         <thead>
                             <tr>
-                                <th style="text-align: center; width: 131.033px;">CODIGO</th>
-                                <th style="text-align: center; width: 799.25px;">CUENTA</th>
+                                <th style="text-align: center; width: 131.033px;">CUENTA</th>
+                                <th style="text-align: center; width: 799.25px;">DESCRIPCIÓN</th>
                                 <th style="text-align: center; width: 168.717px;">DEBE</th>
                                 <th style="width: 168px; text-align: center;">HABER</th>
                             </tr>
                         </thead>
+                        <t t-set="total_debit" t-value="0"/>
+                        <t t-set="total_credit" t-value="0"/>
                         <tbody style="font-size: 8pt">
-                            <t t-set="total_debit" t-value="0"/>
-                            <t t-set="total_credit" t-value="0"/>
-                            <t t-foreach="groupby(o.payment_move_line_ids.sorted(key=lambda r: r.credit))" t-as="move">
-                                    <tr>
-                                        <td style="text-align: left; width: 131.033px;"><t t-esc="move['code']"></t></td>
-                                        <td style="text-align: left; width: 799.25px; padding-left: 40px;">
-                                            <t t-esc="move['name']"></t>
-                                        </td>
-                                        <td style="text-align: right; width: 168.717px;">
-                                            <span t-esc="move['debit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}">
-                                            </span>
-                                        </td>
-                                        <td style="width: 168px; text-align: right;">
-                                            <span t-esc="move['credit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"></span>
-                                        </td>
-                                        <t t-set="total_debit" t-value="total_debit+move['debit']"/>
-                                        <t t-set="total_credit" t-value="total_credit+move['credit']"/>
-                                    </tr>
-                            </t>
+                            <tr t-foreach="o.move_id.line_ids" t-as="l">
+                                <td style="text-align: left; width: 131.033px;"><span t-field="l.account_id"/></td>
+                                <td style="text-align: left; width: 799.25px; padding-left: 40px;">
+                                    <span t-field="l.name"/>
+                                </td>
+                                <td style="text-align: right; width: 168.717px;"><span t-field="l.debit"/></td>
+                                <td style="width: 168px; text-align: right;"><span t-field="l.credit"/></td>
+                                
+                                <!--<td><span t-field="l.date_maturity"/></td>-->
+                            </tr>
+                            <tr/>
+
+                            <tr class="border-black">
+                                <td colspan="2"/>
+                                <td style="text-align: right; width: 168.717px;"> <span t-field="o.move_id.amount"/></td>
+                                <td style="width: 168px; text-align: right;"> <span t-field="o.move_id.amount"/></td>
+                                <!--<td/>-->
+                            </tr>
+                            <tr class="border-black"/>
+                            
                         </tbody>
-                        <tfoot style="font-size: 8pt">
-                            <tr>
-                                <td style="text-align: right;" colspan="2"><strong>Totales</strong></td>
-                                <td style="text-align: right;">
-                                    <strong>
-                                        <span t-esc="total_debit " t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"></span>
-                                    </strong>
-                                </td>
-                                <td style="text-align: right;">
-                                    <strong>
-                                        <span t-esc="total_credit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"></span>
-                                    </strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left;" colspan="2"></td>
-                                <td style="text-align: center;"></td>
-                                <td style="text-align: center;"><br></br></td>
-                            </tr>
-                        </tfoot>
                     </table>
                     <br/><br/><br/>
                     <div class="row" style="text-align: center; font-size: 9px;">
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <hr> </hr>
                             <span><strong>REALIZADO POR</strong></span>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <hr> </hr>
                             <span><strong>REVISADO POR</strong></span>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <hr> </hr>
                             <span><strong>AUTORIZADO POR</strong></span>
+                        </div>
+                        <div class="col-xs-3">
+                            <hr> </hr>
+                            <span><strong>RECIBIDO POR</strong></span><br/>
+                            <span><strong>CI: __________________</strong></span>
                         </div>
                     </div>
                 </div>

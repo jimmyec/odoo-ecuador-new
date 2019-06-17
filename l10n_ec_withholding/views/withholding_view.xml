@@ -54,7 +54,7 @@
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                     <attribute name="string">Proveedor</attribute>
                 </xpath>
-		            <xpath expr="//field[@name='amount_untaxed']" position="after">
+		            <xpath expr="//field[@name='amount_untaxed']" position="replace">
 	                  <field name="amount_pay" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
 	              </xpath>
 	              <xpath expr="//field[@name='amount_tax']" position="after">
@@ -585,7 +585,7 @@
                 <xpath expr="//field[@name='move_id']" position="after">
                     <field name="retention_id"/>
                 </xpath>
-		            <xpath expr="//field[@name='amount_untaxed']" position="after">
+		            <xpath expr="//field[@name='amount_untaxed']" position="replace">
           		      <field name="amount_pay" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
         	      </xpath>
         	      <xpath expr="//field[@name='amount_tax']" position="after">

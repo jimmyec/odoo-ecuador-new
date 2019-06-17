@@ -224,6 +224,8 @@ class AccountWithdrawing(models.Model):
     @api.constrains('date')
     def _check_date(self):
         if self.date and self.invoice_id:
+            if self.fisical_document:
+                return
             inv_date = datetime.strptime(self.invoice_id.date_invoice, '%Y-%m-%d')  # noqa            
             ret_date = datetime.strptime(datetime.now().strftime('%Y-%m-%d'), '%Y-%m-%d') # noqa  #Date == Today MAYBE IT IS BETTER date - date_invoice
             days = ret_date - inv_date
