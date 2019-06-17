@@ -8,4 +8,11 @@
       <field name="number_next_actual">100</field>
     </record>
 
+    <record id="sequence_refund_edocuments_code" model="ir.sequence">
+      <field name="name">Secuencia Devoluciones Facturas Electronicas</field>
+      <field eval="8" name="padding"/>
+      <field name="code">pos.refund.code</field>
+      <field name="number_next_actual">100</field>
+    </record>
+
 </odoo>

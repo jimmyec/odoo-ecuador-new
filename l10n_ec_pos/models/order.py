@@ -58,9 +58,14 @@ class PosOrder(models.Model):
 
     access_key = fields.Char('Clave de Acceso', size=49,)
 
-    def get_pos_code(self):
-        code = self.env['ir.sequence'].search([('code','=',self.config_id.seq_access_key.code)])
+    def get_pos_code(self, seq):
+        code = self.env['ir.sequence'].search([('id','=',seq)])
         return str(code.number_next_actual).zfill(8)
+
+
+    def get_refund_code(self):
+        code = self.env['ir.sequence'].next_by_code('pos.refund.code')
+        return code
 
     def get_code_increse(self):
         code = self.env['ir.sequence'].next_by_code(self.config_id.seq_access_key.code)
@@ -104,7 +109,7 @@ class PosOrder(models.Model):
         return mod
 
     def get_access_key(self, journal_id, date_invoice):
-        auth = self.company_id.partner_id.get_authorisation('out_invoice')
+        #auth = self.company_id.partner_id.get_authorisation('out_invoice')
         ld = date_invoice.split('-')
         number = self.get_inv_number([journal_id])
         ld.reverse()
@@ -112,7 +117,7 @@ class PosOrder(models.Model):
         tcomp = self.invoice_id.auth_inv_id.type_id.code
         ruc = self.company_id.partner_id.identifier
         if self.order_type  == 'refund':
-            codigo_numero = self.get_pos_code()
+            codigo_numero = self.get_refund_code()
         else:
             codigo_numero = self.get_code_increse()
         tipo_emision = self.company_id.emission_code

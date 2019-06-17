@@ -73,6 +73,7 @@ odoo.define('l10n_ec_pos', function(require) {
             var ruc = this.pos.company.vat;
             var env = this.pos.company.env_service;
             var journal = this.pos.config.invoice_journal_id[0];
+            var seq = this.pos.config.seq_access_key[0];
             var mod;
 
             var QWeb = core.qweb;
@@ -91,11 +92,13 @@ odoo.define('l10n_ec_pos', function(require) {
                     rpc.query({
                         model: 'pos.order',
                         method: 'get_pos_code',
-                        args:[{
-                            'arg1': '',
-                        }],
+                        args:[
+                            [''],
+                            [seq],
+                        ],
                     }).then(function (res_sequence){
                         sequence = res_sequence;
+                        console.log(sequence)
                         clave_acceso = date + tcomp + ruc + env + inv_number + sequence + '1';
                         mod = self.compute_mod11(clave_acceso);
                         clave_acceso += mod;
@@ -126,7 +129,7 @@ odoo.define('l10n_ec_pos', function(require) {
                 var tcomp = '01';
                 var ruc = this.pos.company.vat;
                 var env = this.pos.company.env_service;
-                var journal = this.pos.config.invoice_journal_id[0];
+                //var journal = this.pos.config.invoice_journal_id[0];
                 var mod;
                 inv_number = Number(inv_number) + 1;
                 sequence = Number(sequence) + 1;
