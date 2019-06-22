@@ -17,7 +17,8 @@
     'license': 'AGPL-3',
     'category': 'Generic Modules/Accounting',
     'depends': [
-        'l10n_ec_withholding'
+        'l10n_ec_withholding',
+        'account_period',
     ],
     'data': [
         #'security/ir.model.access.csv',

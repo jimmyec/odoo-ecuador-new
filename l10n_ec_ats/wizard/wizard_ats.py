@@ -86,8 +86,11 @@ class WizardAts(models.TransientModel):
                 temp[line.tax_id.description]['baseImpAir'] += line.base
                 temp[line.tax_id.description]['baseImpAir'] = '%.2f' % temp[line.tax_id.description]['baseImpAir']
                 temp[line.tax_id.description]['codRetAir'] = line.tax_id.description  # noqa
-                temp[line.tax_id.description]['porcentajeAir'] = '%.2f' % abs(int(line.tax_id.amount))  # noqa
-                temp[line.tax_id.description]['valRetAir'] += '%.2f' % abs(line.amount)
+                temp[line.tax_id.description]['porcentajeAir'] = abs(int(line.tax_id.amount))  # noqa
+                temp[line.tax_id.description]['porcentajeAir'] = '%.2f' % temp[line.tax_id.description]['porcentajeAir']
+                temp[line.tax_id.description]['valRetAir'] += abs(line.amount)
+                temp[line.tax_id.description]['valRetAir'] = '%.2f' % temp[line.tax_id.description]['valRetAir']
+                
         for k, v in temp.items():
             data_air.append(v)
         #print(data_air)
@@ -166,9 +169,9 @@ class WizardAts(models.TransientModel):
             return {
                 'docModificado': '01',
                 'estabModificado': refund[0].invoice_number[0:3],
-                'ptoEmiModificado': refund.invoice_number[3:6],
-                'secModificado': refund.supplier_invoice_number,
-                'autModificado': refund.reference,
+                'ptoEmiModificado': refund[0].invoice_number[3:6],
+                'secModificado': refund[0].reference,
+                'autModificado': refund[0].auth_number,
             }
         else:
             auth = refund.auth_inv_id
