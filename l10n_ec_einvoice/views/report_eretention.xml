@@ -106,11 +106,12 @@
                                 <span t-esc="line.group_id.name"/>
                             </div>
                             <div class="col-xs-1" style="padding-left: 0px; text-align: center;">
-                                <span t-esc="'%.2f' % line.tax_id.amount"/>
+                                <span t-esc="'%.2f' % (abs(line.tax_id.amount))"/>
                             </div>
                             <div class="col-xs-1" style="padding-left: 0px; text-align: right;">
-                                <span t-field="line.amount"
-                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <span t-esc="'%.2f' % (abs(line.amount))"/>
+                                <!--span t-field="line.amount"
+                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/-->
                             </div>
                         </div>
                     </t>
