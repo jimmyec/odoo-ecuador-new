@@ -34,7 +34,7 @@
                     <field name="type_id" placeholder="Tipo de Identificador" class="oe_inline"/>
                     <field name="identifier" required="1" class="oe_inline"/>
                 </field>
-                <xpath expr="//field[@name='vat']" position="replace">
+                <xpath expr="//field[@name='identifier']" position="before">
                     <field name="type_person" placeholder="Tipo de Persona"/>
                 </xpath>
             </field>

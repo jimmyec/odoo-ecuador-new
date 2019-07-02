@@ -9,9 +9,10 @@
 
   <record id="view_res_partner_form" model="ir.ui.view">
     <field name="model">pos.config</field>
-    <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+    <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
     <field name="arch" type="xml">
-      <sheet>
+        <xpath expr="//sheet" position="inside">
+        <!-- <field name="module_pos_restaurant" position="after"> -->
         <h2 name="order">POS Ecuador</h2>
             <div class="row mt16 o_settings_container" id="pos_ec" modifiers="{}">
                 <div class="col-xs-12 col-md-6 o_setting_box" modifiers="{}">
@@ -43,7 +44,8 @@
                   </div>
                 </div>
             </div>
-      </sheet>
+        <!-- </field> -->
+        </xpath>
     </field>
   </record>
 
@@ -61,16 +63,16 @@
     </field>
   </record>
 
-  <record id="view_pos_session_form" model="ir.ui.view">
+<!--   <record id="view_pos_session_form" model="ir.ui.view">
     <field name="name">POS session</field>
     <field name="model">pos.session</field>
     <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
-    <field name="arch" type="xml">
-      <xpath expr="//button[@name='action_pos_session_validate']" position="after"/>
-      <xpath expr="//button[@name='action_pos_session_validate']" position="after">
+    <field name="arch" type="xml"> -->
+      <!-- <xpath expr="//button[@name='action_pos_session_validate']" position="after"/> -->
+<!--       <xpath expr="//button[@name='action_pos_session_validate']" position="after">
           <button name="closing_control_print" type="object" attrs="{'invisible':['|',('state','=',['opening_control','opened'])]}"
                   string="Imprimir Resumen" class="btn"/>
-      </xpath>
-    </field>
-  </record>
+      </xpath> -->
+<!--     </field>
+  </record> -->
 </odoo>

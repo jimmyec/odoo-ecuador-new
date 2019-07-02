@@ -212,7 +212,7 @@
 
 	    <menuitem action="action_account_auth_tree"
 	              id="menu_action_authorisation_out"
-	              parent="account.menu_finance_payables_master_data"/>
+	              parent="account.menu_finance_payables"/>
 
 	    <record id="action_account_authin_tree" model="ir.actions.act_window">
 	      <field name="name">Comprobantes Autorizados</field>
@@ -226,7 +226,7 @@
 
 	    <menuitem action="action_account_authin_tree"
 	              id="menu_action_authorisation_in"
-	              parent="account.menu_finance_receivables_master_data"/>
+	              parent="account.menu_finance_receivables"/>
 
 	    <!--
 	        Comprobantes Autorizados

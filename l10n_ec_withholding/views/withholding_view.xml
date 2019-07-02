@@ -324,7 +324,7 @@
             Supplier Withholding Menu
         -->
 
-        <menuitem action="action_account_retention2_tree" id="menu_action_retention" parent="account.menu_finance_payables_documents"/>
+        <menuitem action="action_account_retention2_tree" id="menu_action_retention" parent="account.menu_finance_payables"/>
 
         <!--
             Customer Withholding Action Window
@@ -357,7 +357,7 @@
             Customer Withholding Menu
         -->
 
-        <menuitem action="action_account_retention_customer_tree" id="menu_action_retention_receivable" parent="account.menu_finance_receivables_documents"/>
+        <menuitem action="action_account_retention_customer_tree" id="menu_action_retention_receivable" parent="account.menu_finance_receivables"/>
 
         <act_window
             id="act_window_retention"
@@ -549,7 +549,7 @@
 
         <menuitem action="action_liq_purchase_tree"
                   id="menu_action_liq_purchase"
-                  parent="account.menu_finance_payables_documents"/>
+                  parent="account.menu_finance_payables"/>
 
         <!--
             Customer Invoice
