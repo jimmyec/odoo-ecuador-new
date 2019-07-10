@@ -1,0 +1,1259 @@
+id,city_id:id,code,name
+parish_ec_010101,city_ec_0101,10101,Bellavista
+parish_ec_010102,city_ec_0101,10102,Cañaribamba
+parish_ec_010103,city_ec_0101,10103,El Batan
+parish_ec_010104,city_ec_0101,10104,El Sagrario
+parish_ec_010105,city_ec_0101,10105,El Vecino
+parish_ec_010106,city_ec_0101,10106,Gil Ramirez Davalos
+parish_ec_010107,city_ec_0101,10107,Huaynacapac
+parish_ec_010108,city_ec_0101,10108,Machangara
+parish_ec_010109,city_ec_0101,10109,Monay
+parish_ec_010110,city_ec_0101,10110,San Blas
+parish_ec_010111,city_ec_0101,10111,San Sebastian
+parish_ec_010112,city_ec_0101,10112,Sucre
+parish_ec_010113,city_ec_0101,10113,Totoracocha
+parish_ec_010114,city_ec_0101,10114,Yanuncay
+parish_ec_010115,city_ec_0101,10115,Hermano Miguel
+parish_ec_010150,city_ec_0101,10150,Cuenca
+parish_ec_010151,city_ec_0101,10151,Baños
+parish_ec_010152,city_ec_0101,10152,Cumbe
+parish_ec_010153,city_ec_0101,10153,Chaucha
+parish_ec_010154,city_ec_0101,10154,Checa (Jidcay)
+parish_ec_010155,city_ec_0101,10155,Chiquintad
+parish_ec_010156,city_ec_0101,10156,Llacao
+parish_ec_010157,city_ec_0101,10157,Molleturo
+parish_ec_010158,city_ec_0101,10158,Nulti
+parish_ec_010159,city_ec_0101,10159,Octavio Cordero Palacios (Santa Rosa)
+parish_ec_010160,city_ec_0101,10160,Paccha
+parish_ec_010161,city_ec_0101,10161,Quingeo
+parish_ec_010162,city_ec_0101,10162,Ricaurte
+parish_ec_010163,city_ec_0101,10163,San Joaquin
+parish_ec_010164,city_ec_0101,10164,Santa Ana
+parish_ec_010165,city_ec_0101,10165,Sayausi
+parish_ec_010166,city_ec_0101,10166,Sidcay
+parish_ec_010167,city_ec_0101,10167,Sinincay
+parish_ec_010168,city_ec_0101,10168,Tarqui
+parish_ec_010169,city_ec_0101,10169,Turi
+parish_ec_010170,city_ec_0101,10170,Valle
+parish_ec_010171,city_ec_0101,10171,Victoria Del Portete (Irquis)
+parish_ec_010250,city_ec_0102,10250,Giron
+parish_ec_010251,city_ec_0102,10251,Asuncion
+parish_ec_010252,city_ec_0102,10252,San Gerardo
+parish_ec_010350,city_ec_0103,10350,Gualaceo
+parish_ec_010352,city_ec_0103,10352,Daniel Cordova Toral (El Oriente)
+parish_ec_010353,city_ec_0103,10353,Jadan
+parish_ec_010354,city_ec_0103,10354,Mariano Moreno
+parish_ec_010356,city_ec_0103,10356,Remigio Crespo Toral (Gulag)
+parish_ec_010357,city_ec_0103,10357,San Juan
+parish_ec_010358,city_ec_0103,10358,Zhidmad
+parish_ec_010359,city_ec_0103,10359,Luis Cordero Vega
+parish_ec_010360,city_ec_0103,10360,Simón Bolívar (Cab. En Gañanzol)
+parish_ec_010450,city_ec_0104,10450,Nabon
+parish_ec_010451,city_ec_0104,10451,Cochapata
+parish_ec_010452,city_ec_0104,10452,El Progreso
+parish_ec_010453,city_ec_0104,10453,Las Nieves (Chaya)
+parish_ec_010455,city_ec_0104,10455,La Paz
+parish_ec_010550,city_ec_0105,10550,Paute
+parish_ec_010552,city_ec_0105,10552,Bulan (Jose Victor Izquierdo)
+parish_ec_010553,city_ec_0105,10553,Chican (Guillermo Ortega)
+parish_ec_010554,city_ec_0105,10554,El Cabo
+parish_ec_010556,city_ec_0105,10556,Guarainag
+parish_ec_010559,city_ec_0105,10559,San Cristobal (Carlos Ordoñez Lazo)
+parish_ec_010561,city_ec_0105,10561,Tomebamba
+parish_ec_010562,city_ec_0105,10562,Dug-Dug
+parish_ec_010650,city_ec_0106,10650,Pucara
+parish_ec_010652,city_ec_0106,10652,San Rafael De Sharug
+parish_ec_010750,city_ec_0107,10750,San Fernando
+parish_ec_010751,city_ec_0107,10751,Chumblin
+parish_ec_010850,city_ec_0108,10850,Santa Isabel (Chaguarurco)
+parish_ec_010851,city_ec_0108,10851,Abdon Calderon (La Union)
+parish_ec_010852,city_ec_0108,10852,El Carmen De Pijili
+parish_ec_010853,city_ec_0108,10853,Zhaglli (Shaglli)
+parish_ec_010950,city_ec_0109,10950,Sigsig
+parish_ec_010951,city_ec_0109,10951,Cuchil (Cutchil)
+parish_ec_010952,city_ec_0109,10952,Gima
+parish_ec_010953,city_ec_0109,10953,Guel
+parish_ec_010954,city_ec_0109,10954,Ludo
+parish_ec_010955,city_ec_0109,10955,San Bartolome
+parish_ec_010956,city_ec_0109,10956,San Jose De Raranga
+parish_ec_011050,city_ec_0110,11050,San Felipe De Oña
+parish_ec_011051,city_ec_0110,11051,Susudel
+parish_ec_011150,city_ec_0111,11150,Chordeleg
+parish_ec_011151,city_ec_0111,11151,Principal
+parish_ec_011152,city_ec_0111,11152,La Union
+parish_ec_011153,city_ec_0111,11153,Luis Galarza Orellana
+parish_ec_011154,city_ec_0111,11154,San Martin De Puzhio
+parish_ec_011250,city_ec_0112,11250,El Pan
+parish_ec_011253,city_ec_0112,11253,San Vicente
+parish_ec_011350,city_ec_0113,11350,Sevilla De Oro
+parish_ec_011351,city_ec_0113,11351,Amaluza
+parish_ec_011352,city_ec_0113,11352,Palmas
+parish_ec_011450,city_ec_0114,11450,Guachapala
+parish_ec_011550,city_ec_0115,11550,Camilo Ponce Enriquez
+parish_ec_011551,city_ec_0115,11551,El Carmen De Pijili
+parish_ec_020101,city_ec_0201,20101,Angel Polibio Chavez
+parish_ec_020102,city_ec_0201,20102,Gabriel Ignacio Veintimilla
+parish_ec_020103,city_ec_0201,20103,Guanujo
+parish_ec_020150,city_ec_0201,20150,Guaranda
+parish_ec_020151,city_ec_0201,20151,Facundo Vela
+parish_ec_020153,city_ec_0201,20153,Julio E. Moreno (Catahuan Grande)
+parish_ec_020155,city_ec_0201,20155,Salinas
+parish_ec_020156,city_ec_0201,20156,San Lorenzo
+parish_ec_020157,city_ec_0201,20157,San Simon (Yacoto)
+parish_ec_020158,city_ec_0201,20158,Santafe (Santa Fe)
+parish_ec_020159,city_ec_0201,20159,Simiatug
+parish_ec_020160,city_ec_0201,20160,San Luis De Pambil
+parish_ec_020250,city_ec_0202,20250,Chillanes
+parish_ec_020251,city_ec_0202,20251,San Jose Del Tambo (Tambopamba)
+parish_ec_020350,city_ec_0203,20350,San Jose De Chimbo
+parish_ec_020351,city_ec_0203,20351,Asuncion (Asancoto)
+parish_ec_020353,city_ec_0203,20353,Magdalena (Chapacoto)
+parish_ec_020354,city_ec_0203,20354,San Sebastian
+parish_ec_020355,city_ec_0203,20355,Telimbela
+parish_ec_020450,city_ec_0204,20450,Echeandia
+parish_ec_020550,city_ec_0205,20550,San Miguel
+parish_ec_020551,city_ec_0205,20551,Balsapamba
+parish_ec_020552,city_ec_0205,20552,Bilovan
+parish_ec_020553,city_ec_0205,20553,Regulo De Mora
+parish_ec_020554,city_ec_0205,20554,San Pablo (San Pablo De Atenas)
+parish_ec_020555,city_ec_0205,20555,Santiago
+parish_ec_020556,city_ec_0205,20556,San Vicente
+parish_ec_020650,city_ec_0206,20650,Caluma
+parish_ec_020701,city_ec_0207,20701,Las Mercedes
+parish_ec_020702,city_ec_0207,20702,Las Naves
+parish_ec_020750,city_ec_0207,20750,Las Naves
+parish_ec_030101,city_ec_0301,30101,Aurelio Bayas Martinez
+parish_ec_030102,city_ec_0301,30102,Azogues
+parish_ec_030103,city_ec_0301,30103,Borrero
+parish_ec_030104,city_ec_0301,30104,San Francisco
+parish_ec_030150,city_ec_0301,30150,Azogues
+parish_ec_030151,city_ec_0301,30151,Cojitambo
+parish_ec_030153,city_ec_0301,30153,Guapan
+parish_ec_030154,city_ec_0301,30154,Javier Loyola (Chuquipata)
+parish_ec_030155,city_ec_0301,30155,Luis Cordero
+parish_ec_030156,city_ec_0301,30156,Pindilig
+parish_ec_030157,city_ec_0301,30157,Rivera
+parish_ec_030158,city_ec_0301,30158,San Miguel
+parish_ec_030160,city_ec_0301,30160,Taday
+parish_ec_030250,city_ec_0302,30250,Biblian
+parish_ec_030251,city_ec_0302,30251,Nazon
+parish_ec_030252,city_ec_0302,30252,San Francisco De Sageo
+parish_ec_030253,city_ec_0302,30253,Turupamba
+parish_ec_030254,city_ec_0302,30254,Jerusalen
+parish_ec_030350,city_ec_0303,30350,Cañar
+parish_ec_030351,city_ec_0303,30351,Chontamarca
+parish_ec_030352,city_ec_0303,30352,Chorocopte
+parish_ec_030353,city_ec_0303,30353,General Morales (Socarte)
+parish_ec_030354,city_ec_0303,30354,Gualleturo
+parish_ec_030355,city_ec_0303,30355,Honorato Vasquez (Tambo Viejo)
+parish_ec_030356,city_ec_0303,30356,Ingapirca
+parish_ec_030357,city_ec_0303,30357,Juncal
+parish_ec_030358,city_ec_0303,30358,San Antonio
+parish_ec_030361,city_ec_0303,30361,Zhud
+parish_ec_030362,city_ec_0303,30362,Ventura
+parish_ec_030363,city_ec_0303,30363,Ducur
+parish_ec_030450,city_ec_0304,30450,La Troncal
+parish_ec_030451,city_ec_0304,30451,Manuel J. Calle
+parish_ec_030452,city_ec_0304,30452,Pancho Negro
+parish_ec_030550,city_ec_0305,30550,El Tambo
+parish_ec_030650,city_ec_0306,30650,Deleg
+parish_ec_030651,city_ec_0306,30651,Solano
+parish_ec_030750,city_ec_0307,30750,Suscal
+parish_ec_040101,city_ec_0401,40101,Gonzales Suarez
+parish_ec_040102,city_ec_0401,40102,Tulcan
+parish_ec_040150,city_ec_0401,40150,Tulcan
+parish_ec_040151,city_ec_0401,40151,El Carmelo (EL Pun)
+parish_ec_040153,city_ec_0401,40153,Julio Andrade (Orejuela)
+parish_ec_040154,city_ec_0401,40154,Maldonado
+parish_ec_040155,city_ec_0401,40155,Pioter
+parish_ec_040156,city_ec_0401,40156,Tobar Donoso (La Bocana De Camumbi)
+parish_ec_040157,city_ec_0401,40157,Tufiño
+parish_ec_040158,city_ec_0401,40158,Urbina (Taya)
+parish_ec_040159,city_ec_0401,40159,El Chical
+parish_ec_040161,city_ec_0401,40161,Santa Martha De Cuba
+parish_ec_040250,city_ec_0402,40250,Bolivar
+parish_ec_040251,city_ec_0402,40251,Garcia Moreno
+parish_ec_040252,city_ec_0402,40252,Los Andes
+parish_ec_040253,city_ec_0402,40253,Monte Olivo
+parish_ec_040254,city_ec_0402,40254,San Vicente De Pusir
+parish_ec_040255,city_ec_0402,40255,San Rafael
+parish_ec_040301,city_ec_0403,40301,El Angel
+parish_ec_040302,city_ec_0403,40302,27 De Septiembre
+parish_ec_040350,city_ec_0403,40350,El Angel
+parish_ec_040351,city_ec_0403,40351,El Goaltal
+parish_ec_040352,city_ec_0403,40352,La Libertad (Alizo)
+parish_ec_040353,city_ec_0403,40353,San Isidro
+parish_ec_040450,city_ec_0404,40450,Mira (Chontahuasi)
+parish_ec_040451,city_ec_0404,40451,Concepcion
+parish_ec_040452,city_ec_0404,40452,Jijon Y Caamaño
+parish_ec_040453,city_ec_0404,40453,Juan Montalvo
+parish_ec_040501,city_ec_0405,40501,Gonzalez Suarez
+parish_ec_040502,city_ec_0405,40502,San Jose
+parish_ec_040550,city_ec_0405,40550,San Gabriel
+parish_ec_040551,city_ec_0405,40551,Cristobal Colon
+parish_ec_040552,city_ec_0405,40552,Chitan De Navarrete
+parish_ec_040553,city_ec_0405,40553,Fernandez Salvador
+parish_ec_040554,city_ec_0405,40554,La Paz
+parish_ec_040555,city_ec_0405,40555,Piartal
+parish_ec_040650,city_ec_0406,40650,Huaca
+parish_ec_040651,city_ec_0406,40651,Mariscal Sucre
+parish_ec_050101,city_ec_0501,50101,Eloy Alfaro (San Felipe)
+parish_ec_050102,city_ec_0501,50102,Ignacio Flores (Parque Flores)
+parish_ec_050103,city_ec_0501,50103,Juan Montalvo (San Sebastian)
+parish_ec_050104,city_ec_0501,50104,La Matriz
+parish_ec_050105,city_ec_0501,50105,San Buenaventura
+parish_ec_050150,city_ec_0501,50150,Latacunga
+parish_ec_050151,city_ec_0501,50151,Alaques (Alaquez)
+parish_ec_050152,city_ec_0501,50152,Belisario Quevedo (Guanailin)
+parish_ec_050153,city_ec_0501,50153,Guaitacama (Guaytacama)
+parish_ec_050154,city_ec_0501,50154,Joseguango Bajo
+parish_ec_050156,city_ec_0501,50156,Mulalo
+parish_ec_050157,city_ec_0501,50157,11 De Noviembre (Ilinchisi)
+parish_ec_050158,city_ec_0501,50158,Poalo
+parish_ec_050159,city_ec_0501,50159,San Juan De Pastocalle
+parish_ec_050161,city_ec_0501,50161,Tanicuchi
+parish_ec_050162,city_ec_0501,50162,Toacaso
+parish_ec_050202,city_ec_0502,50202,El Carmen
+parish_ec_050250,city_ec_0502,50250,La Mana
+parish_ec_050251,city_ec_0502,50251,Guasaganda
+parish_ec_050252,city_ec_0502,50252,Pucayacu
+parish_ec_050350,city_ec_0503,50350,El Corazon
+parish_ec_050351,city_ec_0503,50351,Moraspungo
+parish_ec_050352,city_ec_0503,50352,Pinllopata
+parish_ec_050353,city_ec_0503,50353,Ramon Campaña
+parish_ec_050450,city_ec_0504,50450,Pujili
+parish_ec_050451,city_ec_0504,50451,Angamarca
+parish_ec_050453,city_ec_0504,50453,Guangaje
+parish_ec_050455,city_ec_0504,50455,La Victoria
+parish_ec_050456,city_ec_0504,50456,Pilalo
+parish_ec_050457,city_ec_0504,50457,Tingo
+parish_ec_050458,city_ec_0504,50458,Zumbahua
+parish_ec_050550,city_ec_0505,50550,San Miguel
+parish_ec_050551,city_ec_0505,50551,Antonio Jose Holguin (Santa Lucia)
+parish_ec_050552,city_ec_0505,50552,Cusubamba
+parish_ec_050553,city_ec_0505,50553,Mulalillo
+parish_ec_050554,city_ec_0505,50554,Mulliquindil (Santa Ana)
+parish_ec_050555,city_ec_0505,50555,Pansaleo
+parish_ec_050650,city_ec_0506,50650,Saquisili
+parish_ec_050651,city_ec_0506,50651,Canchagua
+parish_ec_050652,city_ec_0506,50652,Chantilin
+parish_ec_050653,city_ec_0506,50653,Cochapamba
+parish_ec_050750,city_ec_0507,50750,Sigchos
+parish_ec_050751,city_ec_0507,50751,Chugchilan
+parish_ec_050752,city_ec_0507,50752,Isinlivi
+parish_ec_050753,city_ec_0507,50753,Las Pampas
+parish_ec_050754,city_ec_0507,50754,Palo Quemado
+parish_ec_060101,city_ec_0601,60101,Lizarzaburu
+parish_ec_060102,city_ec_0601,60102,Maldonado
+parish_ec_060103,city_ec_0601,60103,Velasco
+parish_ec_060104,city_ec_0601,60104,Veloz
+parish_ec_060105,city_ec_0601,60105,Yaruquies
+parish_ec_060106,city_ec_0601,60106,Lican
+parish_ec_060150,city_ec_0601,60150,Riobamba
+parish_ec_060151,city_ec_0601,60151,Cacha
+parish_ec_060152,city_ec_0601,60152,Calpi
+parish_ec_060153,city_ec_0601,60153,Cubijies
+parish_ec_060154,city_ec_0601,60154,Flores
+parish_ec_060156,city_ec_0601,60156,Licto
+parish_ec_060157,city_ec_0601,60157,Pungala
+parish_ec_060158,city_ec_0601,60158,Punin
+parish_ec_060159,city_ec_0601,60159,Quimiag
+parish_ec_060160,city_ec_0601,60160,San Juan
+parish_ec_060161,city_ec_0601,60161,San Luis
+parish_ec_060250,city_ec_0602,60250,Alausi
+parish_ec_060251,city_ec_0602,60251,Achupallas
+parish_ec_060253,city_ec_0602,60253,Guasuntos
+parish_ec_060254,city_ec_0602,60254,Huigra
+parish_ec_060255,city_ec_0602,60255,Multitud
+parish_ec_060256,city_ec_0602,60256,Pistishi (Nariz Del Diablo)
+parish_ec_060257,city_ec_0602,60257,Pumallacta (Puma-Lacta)
+parish_ec_060258,city_ec_0602,60258,Sevilla
+parish_ec_060259,city_ec_0602,60259,Sibambe
+parish_ec_060260,city_ec_0602,60260,Tixan
+parish_ec_060301,city_ec_0603,60301,Cajabamba
+parish_ec_060302,city_ec_0603,60302,Sicalpa
+parish_ec_060350,city_ec_0603,60350,Villa La Union (Cajabamba)
+parish_ec_060351,city_ec_0603,60351,Cañi
+parish_ec_060352,city_ec_0603,60352,Columbe
+parish_ec_060353,city_ec_0603,60353,Juan De Velasco (Pangor)
+parish_ec_060354,city_ec_0603,60354,Santiago De Quito
+parish_ec_060450,city_ec_0604,60450,Chambo
+parish_ec_060550,city_ec_0605,60550,Chunchi
+parish_ec_060551,city_ec_0605,60551,Capzol
+parish_ec_060552,city_ec_0605,60552,Compud
+parish_ec_060553,city_ec_0605,60553,Gonzol
+parish_ec_060554,city_ec_0605,60554,Llagos
+parish_ec_060650,city_ec_0606,60650,Guamote
+parish_ec_060651,city_ec_0606,60651,Cebadas
+parish_ec_060652,city_ec_0606,60652,Palmira
+parish_ec_060701,city_ec_0607,60701,El Rosario
+parish_ec_060702,city_ec_0607,60702,La Matriz
+parish_ec_060750,city_ec_0607,60750,Guano
+parish_ec_060751,city_ec_0607,60751,Guanando
+parish_ec_060752,city_ec_0607,60752,Ilapo
+parish_ec_060753,city_ec_0607,60753,La Providencia
+parish_ec_060754,city_ec_0607,60754,San Andres
+parish_ec_060755,city_ec_0607,60755,San Gerardo De Pacaicaguan
+parish_ec_060756,city_ec_0607,60756,San Isidro De Patulu
+parish_ec_060757,city_ec_0607,60757,San Jose Del Chazo
+parish_ec_060758,city_ec_0607,60758,Santa Fe De Galan
+parish_ec_060759,city_ec_0607,60759,Valparaiso
+parish_ec_060850,city_ec_0608,60850,Pallatanga
+parish_ec_060950,city_ec_0609,60950,Penipe
+parish_ec_060951,city_ec_0609,60951,El Altar
+parish_ec_060952,city_ec_0609,60952,Matus
+parish_ec_060953,city_ec_0609,60953,Puela
+parish_ec_060954,city_ec_0609,60954,San Antonio De Bayushig
+parish_ec_060955,city_ec_0609,60955,La Candelaria
+parish_ec_060956,city_ec_0609,60956,Bilbao
+parish_ec_061050,city_ec_0610,61050,Cumanda
+parish_ec_070101,city_ec_0701,70101,La Providencia
+parish_ec_070102,city_ec_0701,70102,Machala
+parish_ec_070103,city_ec_0701,70103,Puerto Bolivar
+parish_ec_070104,city_ec_0701,70104,Nueve De Mayo
+parish_ec_070105,city_ec_0701,70105,El Cambio
+parish_ec_070150,city_ec_0701,70150,Machala
+parish_ec_070152,city_ec_0701,70152,El Retiro
+parish_ec_070221,city_ec_0702,70221,Chacras
+parish_ec_070250,city_ec_0702,70250,Arenillas
+parish_ec_070254,city_ec_0702,70254,Palmales
+parish_ec_070255,city_ec_0702,70255,Carcabon
+parish_ec_070350,city_ec_0703,70350,Paccha
+parish_ec_070351,city_ec_0703,70351,Ayapamba
+parish_ec_070352,city_ec_0703,70352,Cordoncillo
+parish_ec_070353,city_ec_0703,70353,Milagro
+parish_ec_070354,city_ec_0703,70354,San Jose
+parish_ec_070355,city_ec_0703,70355,San Juan De Cerro Azul
+parish_ec_070450,city_ec_0704,70450,Balsas
+parish_ec_070451,city_ec_0704,70451,Bellamaria
+parish_ec_070550,city_ec_0705,70550,Chilla
+parish_ec_070650,city_ec_0706,70650,El Guabo
+parish_ec_070651,city_ec_0706,70651,Barbones (Sucre)
+parish_ec_070652,city_ec_0706,70652,La Iberia
+parish_ec_070653,city_ec_0706,70653,Tendales (Cab. En Puerto)
+parish_ec_070654,city_ec_0706,70654,Rio Bonito
+parish_ec_070701,city_ec_0707,70701,Ecuador
+parish_ec_070702,city_ec_0707,70702,El Paraiso
+parish_ec_070703,city_ec_0707,70703,Hualtaco
+parish_ec_070704,city_ec_0707,70704,Milton Reyes
+parish_ec_070705,city_ec_0707,70705,Union Lojana
+parish_ec_070750,city_ec_0707,70750,Huaquillas
+parish_ec_070850,city_ec_0708,70850,Marcabeli
+parish_ec_070851,city_ec_0708,70851,El Ingenio
+parish_ec_070901,city_ec_0709,70901,Bolivar
+parish_ec_070902,city_ec_0709,70902,Loma De Franco
+parish_ec_070903,city_ec_0709,70903,Ochoa Leon (Matriz)
+parish_ec_070904,city_ec_0709,70904,Tres Cerritos
+parish_ec_070950,city_ec_0709,70950,Pasaje
+parish_ec_070951,city_ec_0709,70951,Buenavista
+parish_ec_070952,city_ec_0709,70952,Casacay
+parish_ec_070953,city_ec_0709,70953,La Peaña
+parish_ec_070954,city_ec_0709,70954,Progreso
+parish_ec_070955,city_ec_0709,70955,Uzhcurrumi
+parish_ec_070956,city_ec_0709,70956,Cañaquemada
+parish_ec_071001,city_ec_0710,71001,La Matriz
+parish_ec_071002,city_ec_0710,71002,La Susaya
+parish_ec_071003,city_ec_0710,71003,Piñas Grande
+parish_ec_071050,city_ec_0710,71050,Piñas
+parish_ec_071051,city_ec_0710,71051,Capiro
+parish_ec_071052,city_ec_0710,71052,La Bocana
+parish_ec_071053,city_ec_0710,71053,Moromoro (Cab. En El Vado)
+parish_ec_071054,city_ec_0710,71054,Piedras
+parish_ec_071055,city_ec_0710,71055,San Roque (Ambrosio Maldonado)
+parish_ec_071056,city_ec_0710,71056,Saracay
+parish_ec_071150,city_ec_0711,71150,Portovelo
+parish_ec_071151,city_ec_0711,71151,Curtincapa
+parish_ec_071152,city_ec_0711,71152,Morales
+parish_ec_071153,city_ec_0711,71153,Salati
+parish_ec_071201,city_ec_0712,71201,Santa Rosa
+parish_ec_071202,city_ec_0712,71202,Jeli
+parish_ec_071203,city_ec_0712,71203,Jambelí (Satelite)
+parish_ec_071204,city_ec_0712,71204,Jumón (Satelite)
+parish_ec_071250,city_ec_0712,71250,Santa Rosa
+parish_ec_071251,city_ec_0712,71251,Bellavista
+parish_ec_071252,city_ec_0712,71252,Jambeli
+parish_ec_071253,city_ec_0712,71253,La Avanzada
+parish_ec_071254,city_ec_0712,71254,San Antonio
+parish_ec_071255,city_ec_0712,71255,Torata
+parish_ec_071256,city_ec_0712,71256,Victoria
+parish_ec_071257,city_ec_0712,71257,Bellamaria
+parish_ec_071350,city_ec_0713,71350,Zaruma
+parish_ec_071351,city_ec_0713,71351,Abañin
+parish_ec_071352,city_ec_0713,71352,Arcapamba
+parish_ec_071353,city_ec_0713,71353,Guanazan
+parish_ec_071354,city_ec_0713,71354,Guizhaguiña
+parish_ec_071355,city_ec_0713,71355,Huertas
+parish_ec_071356,city_ec_0713,71356,Malvas
+parish_ec_071357,city_ec_0713,71357,Muluncay Grande
+parish_ec_071358,city_ec_0713,71358,Sinsao
+parish_ec_071359,city_ec_0713,71359,Salvias
+parish_ec_071401,city_ec_0714,71401,La Victoria
+parish_ec_071402,city_ec_0714,71402,Platanillos
+parish_ec_071403,city_ec_0714,71403,Valle Hermoso
+parish_ec_071450,city_ec_0714,71450,La Victoria
+parish_ec_071451,city_ec_0714,71451,La Libertad
+parish_ec_071452,city_ec_0714,71452,El Paraiso
+parish_ec_071453,city_ec_0714,71453,San Isidro
+parish_ec_080101,city_ec_0801,80101,Bartolome Ruiz (Cesar Franco Carrion)
+parish_ec_080102,city_ec_0801,80102,5 De Agosto
+parish_ec_080103,city_ec_0801,80103,Esmeraldas
+parish_ec_080104,city_ec_0801,80104,Luis Tello (Las Palmas)
+parish_ec_080105,city_ec_0801,80105,Simón Plata Torres
+parish_ec_080150,city_ec_0801,80150,Esmeraldas
+parish_ec_080152,city_ec_0801,80152,Camarones
+parish_ec_080153,city_ec_0801,80153,Crnel. Carlos Concha Torres
+parish_ec_080154,city_ec_0801,80154,Chinca
+parish_ec_080159,city_ec_0801,80159,Majua
+parish_ec_080163,city_ec_0801,80163,San Mateo
+parish_ec_080165,city_ec_0801,80165,Tabiazo
+parish_ec_080166,city_ec_0801,80166,Tachina
+parish_ec_080168,city_ec_0801,80168,Vuelta Larga
+parish_ec_080250,city_ec_0802,80250,Valdez (Limones)
+parish_ec_080251,city_ec_0802,80251,Anchayacu
+parish_ec_080252,city_ec_0802,80252,Atahualpa
+parish_ec_080253,city_ec_0802,80253,Borbon
+parish_ec_080254,city_ec_0802,80254,La Tola
+parish_ec_080255,city_ec_0802,80255,Luis Vargas Torres
+parish_ec_080256,city_ec_0802,80256,Maldonado
+parish_ec_080257,city_ec_0802,80257,Pampanal De Bolivar
+parish_ec_080258,city_ec_0802,80258,San Francisco De Onzole
+parish_ec_080259,city_ec_0802,80259,Santo Domingo De Onzole
+parish_ec_080260,city_ec_0802,80260,Selva Alegre
+parish_ec_080261,city_ec_0802,80261,Telembi
+parish_ec_080262,city_ec_0802,80262,Colon Eloy Del Maria
+parish_ec_080263,city_ec_0802,80263,San Jose De Cayapas
+parish_ec_080264,city_ec_0802,80264,Timbire
+parish_ec_080350,city_ec_0803,80350,Muisne
+parish_ec_080351,city_ec_0803,80351,Bolivar
+parish_ec_080352,city_ec_0803,80352,Daule
+parish_ec_080353,city_ec_0803,80353,Galera
+parish_ec_080354,city_ec_0803,80354,Quingue (Olmedo Perdomo Franco)
+parish_ec_080355,city_ec_0803,80355,Salima
+parish_ec_080356,city_ec_0803,80356,San Francisco
+parish_ec_080357,city_ec_0803,80357,San Gregorio
+parish_ec_080358,city_ec_0803,80358,San Jose De Chamanga
+parish_ec_080450,city_ec_0804,80450,Rosa Zarate (Quininde)
+parish_ec_080451,city_ec_0804,80451,Cube
+parish_ec_080452,city_ec_0804,80452,Chura (Chancama)
+parish_ec_080453,city_ec_0804,80453,Malimpia
+parish_ec_080454,city_ec_0804,80454,Viche
+parish_ec_080455,city_ec_0804,80455,La Union
+parish_ec_080550,city_ec_0805,80550,San Lorenzo
+parish_ec_080551,city_ec_0805,80551,Alto Tambo
+parish_ec_080552,city_ec_0805,80552,Ancon (Pichangal)
+parish_ec_080553,city_ec_0805,80553,Calderon
+parish_ec_080554,city_ec_0805,80554,Carondelet
+parish_ec_080555,city_ec_0805,80555,5 De Junio
+parish_ec_080556,city_ec_0805,80556,Concepcion
+parish_ec_080557,city_ec_0805,80557,Mataje
+parish_ec_080558,city_ec_0805,80558,San Javier De Cachavi
+parish_ec_080559,city_ec_0805,80559,Santa Rita
+parish_ec_080560,city_ec_0805,80560,Tambillo
+parish_ec_080561,city_ec_0805,80561,Tulubi
+parish_ec_080562,city_ec_0805,80562,Urbina
+parish_ec_080650,city_ec_0806,80650,Atacames
+parish_ec_080651,city_ec_0806,80651,La Union
+parish_ec_080652,city_ec_0806,80652,Sua
+parish_ec_080653,city_ec_0806,80653,Tonchigue
+parish_ec_080654,city_ec_0806,80654,Tonsupa
+parish_ec_080750,city_ec_0807,80750,Rioverde
+parish_ec_080751,city_ec_0807,80751,Chontaduro
+parish_ec_080752,city_ec_0807,80752,Chumunde
+parish_ec_080753,city_ec_0807,80753,Lagarto
+parish_ec_080754,city_ec_0807,80754,Montalvo
+parish_ec_080755,city_ec_0807,80755,Rocafuerte
+parish_ec_090101,city_ec_0901,90101,Ayacucho
+parish_ec_090102,city_ec_0901,90102,Bolivar (Sagrario)
+parish_ec_090103,city_ec_0901,90103,Carbo (Concepcion)
+parish_ec_090104,city_ec_0901,90104,Febres Cordero
+parish_ec_090105,city_ec_0901,90105,Garcia Moreno
+parish_ec_090106,city_ec_0901,90106,Letamendi
+parish_ec_090107,city_ec_0901,90107,Nueve De Octubre
+parish_ec_090108,city_ec_0901,90108,Olmedo (San Alejo)
+parish_ec_090109,city_ec_0901,90109,Roca
+parish_ec_090110,city_ec_0901,90110,Rocafuerte
+parish_ec_090111,city_ec_0901,90111,Sucre
+parish_ec_090112,city_ec_0901,90112,Tarqui
+parish_ec_090113,city_ec_0901,90113,Urdaneta
+parish_ec_090114,city_ec_0901,90114,Ximena
+parish_ec_090115,city_ec_0901,90115,Chongon
+parish_ec_090116,city_ec_0901,90116,Pascuales
+parish_ec_090150,city_ec_0901,90150,Guayaquil
+parish_ec_090152,city_ec_0901,90152,Juan Gomez Rendon (Progreso)
+parish_ec_090153,city_ec_0901,90153,Morro
+parish_ec_090156,city_ec_0901,90156,Posorja
+parish_ec_090157,city_ec_0901,90157,Puna
+parish_ec_090158,city_ec_0901,90158,Tenguel
+parish_ec_090250,city_ec_0902,90250,Alfredo Baquerizo Moreno
+parish_ec_090350,city_ec_0903,90350,Balao
+parish_ec_090450,city_ec_0904,90450,Balzar
+parish_ec_090550,city_ec_0905,90550,Colimes
+parish_ec_090551,city_ec_0905,90551,San Jacinto
+parish_ec_090601,city_ec_0906,90601,Daule
+parish_ec_090602,city_ec_0906,90602,Banife
+parish_ec_090603,city_ec_0906,90603,Emiliano Caicedo Marcos
+parish_ec_090604,city_ec_0906,90604,Magro
+parish_ec_090605,city_ec_0906,90605,Padre Juan Bautista Aguirre
+parish_ec_090606,city_ec_0906,90606,Santa Clara
+parish_ec_090607,city_ec_0906,90607,Vicente Piedrahita
+parish_ec_090650,city_ec_0906,90650,Daule
+parish_ec_090652,city_ec_0906,90652,Juan Bautista Aguirre (Los Tintos)
+parish_ec_090653,city_ec_0906,90653,Laurel
+parish_ec_090654,city_ec_0906,90654,Limonal
+parish_ec_090656,city_ec_0906,90656,Las Lojas (Enrique Baquerizo Moreno)
+parish_ec_090750,city_ec_0907,90750,Eloy Alfaro (Duran)
+parish_ec_090850,city_ec_0908,90850,Velasco Ibarra (EL Empalme)
+parish_ec_090851,city_ec_0908,90851,Guayas (Pueblo Nuevo)
+parish_ec_090852,city_ec_0908,90852,El Rosario
+parish_ec_090950,city_ec_0909,90950,El Triunfo
+parish_ec_091050,city_ec_0910,91050,Milagro
+parish_ec_091051,city_ec_0910,91051,Chobo
+parish_ec_091053,city_ec_0910,91053,Mariscal Sucre (Huaques)
+parish_ec_091054,city_ec_0910,91054,Roberto Astudillo
+parish_ec_091150,city_ec_0911,91150,Naranjal
+parish_ec_091151,city_ec_0911,91151,Jesus Maria
+parish_ec_091152,city_ec_0911,91152,San Carlos
+parish_ec_091153,city_ec_0911,91153,Santa Rosa De Flandes
+parish_ec_091154,city_ec_0911,91154,Taura
+parish_ec_091250,city_ec_0912,91250,Naranjito
+parish_ec_091350,city_ec_0913,91350,Palestina
+parish_ec_091450,city_ec_0914,91450,Pedro Carbo
+parish_ec_091451,city_ec_0914,91451,Valle De La Virgen
+parish_ec_091452,city_ec_0914,91452,Sabanilla
+parish_ec_091601,city_ec_0916,91601,Samborondón
+parish_ec_091602,city_ec_0916,91602,La Puntilla (Satelite)
+parish_ec_091650,city_ec_0916,91650,Samborondon
+parish_ec_091651,city_ec_0916,91651,Tarifa
+parish_ec_091850,city_ec_0918,91850,Santa Lucia
+parish_ec_091901,city_ec_0919,91901,Bocana
+parish_ec_091902,city_ec_0919,91902,Candilejos
+parish_ec_091903,city_ec_0919,91903,Central
+parish_ec_091904,city_ec_0919,91904,Paraiso
+parish_ec_091905,city_ec_0919,91905,San Mateo
+parish_ec_091950,city_ec_0919,91950,El Salitre (Las Ramas)
+parish_ec_091951,city_ec_0919,91951,General Vernaza (Dos Esteros)
+parish_ec_091952,city_ec_0919,91952,La Victoria (Ñauza)
+parish_ec_091953,city_ec_0919,91953,Junquillal
+parish_ec_092050,city_ec_0920,92050,San Jacinto De Yaguachi
+parish_ec_092053,city_ec_0920,92053,Gral. Pedro J. Montero (Boliche)
+parish_ec_092055,city_ec_0920,92055,Yaguachi Viejo (Cone)
+parish_ec_092056,city_ec_0920,92056,Virgen De Fatima
+parish_ec_092150,city_ec_0921,92150,General Villamil
+parish_ec_092250,city_ec_0922,92250,Simon Bolivar
+parish_ec_092251,city_ec_0922,92251,Crnel. Lorenzo De Garaicoa (Pedregal)
+parish_ec_092350,city_ec_0923,92350,Coronel Marcelino Maridueña
+parish_ec_092450,city_ec_0924,92450,Lomas De Sargentillo
+parish_ec_092550,city_ec_0925,92550,Narcisa De Jesus
+parish_ec_092750,city_ec_0927,92750,General Antonio Elizalde (Bucay)
+parish_ec_092850,city_ec_0928,92850,Isidro Ayora
+parish_ec_100101,city_ec_1001,100101,Caranqui
+parish_ec_100102,city_ec_1001,100102,Guayaquil De Alpachaca
+parish_ec_100103,city_ec_1001,100103,Sagrario
+parish_ec_100104,city_ec_1001,100104,San Francisco
+parish_ec_100105,city_ec_1001,100105,La Dolorosa Del Piorato
+parish_ec_100150,city_ec_1001,100150,Ibarra
+parish_ec_100151,city_ec_1001,100151,Ambuqui
+parish_ec_100152,city_ec_1001,100152,Angochagua
+parish_ec_100153,city_ec_1001,100153,Carolina
+parish_ec_100154,city_ec_1001,100154,La Esperanza
+parish_ec_100155,city_ec_1001,100155,Lita
+parish_ec_100156,city_ec_1001,100156,Salinas
+parish_ec_100157,city_ec_1001,100157,San Antonio
+parish_ec_100201,city_ec_1002,100201,Andrade Marin (Lourdes)
+parish_ec_100202,city_ec_1002,100202,Atuntaqui
+parish_ec_100250,city_ec_1002,100250,Atuntaqui
+parish_ec_100251,city_ec_1002,100251,Imbaya (San Luis De Cobuendo)
+parish_ec_100252,city_ec_1002,100252,San Francisco De Natabuel
+parish_ec_100253,city_ec_1002,100253,San Jose De Chaltura
+parish_ec_100254,city_ec_1002,100254,San Roque
+parish_ec_100301,city_ec_1003,100301,Sagrario
+parish_ec_100302,city_ec_1003,100302,San Francisco
+parish_ec_100350,city_ec_1003,100350,Cotacachi
+parish_ec_100351,city_ec_1003,100351,Apuela
+parish_ec_100352,city_ec_1003,100352,Garcia Moreno (Llurimagua)
+parish_ec_100353,city_ec_1003,100353,Imantag
+parish_ec_100354,city_ec_1003,100354,Peñaherrera
+parish_ec_100355,city_ec_1003,100355,Plaza Gutierrez (Calvario)
+parish_ec_100356,city_ec_1003,100356,Quiroga
+parish_ec_100357,city_ec_1003,100357,6 De Julio De Cuellaje
+parish_ec_100358,city_ec_1003,100358,Vacas Galindo (EL Churo)
+parish_ec_100401,city_ec_1004,100401,Jordan
+parish_ec_100402,city_ec_1004,100402,San Luis
+parish_ec_100450,city_ec_1004,100450,Otavalo
+parish_ec_100451,city_ec_1004,100451,Dr. Miguel Egas Cabezas (Peguche)
+parish_ec_100452,city_ec_1004,100452,Eugenio Espejo (Calpaqui)
+parish_ec_100453,city_ec_1004,100453,Gonzalez Suarez
+parish_ec_100454,city_ec_1004,100454,Pataqui
+parish_ec_100455,city_ec_1004,100455,San José De Quichinche
+parish_ec_100456,city_ec_1004,100456,San Juan De Iluman
+parish_ec_100457,city_ec_1004,100457,San Pablo
+parish_ec_100458,city_ec_1004,100458,San Rafael
+parish_ec_100459,city_ec_1004,100459,Selva Alegre
+parish_ec_100550,city_ec_1005,100550,Pimampiro
+parish_ec_100551,city_ec_1005,100551,Chuga
+parish_ec_100552,city_ec_1005,100552,Mariano Acosta
+parish_ec_100553,city_ec_1005,100553,San Francisco De Sigsipam
+parish_ec_100650,city_ec_1006,100650,Urcuqui
+parish_ec_100651,city_ec_1006,100651,Cahuasqui
+parish_ec_100652,city_ec_1006,100652,La Merced De Buenos Aires
+parish_ec_100653,city_ec_1006,100653,Pablo Arenas
+parish_ec_100654,city_ec_1006,100654,San Blas
+parish_ec_100655,city_ec_1006,100655,Tumbabiro
+parish_ec_110101,city_ec_1101,110101,El Sagrario
+parish_ec_110102,city_ec_1101,110102,San Sebastian
+parish_ec_110103,city_ec_1101,110103,Sucre
+parish_ec_110104,city_ec_1101,110104,Valle
+parish_ec_110150,city_ec_1101,110150,Loja
+parish_ec_110151,city_ec_1101,110151,Chantaco
+parish_ec_110152,city_ec_1101,110152,Chuquiribamba
+parish_ec_110153,city_ec_1101,110153,El Cisne
+parish_ec_110154,city_ec_1101,110154,Gualel
+parish_ec_110155,city_ec_1101,110155,Jimbilla
+parish_ec_110156,city_ec_1101,110156,Malacatos (Valladolid)
+parish_ec_110157,city_ec_1101,110157,San Lucas
+parish_ec_110158,city_ec_1101,110158,San Pedro De Vilcabamba
+parish_ec_110159,city_ec_1101,110159,Santiago
+parish_ec_110160,city_ec_1101,110160,Taquil (Miguel Riofrio)
+parish_ec_110161,city_ec_1101,110161,Vilcabamba (Victoria)
+parish_ec_110162,city_ec_1101,110162,Yangana (Arsenio Castillo)
+parish_ec_110163,city_ec_1101,110163,Quinara
+parish_ec_110201,city_ec_1102,110201,Cariamanga
+parish_ec_110202,city_ec_1102,110202,Chile
+parish_ec_110203,city_ec_1102,110203,San Vicente
+parish_ec_110250,city_ec_1102,110250,Cariamanga
+parish_ec_110251,city_ec_1102,110251,Colaisaca
+parish_ec_110252,city_ec_1102,110252,El Lucero
+parish_ec_110253,city_ec_1102,110253,Utuana
+parish_ec_110254,city_ec_1102,110254,Sangillin
+parish_ec_110301,city_ec_1103,110301,Catamayo
+parish_ec_110302,city_ec_1103,110302,San Jose
+parish_ec_110350,city_ec_1103,110350,Catamayo (La Toma)
+parish_ec_110351,city_ec_1103,110351,El Tambo
+parish_ec_110352,city_ec_1103,110352,Guayquichuma
+parish_ec_110353,city_ec_1103,110353,San Pedro De La Bendita
+parish_ec_110354,city_ec_1103,110354,Zambi
+parish_ec_110450,city_ec_1104,110450,Celica
+parish_ec_110451,city_ec_1104,110451,Cruzpamba
+parish_ec_110455,city_ec_1104,110455,Pozul (San Juan De Pozul)
+parish_ec_110456,city_ec_1104,110456,Sabanilla
+parish_ec_110457,city_ec_1104,110457,Tnte. Maximiliano Rodriguez Loayza
+parish_ec_110550,city_ec_1105,110550,Chaguarpamba
+parish_ec_110551,city_ec_1105,110551,Buenavista
+parish_ec_110552,city_ec_1105,110552,El Rosario
+parish_ec_110553,city_ec_1105,110553,Santa Rufina
+parish_ec_110554,city_ec_1105,110554,Amarillos
+parish_ec_110650,city_ec_1106,110650,Amaluza
+parish_ec_110651,city_ec_1106,110651,Bellavista
+parish_ec_110652,city_ec_1106,110652,Jimbura
+parish_ec_110653,city_ec_1106,110653,Santa Teresita
+parish_ec_110654,city_ec_1106,110654,27 De Abril
+parish_ec_110655,city_ec_1106,110655,El Ingenio
+parish_ec_110656,city_ec_1106,110656,El Airo
+parish_ec_110750,city_ec_1107,110750,Gonzanama
+parish_ec_110751,city_ec_1107,110751,Changaimina (La Libertad)
+parish_ec_110753,city_ec_1107,110753,Nambacola
+parish_ec_110754,city_ec_1107,110754,Purunuma (Eguiguren)
+parish_ec_110756,city_ec_1107,110756,Sacapalca
+parish_ec_110801,city_ec_1108,110801,General Eloy Alfaro (San Sebastian)
+parish_ec_110802,city_ec_1108,110802,Macara (Manuel Enrique Rangel Suquilanda)
+parish_ec_110850,city_ec_1108,110850,Macara
+parish_ec_110851,city_ec_1108,110851,Larama
+parish_ec_110852,city_ec_1108,110852,La Victoria
+parish_ec_110853,city_ec_1108,110853,Sabiango (La Capilla)
+parish_ec_110901,city_ec_1109,110901,Catacocha
+parish_ec_110902,city_ec_1109,110902,Lourdes
+parish_ec_110950,city_ec_1109,110950,Catacocha
+parish_ec_110951,city_ec_1109,110951,Cangonama
+parish_ec_110952,city_ec_1109,110952,Guachanama
+parish_ec_110954,city_ec_1109,110954,Lauro Guerrero
+parish_ec_110956,city_ec_1109,110956,Orianga
+parish_ec_110957,city_ec_1109,110957,San Antonio
+parish_ec_110958,city_ec_1109,110958,CaSanga
+parish_ec_110959,city_ec_1109,110959,Yamana
+parish_ec_111050,city_ec_1110,111050,Alamor
+parish_ec_111051,city_ec_1110,111051,Ciano
+parish_ec_111052,city_ec_1110,111052,El Arenal
+parish_ec_111053,city_ec_1110,111053,El Limo (Mariana De Jesus)
+parish_ec_111054,city_ec_1110,111054,Mercadillo
+parish_ec_111055,city_ec_1110,111055,Vicentino
+parish_ec_111150,city_ec_1111,111150,Saraguro
+parish_ec_111151,city_ec_1111,111151,El Paraiso De Celen
+parish_ec_111152,city_ec_1111,111152,El Tablon
+parish_ec_111153,city_ec_1111,111153,Lluzhapa
+parish_ec_111154,city_ec_1111,111154,Manu
+parish_ec_111155,city_ec_1111,111155,San Antonio De Quimbe (Cumbe)
+parish_ec_111156,city_ec_1111,111156,San Pablo De Tenta
+parish_ec_111157,city_ec_1111,111157,San Sebastian De Yuluc
+parish_ec_111158,city_ec_1111,111158,Selva Alegre
+parish_ec_111159,city_ec_1111,111159,Urdaneta (Paquishapa)
+parish_ec_111160,city_ec_1111,111160,Sumaypamba
+parish_ec_111250,city_ec_1112,111250,Sozoranga
+parish_ec_111251,city_ec_1112,111251,Nueva Fatima
+parish_ec_111252,city_ec_1112,111252,Tacamoros
+parish_ec_111350,city_ec_1113,111350,Zapotillo
+parish_ec_111351,city_ec_1113,111351,Mangahurco
+parish_ec_111352,city_ec_1113,111352,Garzareal
+parish_ec_111353,city_ec_1113,111353,Limones
+parish_ec_111354,city_ec_1113,111354,Paletillas
+parish_ec_111355,city_ec_1113,111355,Bolaspamba
+parish_ec_111450,city_ec_1114,111450,Pindal
+parish_ec_111451,city_ec_1114,111451,Chaquinal
+parish_ec_111452,city_ec_1114,111452,12 De Diciembre
+parish_ec_111550,city_ec_1115,111550,Quilanga
+parish_ec_111551,city_ec_1115,111551,Fundochamba
+parish_ec_111552,city_ec_1115,111552,San Antonio De Las Aradas
+parish_ec_111650,city_ec_1116,111650,Olmedo
+parish_ec_111651,city_ec_1116,111651,Tingue
+parish_ec_120101,city_ec_1201,120101,Clemente Baquerizo
+parish_ec_120102,city_ec_1201,120102,Dr. Camilo Ponce
+parish_ec_120103,city_ec_1201,120103,Barreiro
+parish_ec_120104,city_ec_1201,120104,El Salto
+parish_ec_120150,city_ec_1201,120150,Babahoyo
+parish_ec_120152,city_ec_1201,120152,Caracol
+parish_ec_120153,city_ec_1201,120153,Febres Cordero
+parish_ec_120154,city_ec_1201,120154,Pimocha
+parish_ec_120155,city_ec_1201,120155,La Union
+parish_ec_120250,city_ec_1202,120250,Baba
+parish_ec_120251,city_ec_1202,120251,Guare
+parish_ec_120252,city_ec_1202,120252,Isla De Bejucal
+parish_ec_120350,city_ec_1203,120350,Montalvo
+parish_ec_120450,city_ec_1204,120450,Puebloviejo
+parish_ec_120451,city_ec_1204,120451,Puerto Pechiche
+parish_ec_120452,city_ec_1204,120452,San Juan
+parish_ec_120501,city_ec_1205,120501,Quevedo
+parish_ec_120502,city_ec_1205,120502,San Camilo
+parish_ec_120504,city_ec_1205,120504,Guayacan
+parish_ec_120505,city_ec_1205,120505,Nicolas Infante Diaz
+parish_ec_120506,city_ec_1205,120506,San Cristobal
+parish_ec_120507,city_ec_1205,120507,Siete De Octubre
+parish_ec_120508,city_ec_1205,120508,24 De Mayo
+parish_ec_120509,city_ec_1205,120509,Venus Del Rio Quevedo
+parish_ec_120510,city_ec_1205,120510,Viva Alfaro
+parish_ec_120550,city_ec_1205,120550,Quevedo
+parish_ec_120553,city_ec_1205,120553,San Carlos
+parish_ec_120555,city_ec_1205,120555,Las Esperanza
+parish_ec_120650,city_ec_1206,120650,Catarama
+parish_ec_120651,city_ec_1206,120651,Ricaurte
+parish_ec_120750,city_ec_1207,120750,Ventanas
+parish_ec_120752,city_ec_1207,120752,Zapotal
+parish_ec_120850,city_ec_1208,120850,Vinces
+parish_ec_120851,city_ec_1208,120851,Antonio Sotomayor
+parish_ec_120950,city_ec_1209,120950,Palenque
+parish_ec_121001,city_ec_1210,121001,San Jacinto De Buena Fé
+parish_ec_121002,city_ec_1210,121002,7 De Agosto
+parish_ec_121003,city_ec_1210,121003,11 De Octubre
+parish_ec_121050,city_ec_1210,121050,San Jacinto De Buena Fe
+parish_ec_121051,city_ec_1210,121051,Patricia Pilar
+parish_ec_121150,city_ec_1211,121150,Valencia
+parish_ec_121250,city_ec_1212,121250,Mocache
+parish_ec_121350,city_ec_1213,121350,Quinsaloma
+parish_ec_130101,city_ec_1301,130101,Andres De Vera
+parish_ec_130102,city_ec_1301,130102,Colon
+parish_ec_130103,city_ec_1301,130103,12 De Marzo
+parish_ec_130104,city_ec_1301,130104,Picoaza
+parish_ec_130105,city_ec_1301,130105,Portoviejo
+parish_ec_130106,city_ec_1301,130106,San Pablo
+parish_ec_130107,city_ec_1301,130107,18 De Octubre
+parish_ec_130108,city_ec_1301,130108,Francisco Pacheco
+parish_ec_130109,city_ec_1301,130109,Simón Bolívar
+parish_ec_130150,city_ec_1301,130150,Portoviejo
+parish_ec_130151,city_ec_1301,130151,Abdon Calderon (San Francisco)
+parish_ec_130152,city_ec_1301,130152,Alhajuela (Bajo Grande)
+parish_ec_130153,city_ec_1301,130153,Crucita
+parish_ec_130154,city_ec_1301,130154,Pueblo Nuevo
+parish_ec_130155,city_ec_1301,130155,Riochico (Rio Chico)
+parish_ec_130156,city_ec_1301,130156,San Placido
+parish_ec_130157,city_ec_1301,130157,Chirijos
+parish_ec_130250,city_ec_1302,130250,Calceta
+parish_ec_130251,city_ec_1302,130251,Membrillo
+parish_ec_130252,city_ec_1302,130252,Quiroga
+parish_ec_130301,city_ec_1303,130301,Chone
+parish_ec_130302,city_ec_1303,130302,Santa Rita
+parish_ec_130350,city_ec_1303,130350,Chone
+parish_ec_130351,city_ec_1303,130351,Boyaca
+parish_ec_130352,city_ec_1303,130352,Canuto
+parish_ec_130353,city_ec_1303,130353,Convento
+parish_ec_130354,city_ec_1303,130354,Chibunga
+parish_ec_130355,city_ec_1303,130355,Eloy Alfaro
+parish_ec_130356,city_ec_1303,130356,Ricaurte
+parish_ec_130357,city_ec_1303,130357,San Antonio
+parish_ec_130401,city_ec_1304,130401,El Carmen
+parish_ec_130404,city_ec_1304,130404,4 De Diciembre
+parish_ec_130450,city_ec_1304,130450,El Carmen
+parish_ec_130451,city_ec_1304,130451,Wilfrido Loor Moreira (Maicito)
+parish_ec_130452,city_ec_1304,130452,San Pedro De Suma
+parish_ec_130550,city_ec_1305,130550,Flavio Alfaro
+parish_ec_130551,city_ec_1305,130551,San Francisco De Novillo
+parish_ec_130552,city_ec_1305,130552,Zapallo
+parish_ec_130601,city_ec_1306,130601,San Lorenzo De Jipijapa
+parish_ec_130602,city_ec_1306,130602,Dr. Miguel Moran Lucio
+parish_ec_130603,city_ec_1306,130603,Manuel Inocencio Parrales Y Guale
+parish_ec_130650,city_ec_1306,130650,Jipijapa
+parish_ec_130651,city_ec_1306,130651,America
+parish_ec_130652,city_ec_1306,130652,El Anegado
+parish_ec_130653,city_ec_1306,130653,Julcuy
+parish_ec_130654,city_ec_1306,130654,La Union
+parish_ec_130656,city_ec_1306,130656,Membrillal
+parish_ec_130657,city_ec_1306,130657,Pedro Pablo Gomez
+parish_ec_130658,city_ec_1306,130658,Puerto De Cayo
+parish_ec_130750,city_ec_1307,130750,Junin
+parish_ec_130801,city_ec_1308,130801,Los Esteros
+parish_ec_130802,city_ec_1308,130802,Manta
+parish_ec_130803,city_ec_1308,130803,San Mateo
+parish_ec_130804,city_ec_1308,130804,Tarqui
+parish_ec_130805,city_ec_1308,130805,Eloy Alfaro
+parish_ec_130850,city_ec_1308,130850,Manta
+parish_ec_130851,city_ec_1308,130851,San Lorenzo
+parish_ec_130852,city_ec_1308,130852,Santa Marianita (Boca De Pacoche)
+parish_ec_130901,city_ec_1309,130901,Montecristi
+parish_ec_130902,city_ec_1309,130902,Anibal San Andres
+parish_ec_130950,city_ec_1309,130950,Montecristi
+parish_ec_130952,city_ec_1309,130952,La Pila
+parish_ec_131050,city_ec_1310,131050,Pajan
+parish_ec_131051,city_ec_1310,131051,Campozano (La Palma De Pajan)
+parish_ec_131052,city_ec_1310,131052,Cascol
+parish_ec_131053,city_ec_1310,131053,Guale
+parish_ec_131054,city_ec_1310,131054,Lascano
+parish_ec_131150,city_ec_1311,131150,Pichincha
+parish_ec_131151,city_ec_1311,131151,Barraganete
+parish_ec_131152,city_ec_1311,131152,San Sebastian
+parish_ec_131250,city_ec_1312,131250,Rocafuerte
+parish_ec_131301,city_ec_1313,131301,Santa Ana
+parish_ec_131302,city_ec_1313,131302,Lodana
+parish_ec_131350,city_ec_1313,131350,Santa Ana De Vuelta Larga
+parish_ec_131351,city_ec_1313,131351,Ayacucho
+parish_ec_131352,city_ec_1313,131352,Honorato Vasquez
+parish_ec_131353,city_ec_1313,131353,La Union
+parish_ec_131355,city_ec_1313,131355,San Pablo
+parish_ec_131401,city_ec_1314,131401,Bahia De Caraquez
+parish_ec_131402,city_ec_1314,131402,Leonidas Plaza Gutierrez
+parish_ec_131450,city_ec_1314,131450,Bahia De Caraquez
+parish_ec_131453,city_ec_1314,131453,Charapoto
+parish_ec_131457,city_ec_1314,131457,San Isidro
+parish_ec_131550,city_ec_1315,131550,Tosagua
+parish_ec_131551,city_ec_1315,131551,Bachillero
+parish_ec_131552,city_ec_1315,131552,Angel Pedro Giler
+parish_ec_131650,city_ec_1316,131650,Sucre
+parish_ec_131651,city_ec_1316,131651,Bellavista
+parish_ec_131652,city_ec_1316,131652,Noboa
+parish_ec_131653,city_ec_1316,131653,Arq. Sixto Duran Ballen
+parish_ec_131750,city_ec_1317,131750,Pedernales
+parish_ec_131751,city_ec_1317,131751,Cojimies
+parish_ec_131752,city_ec_1317,131752,10 De Agosto
+parish_ec_131753,city_ec_1317,131753,Atahualpa
+parish_ec_131850,city_ec_1318,131850,Olmedo
+parish_ec_131950,city_ec_1319,131950,Puerto Lopez
+parish_ec_131951,city_ec_1319,131951,Machalilla
+parish_ec_131952,city_ec_1319,131952,Salango
+parish_ec_132050,city_ec_1320,132050,Jama
+parish_ec_132150,city_ec_1321,132150,Jaramijo
+parish_ec_132250,city_ec_1322,132250,San Vicente
+parish_ec_132251,city_ec_1322,132251,Canoa
+parish_ec_140150,city_ec_1401,140150,Macas
+parish_ec_140151,city_ec_1401,140151,Alshi
+parish_ec_140153,city_ec_1401,140153,General Proaño
+parish_ec_140156,city_ec_1401,140156,San Isidro
+parish_ec_140157,city_ec_1401,140157,Sevilla Don Bosco
+parish_ec_140158,city_ec_1401,140158,Sinai
+parish_ec_140160,city_ec_1401,140160,Zuña (Zuñac)
+parish_ec_140162,city_ec_1401,140162,Cuchaentza
+parish_ec_140164,city_ec_1401,140164,Rio Blanco
+parish_ec_140201,city_ec_1402,140201,Gualaquiza
+parish_ec_140202,city_ec_1402,140202,Mercedes Molina
+parish_ec_140250,city_ec_1402,140250,Gualaquiza
+parish_ec_140251,city_ec_1402,140251,Amazonas (Rosario De Cuyes)
+parish_ec_140252,city_ec_1402,140252,Bermejos
+parish_ec_140253,city_ec_1402,140253,Bomboiza
+parish_ec_140254,city_ec_1402,140254,Chigüinda
+parish_ec_140255,city_ec_1402,140255,El Rosario
+parish_ec_140256,city_ec_1402,140256,Nueva Tarqui
+parish_ec_140257,city_ec_1402,140257,San Miguel De Cuyes
+parish_ec_140258,city_ec_1402,140258,El Ideal
+parish_ec_140350,city_ec_1403,140350,General Leonidas Plaza Gutierrez (Limon)
+parish_ec_140351,city_ec_1403,140351,Indanza
+parish_ec_140353,city_ec_1403,140353,San Antonio
+parish_ec_140356,city_ec_1403,140356,San Miguel De Conchay
+parish_ec_140357,city_ec_1403,140357,Santa SuSana De Chiviaza
+parish_ec_140358,city_ec_1403,140358,Yunganza
+parish_ec_140450,city_ec_1404,140450,Palora (Metzera)
+parish_ec_140451,city_ec_1404,140451,Arapicos
+parish_ec_140452,city_ec_1404,140452,Cumanda
+parish_ec_140454,city_ec_1404,140454,Sangay
+parish_ec_140455,city_ec_1404,140455,16 De Agosto
+parish_ec_140550,city_ec_1405,140550,Santiago De Mendez
+parish_ec_140551,city_ec_1405,140551,Copal
+parish_ec_140552,city_ec_1405,140552,Chupianza
+parish_ec_140553,city_ec_1405,140553,Patuca
+parish_ec_140554,city_ec_1405,140554,San Luis De El Acho
+parish_ec_140556,city_ec_1405,140556,Tayuza
+parish_ec_140557,city_ec_1405,140557,San Francisco De Chinimbimi
+parish_ec_140650,city_ec_1406,140650,Sucua
+parish_ec_140651,city_ec_1406,140651,Asuncion
+parish_ec_140652,city_ec_1406,140652,Huambi
+parish_ec_140655,city_ec_1406,140655,Santa Marianita De Jesus
+parish_ec_140750,city_ec_1407,140750,Huamboya
+parish_ec_140751,city_ec_1407,140751,Chiguaza
+parish_ec_140850,city_ec_1408,140850,San Juan Bosco
+parish_ec_140851,city_ec_1408,140851,Pan De Azucar
+parish_ec_140852,city_ec_1408,140852,San Carlos De Limon
+parish_ec_140853,city_ec_1408,140853,San Jacinto De Wakambeis
+parish_ec_140854,city_ec_1408,140854,Santiago De Pananza
+parish_ec_140950,city_ec_1409,140950,Taisha
+parish_ec_140951,city_ec_1409,140951,Huasaga
+parish_ec_140952,city_ec_1409,140952,Macuma
+parish_ec_140953,city_ec_1409,140953,Tuutinentza
+parish_ec_141050,city_ec_1410,141050,Logroño
+parish_ec_141051,city_ec_1410,141051,Yaupi
+parish_ec_141052,city_ec_1410,141052,Shimpis
+parish_ec_141150,city_ec_1411,141150,Pablo Vi
+parish_ec_141250,city_ec_1412,141250,Santiago
+parish_ec_141251,city_ec_1412,141251,San Jose De Morona
+parish_ec_150150,city_ec_1501,150150,Tena
+parish_ec_150151,city_ec_1501,150151,Ahuano
+parish_ec_150153,city_ec_1501,150153,Chontapunta
+parish_ec_150154,city_ec_1501,150154,Pano
+parish_ec_150155,city_ec_1501,150155,Puerto Misahualli
+parish_ec_150156,city_ec_1501,150156,Puerto Napo
+parish_ec_150157,city_ec_1501,150157,Talag
+parish_ec_150350,city_ec_1503,150350,Archidona
+parish_ec_150352,city_ec_1503,150352,Cotundo
+parish_ec_150354,city_ec_1503,150354,San Pablo De Ushpayacu
+parish_ec_150450,city_ec_1504,150450,El Chaco
+parish_ec_150451,city_ec_1504,150451,Gonzalo Diaz De Pineda (EL Bombon)
+parish_ec_150452,city_ec_1504,150452,Linares
+parish_ec_150453,city_ec_1504,150453,Oyacachi
+parish_ec_150454,city_ec_1504,150454,Santa Rosa
+parish_ec_150455,city_ec_1504,150455,Sardinas
+parish_ec_150750,city_ec_1507,150750,Baeza
+parish_ec_150751,city_ec_1507,150751,CoSanga
+parish_ec_150752,city_ec_1507,150752,Cuyuja
+parish_ec_150753,city_ec_1507,150753,Papallacta
+parish_ec_150754,city_ec_1507,150754,San Francisco De Borja (Virgilio Davila)
+parish_ec_150755,city_ec_1507,150755,San Jose De Payamino
+parish_ec_150756,city_ec_1507,150756,Sumaco
+parish_ec_150950,city_ec_1509,150950,Carlos Julio Arosemena T.
+parish_ec_160150,city_ec_1601,160150,Puyo
+parish_ec_160152,city_ec_1601,160152,Canelos
+parish_ec_160154,city_ec_1601,160154,Diez De Agosto
+parish_ec_160155,city_ec_1601,160155,Fatima
+parish_ec_160156,city_ec_1601,160156,Montalvo (Andoas)
+parish_ec_160157,city_ec_1601,160157,Pomona
+parish_ec_160158,city_ec_1601,160158,Rio Corrientes
+parish_ec_160159,city_ec_1601,160159,Rio Tigre
+parish_ec_160161,city_ec_1601,160161,Sarayacu
+parish_ec_160162,city_ec_1601,160162,Simon Bolivar
+parish_ec_160163,city_ec_1601,160163,Tarqui
+parish_ec_160164,city_ec_1601,160164,Teniente Hugo Ortiz
+parish_ec_160165,city_ec_1601,160165,Veracruz (Indillama)
+parish_ec_160166,city_ec_1601,160166,El Triunfo
+parish_ec_160250,city_ec_1602,160250,Mera
+parish_ec_160251,city_ec_1602,160251,Madre Tierra
+parish_ec_160252,city_ec_1602,160252,Shell
+parish_ec_160350,city_ec_1603,160350,Santa Clara
+parish_ec_160351,city_ec_1603,160351,San Jose
+parish_ec_160450,city_ec_1604,160450,Arajuno
+parish_ec_160451,city_ec_1604,160451,Curaray
+parish_ec_170101,city_ec_1701,170101,Alfaro (Chimbacalle)
+parish_ec_170102,city_ec_1701,170102,Benalcazar
+parish_ec_170103,city_ec_1701,170103,Cotocollao
+parish_ec_170104,city_ec_1701,170104,Chaupicruz (LA Concepcion)
+parish_ec_170105,city_ec_1701,170105,Chillogallo
+parish_ec_170106,city_ec_1701,170106,El Salvador
+parish_ec_170107,city_ec_1701,170107,Gonzalez Suarez
+parish_ec_170108,city_ec_1701,170108,Guapulo
+parish_ec_170109,city_ec_1701,170109,La Floresta
+parish_ec_170110,city_ec_1701,170110,La Libertad
+parish_ec_170111,city_ec_1701,170111,La Magdalena
+parish_ec_170112,city_ec_1701,170112,La Vicentina
+parish_ec_170113,city_ec_1701,170113,San Blas
+parish_ec_170114,city_ec_1701,170114,San Marcos
+parish_ec_170115,city_ec_1701,170115,San Roque
+parish_ec_170116,city_ec_1701,170116,San Sebastian
+parish_ec_170117,city_ec_1701,170117,Santa Barbara
+parish_ec_170118,city_ec_1701,170118,Santa Prisca
+parish_ec_170119,city_ec_1701,170119,Villa Flora
+parish_ec_170120,city_ec_1701,170120,Carcelen
+parish_ec_170121,city_ec_1701,170121,Chimbacalle
+parish_ec_170122,city_ec_1701,170122,El Batan
+parish_ec_170123,city_ec_1701,170123,El Beaterio
+parish_ec_170124,city_ec_1701,170124,El Inca
+parish_ec_170125,city_ec_1701,170125,Eloy Alfaro
+parish_ec_170126,city_ec_1701,170126,Guamani
+parish_ec_170127,city_ec_1701,170127,La Concepcion
+parish_ec_170128,city_ec_1701,170128,Las Cuadras
+parish_ec_170135,city_ec_1701,170135,Atahualpa (Habaspamba)
+parish_ec_170150,city_ec_1701,170150,Quito
+parish_ec_170151,city_ec_1701,170151,Alangasi
+parish_ec_170152,city_ec_1701,170152,Amaguaña
+parish_ec_170154,city_ec_1701,170154,Calacali
+parish_ec_170155,city_ec_1701,170155,Calderon (Carapungo)
+parish_ec_170156,city_ec_1701,170156,Conocoto
+parish_ec_170157,city_ec_1701,170157,Cumbaya
+parish_ec_170158,city_ec_1701,170158,Chavezpamba
+parish_ec_170159,city_ec_1701,170159,Checa (Chilpa)
+parish_ec_170160,city_ec_1701,170160,El Quinche
+parish_ec_170161,city_ec_1701,170161,Gualea
+parish_ec_170162,city_ec_1701,170162,Guangopolo
+parish_ec_170163,city_ec_1701,170163,Guayllabamba
+parish_ec_170164,city_ec_1701,170164,La Merced
+parish_ec_170165,city_ec_1701,170165,Llano Chico
+parish_ec_170166,city_ec_1701,170166,Lloa
+parish_ec_170168,city_ec_1701,170168,Nanegal
+parish_ec_170169,city_ec_1701,170169,Nanegalito
+parish_ec_170170,city_ec_1701,170170,Nayon
+parish_ec_170171,city_ec_1701,170171,Nono
+parish_ec_170172,city_ec_1701,170172,Pacto
+parish_ec_170174,city_ec_1701,170174,Perucho
+parish_ec_170175,city_ec_1701,170175,Pifo
+parish_ec_170176,city_ec_1701,170176,Pintag
+parish_ec_170177,city_ec_1701,170177,Pomasqui
+parish_ec_170178,city_ec_1701,170178,Puellaro
+parish_ec_170179,city_ec_1701,170179,Puembo
+parish_ec_170180,city_ec_1701,170180,San Antonio
+parish_ec_170181,city_ec_1701,170181,San Jose De Minas
+parish_ec_170183,city_ec_1701,170183,Tababela
+parish_ec_170184,city_ec_1701,170184,Tumbaco
+parish_ec_170185,city_ec_1701,170185,Yaruqui
+parish_ec_170186,city_ec_1701,170186,Zambiza
+parish_ec_170201,city_ec_1702,170201,Ayora
+parish_ec_170202,city_ec_1702,170202,Cayambe
+parish_ec_170203,city_ec_1702,170203,Juan Montalvo
+parish_ec_170250,city_ec_1702,170250,Cayambe
+parish_ec_170251,city_ec_1702,170251,Ascazubi
+parish_ec_170252,city_ec_1702,170252,Cangahua
+parish_ec_170253,city_ec_1702,170253,Olmedo (Pesillo)
+parish_ec_170254,city_ec_1702,170254,Oton
+parish_ec_170255,city_ec_1702,170255,Santa Rosa De Cuzubamba
+parish_ec_170350,city_ec_1703,170350,Machachi
+parish_ec_170351,city_ec_1703,170351,Aloag
+parish_ec_170352,city_ec_1703,170352,Aloasi
+parish_ec_170353,city_ec_1703,170353,Cutuglahua
+parish_ec_170354,city_ec_1703,170354,El Chaupi
+parish_ec_170355,city_ec_1703,170355,Manuel Cornejo Astorga (Tandapi)
+parish_ec_170356,city_ec_1703,170356,Tambillo
+parish_ec_170357,city_ec_1703,170357,Uyumbicho
+parish_ec_170450,city_ec_1704,170450,Tabacundo
+parish_ec_170451,city_ec_1704,170451,La Esperanza
+parish_ec_170452,city_ec_1704,170452,Malchingui
+parish_ec_170453,city_ec_1704,170453,Tocachi
+parish_ec_170454,city_ec_1704,170454,Tupigachi
+parish_ec_170501,city_ec_1705,170501,Sangolqui
+parish_ec_170502,city_ec_1705,170502,San Pedro De Taboada
+parish_ec_170503,city_ec_1705,170503,San Rafael
+parish_ec_170550,city_ec_1705,170550,Sangolqui
+parish_ec_170551,city_ec_1705,170551,Cotogchoa
+parish_ec_170552,city_ec_1705,170552,Rumipamba
+parish_ec_170750,city_ec_1707,170750,San Miguel De Los Bancos
+parish_ec_170751,city_ec_1707,170751,Mindo
+parish_ec_170850,city_ec_1708,170850,Pedro Vicente Maldonado
+parish_ec_170950,city_ec_1709,170950,Puerto Quito
+parish_ec_180101,city_ec_1801,180101,Atocha - Ficoa
+parish_ec_180102,city_ec_1801,180102,Celiano Monge
+parish_ec_180103,city_ec_1801,180103,Huachi Chico
+parish_ec_180104,city_ec_1801,180104,Huachi Loreto
+parish_ec_180105,city_ec_1801,180105,La Merced
+parish_ec_180106,city_ec_1801,180106,La Peninsula
+parish_ec_180107,city_ec_1801,180107,La Matriz
+parish_ec_180108,city_ec_1801,180108,Pishilata
+parish_ec_180109,city_ec_1801,180109,San Francisco
+parish_ec_180150,city_ec_1801,180150,Ambato
+parish_ec_180151,city_ec_1801,180151,Ambatillo
+parish_ec_180152,city_ec_1801,180152,Atahualpa (Chisalata)
+parish_ec_180153,city_ec_1801,180153,Augusto N. Martinez (Mundugleo)
+parish_ec_180154,city_ec_1801,180154,Constantino Fernandez
+parish_ec_180155,city_ec_1801,180155,Huachi Grande
+parish_ec_180156,city_ec_1801,180156,Izamba
+parish_ec_180157,city_ec_1801,180157,Juan Benigno Vela
+parish_ec_180158,city_ec_1801,180158,Montalvo
+parish_ec_180159,city_ec_1801,180159,Pasa
+parish_ec_180160,city_ec_1801,180160,Picaigua
+parish_ec_180161,city_ec_1801,180161,Pilaguin (Pilahuin)
+parish_ec_180162,city_ec_1801,180162,Quisapincha (Quizapincha)
+parish_ec_180163,city_ec_1801,180163,San Bartolome De Pinllog
+parish_ec_180164,city_ec_1801,180164,San Fernando (Pasa San Fernando)
+parish_ec_180165,city_ec_1801,180165,Santa Rosa
+parish_ec_180166,city_ec_1801,180166,Totoras
+parish_ec_180167,city_ec_1801,180167,Cunchibamba
+parish_ec_180168,city_ec_1801,180168,Unamuncho
+parish_ec_180250,city_ec_1802,180250,Baños De Agua Santa
+parish_ec_180251,city_ec_1802,180251,Lligua
+parish_ec_180252,city_ec_1802,180252,Rio Negro
+parish_ec_180253,city_ec_1802,180253,Rio Verde
+parish_ec_180254,city_ec_1802,180254,Ulba
+parish_ec_180350,city_ec_1803,180350,Cevallos
+parish_ec_180450,city_ec_1804,180450,Mocha
+parish_ec_180451,city_ec_1804,180451,Pinguili
+parish_ec_180550,city_ec_1805,180550,Patate
+parish_ec_180551,city_ec_1805,180551,El Triunfo
+parish_ec_180552,city_ec_1805,180552,Los Andes
+parish_ec_180553,city_ec_1805,180553,Sucre
+parish_ec_180650,city_ec_1806,180650,Quero
+parish_ec_180651,city_ec_1806,180651,Rumipamba
+parish_ec_180652,city_ec_1806,180652,Yanayacu - Mochapata
+parish_ec_180701,city_ec_1807,180701,Pelileo
+parish_ec_180702,city_ec_1807,180702,Pelileo Grande
+parish_ec_180750,city_ec_1807,180750,Pelileo
+parish_ec_180751,city_ec_1807,180751,Benitez (Pachanlica)
+parish_ec_180752,city_ec_1807,180752,Bolivar
+parish_ec_180753,city_ec_1807,180753,Cotalo
+parish_ec_180754,city_ec_1807,180754,Chiquicha
+parish_ec_180755,city_ec_1807,180755,El Rosario (Rumichaca)
+parish_ec_180756,city_ec_1807,180756,Garcia Moreno (Chumaqui)
+parish_ec_180757,city_ec_1807,180757,Guambalo (Huambalo)
+parish_ec_180758,city_ec_1807,180758,Salasaca
+parish_ec_180801,city_ec_1808,180801,Ciudad Nueva
+parish_ec_180802,city_ec_1808,180802,Pillaro
+parish_ec_180851,city_ec_1808,180851,Baquerizo Moreno
+parish_ec_180852,city_ec_1808,180852,Emilio Maria Teran (Rumipamba)
+parish_ec_180853,city_ec_1808,180853,Marcos Espinel (Chacata)
+parish_ec_180854,city_ec_1808,180854,Presidente Urbina (Chagrapamba Patzucul)
+parish_ec_180855,city_ec_1808,180855,San Andres
+parish_ec_180856,city_ec_1808,180856,San Jose De Poalo
+parish_ec_180857,city_ec_1808,180857,San Miguelito
+parish_ec_180950,city_ec_1809,180950,Tisaleo
+parish_ec_180951,city_ec_1809,180951,Quinchicoto
+parish_ec_190101,city_ec_1901,190101,Limon
+parish_ec_190102,city_ec_1901,190102,Zamora
+parish_ec_190150,city_ec_1901,190150,Zamora
+parish_ec_190151,city_ec_1901,190151,Cumbaratza
+parish_ec_190152,city_ec_1901,190152,Guadalupe
+parish_ec_190153,city_ec_1901,190153,Imbana (LA Victoria De Imbana)
+parish_ec_190155,city_ec_1901,190155,Sabanilla
+parish_ec_190156,city_ec_1901,190156,Timbara
+parish_ec_190158,city_ec_1901,190158,San Carlos De Las Minas
+parish_ec_190250,city_ec_1902,190250,Zumba
+parish_ec_190251,city_ec_1902,190251,Chito
+parish_ec_190252,city_ec_1902,190252,El Chorro
+parish_ec_190254,city_ec_1902,190254,La Chonta
+parish_ec_190256,city_ec_1902,190256,Pucapamba
+parish_ec_190259,city_ec_1902,190259,San Andrés
+parish_ec_190350,city_ec_1903,190350,Guayzimi
+parish_ec_190351,city_ec_1903,190351,Zurmi
+parish_ec_190450,city_ec_1904,190450,28 De Mayo (San Jose De Yacuambi)
+parish_ec_190451,city_ec_1904,190451,La Paz
+parish_ec_190452,city_ec_1904,190452,Tutupali
+parish_ec_190550,city_ec_1905,190550,Yanzatza
+parish_ec_190551,city_ec_1905,190551,Chicaña
+parish_ec_190553,city_ec_1905,190553,Los Encuentros
+parish_ec_190650,city_ec_1906,190650,El Pangui
+parish_ec_190651,city_ec_1906,190651,El Guismi
+parish_ec_190652,city_ec_1906,190652,Pachicutza
+parish_ec_190653,city_ec_1906,190653,Tundayme
+parish_ec_190750,city_ec_1907,190750,Zumbi
+parish_ec_190850,city_ec_1908,190850,Palanda
+parish_ec_190851,city_ec_1908,190851,El Porvenir Del Carmen
+parish_ec_190852,city_ec_1908,190852,San Francisco De Vergel
+parish_ec_190853,city_ec_1908,190853,Valladolid
+parish_ec_190950,city_ec_1909,190950,Paquisha
+parish_ec_190951,city_ec_1909,190951,Bellavista
+parish_ec_190952,city_ec_1909,190952,Nuevo Quito
+parish_ec_200150,city_ec_2001,200150,Puerto Baquerizo Moreno
+parish_ec_200151,city_ec_2001,200151,El Progreso
+parish_ec_200152,city_ec_2001,200152,Isla Santa Maria (Floreana)
+parish_ec_200250,city_ec_2002,200250,Puerto Villamil
+parish_ec_200251,city_ec_2002,200251,Tomas De Berlanga (Santo Tomas)
+parish_ec_200350,city_ec_2003,200350,Puerto Ayora
+parish_ec_200351,city_ec_2003,200351,Bellavista
+parish_ec_200352,city_ec_2003,200352,Santa Rosa
+parish_ec_210150,city_ec_2101,210150,Nueva Loja
+parish_ec_210152,city_ec_2101,210152,Dureno
+parish_ec_210153,city_ec_2101,210153,General Farfan
+parish_ec_210155,city_ec_2101,210155,El Eno
+parish_ec_210156,city_ec_2101,210156,Pacayacu
+parish_ec_210157,city_ec_2101,210157,Jambeli
+parish_ec_210158,city_ec_2101,210158,Santa Cecilia
+parish_ec_210250,city_ec_2102,210250,El Dorado De Cascales (Lumbaqui)
+parish_ec_210251,city_ec_2102,210251,El Reventador
+parish_ec_210252,city_ec_2102,210252,Gonzalo Pizarro
+parish_ec_210254,city_ec_2102,210254,Puerto Libre
+parish_ec_210350,city_ec_2103,210350,Puerto El Carmen Del Putumayo
+parish_ec_210351,city_ec_2103,210351,Palma Roja
+parish_ec_210352,city_ec_2103,210352,Puerto Bolivar (Puerto Montufar)
+parish_ec_210353,city_ec_2103,210353,Puerto Rodriguez
+parish_ec_210354,city_ec_2103,210354,Santa Elena
+parish_ec_210450,city_ec_2104,210450,Shushufindi
+parish_ec_210451,city_ec_2104,210451,Limoncocha
+parish_ec_210452,city_ec_2104,210452,Pañacocha
+parish_ec_210453,city_ec_2104,210453,San Roque
+parish_ec_210454,city_ec_2104,210454,San Pedro De Los Cofanes
+parish_ec_210455,city_ec_2104,210455,Siete De Julio
+parish_ec_210550,city_ec_2105,210550,La Bonita
+parish_ec_210551,city_ec_2105,210551,El Playon De San Francisco
+parish_ec_210552,city_ec_2105,210552,La Sofia
+parish_ec_210553,city_ec_2105,210553,Rosa Florida
+parish_ec_210554,city_ec_2105,210554,Santa Barbara
+parish_ec_210650,city_ec_2106,210650,El Dorado De Cascales
+parish_ec_210651,city_ec_2106,210651,Santa Rosa De Sucumbios
+parish_ec_210652,city_ec_2106,210652,Sevilla
+parish_ec_210750,city_ec_2107,210750,Tarapoa
+parish_ec_210751,city_ec_2107,210751,Cuyabeno
+parish_ec_210752,city_ec_2107,210752,Aguas Negras
+parish_ec_220150,city_ec_2201,220150,Puerto Francisco De Orellana (Coca)
+parish_ec_220151,city_ec_2201,220151,Alejandro Labaca
+parish_ec_220152,city_ec_2201,220152,Dayuma
+parish_ec_220153,city_ec_2201,220153,El Dorado
+parish_ec_220154,city_ec_2201,220154,El Eden
+parish_ec_220155,city_ec_2201,220155,Garcia Moreno
+parish_ec_220156,city_ec_2201,220156,Ines Arango
+parish_ec_220157,city_ec_2201,220157,La Belleza
+parish_ec_220158,city_ec_2201,220158,Nuevo Paraiso
+parish_ec_220159,city_ec_2201,220159,San Jose De Guayusa
+parish_ec_220160,city_ec_2201,220160,San Luis De Armenia
+parish_ec_220161,city_ec_2201,220161,Taracoa
+parish_ec_220250,city_ec_2202,220250,Nuevo Rocafuerte
+parish_ec_220251,city_ec_2202,220251,Capitan Augusto Rivadeneira
+parish_ec_220252,city_ec_2202,220252,Cononaco
+parish_ec_220253,city_ec_2202,220253,Santa Maria De Huiririma
+parish_ec_220254,city_ec_2202,220254,Tiputini
+parish_ec_220255,city_ec_2202,220255,Yasuni
+parish_ec_220350,city_ec_2203,220350,La Joya De Los Sachas
+parish_ec_220351,city_ec_2203,220351,Enokanqui
+parish_ec_220352,city_ec_2203,220352,Lago San Pedro
+parish_ec_220353,city_ec_2203,220353,Pompeya
+parish_ec_220354,city_ec_2203,220354,Rumipamba
+parish_ec_220355,city_ec_2203,220355,San Carlos
+parish_ec_220356,city_ec_2203,220356,San Sebastian Del Coca
+parish_ec_220357,city_ec_2203,220357,Tres De Noviembre
+parish_ec_220358,city_ec_2203,220358,Union Milagreña
+parish_ec_220450,city_ec_2204,220450,Loreto
+parish_ec_220451,city_ec_2204,220451,Avila
+parish_ec_220452,city_ec_2204,220452,Puerto Murialdo
+parish_ec_220453,city_ec_2204,220453,San Jose Del Payamino
+parish_ec_220454,city_ec_2204,220454,San Jose De Dahuano
+parish_ec_220455,city_ec_2204,220455,San Vicente De Huaticocha
+parish_ec_230101,city_ec_2301,230101,Abraham Calazacón
+parish_ec_230102,city_ec_2301,230102,Bomboli
+parish_ec_230103,city_ec_2301,230103,Chiguilpe
+parish_ec_230104,city_ec_2301,230104,Río Toachi
+parish_ec_230105,city_ec_2301,230105,Río Verde
+parish_ec_230106,city_ec_2301,230106,Santo Domingo De Los Colorados
+parish_ec_230107,city_ec_2301,230107,Zaracay
+parish_ec_230150,city_ec_2301,230150,Santo Domingo
+parish_ec_230151,city_ec_2301,230151,Alluriquín
+parish_ec_230152,city_ec_2301,230152,Puerto Limón
+parish_ec_230153,city_ec_2301,230153,Luz De América
+parish_ec_230154,city_ec_2301,230154,San Jacinto Del Bua
+parish_ec_230155,city_ec_2301,230155,Valle Hermoso
+parish_ec_230156,city_ec_2301,230156,El Esfuerzo
+parish_ec_230157,city_ec_2301,230157,Santa María Del Toachi
+parish_ec_230250,city_ec_2302,230250,La Concordia
+parish_ec_230251,city_ec_2302,230251,Monterrey
+parish_ec_230252,city_ec_2302,230252,Las Villegas
+parish_ec_230253,city_ec_2302,230253,Plan Piloto
+parish_ec_240101,city_ec_2401,240101,Ballenita
+parish_ec_240102,city_ec_2401,240102,Santa Elena
+parish_ec_240150,city_ec_2401,240150,Santa Elena
+parish_ec_240151,city_ec_2401,240151,Atahualpa
+parish_ec_240152,city_ec_2401,240152,Colonche
+parish_ec_240153,city_ec_2401,240153,Chanduy
+parish_ec_240154,city_ec_2401,240154,Manglaralto
+parish_ec_240155,city_ec_2401,240155,Simón Bolívar (Julio Moreno)
+parish_ec_240156,city_ec_2401,240156,San José De Ancón
+parish_ec_240250,city_ec_2402,240250,La Libertad
+parish_ec_240301,city_ec_2403,240301,Carlos Espinoza Larrea
+parish_ec_240302,city_ec_2403,240302,Gral Alberto Enriquez Gallo
+parish_ec_240303,city_ec_2403,240303,Vicente Rocafuerte
+parish_ec_240304,city_ec_2403,240304,Santa Rosa
+parish_ec_240350,city_ec_2403,240350,Salinas
+parish_ec_240351,city_ec_2403,240351,Anconcito
+parish_ec_240352,city_ec_2403,240352,José Luis Tamayo

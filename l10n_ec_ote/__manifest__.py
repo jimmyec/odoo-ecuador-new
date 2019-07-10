@@ -1,23 +1,25 @@
 # -*- coding: utf-8 -*-
-# © <2016> <Alcides Rivera VIRTUALSAMI CIA LTDA>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 {
-    'name': 'OpenERP OTE for Ecuador',
-    'version': '0.1.0',
-    'author': 'VIRTUALSAMI CIA. LTDA.',
+    'name': "OTE - Ecuador",
+    'summary': """Ecuador's Geopolitical Information.""",
+    'version': '11.0.1.0.0',
+    'author': "Fabrica de Software Libre, Odoo Community Association (OCA)",
+    'maintainer': 'Fabrica de Software Libre',
+    'website': 'http://www.libre.ec',
+    'license': 'AGPL-3',
     'category': 'Localization',
-    'complexity': 'normal',
-    'website': 'http://www.virtualsami.com.ec',
+    'depends': [
+        'base',
+    ],
     'data': [
-        'view/country_view.xml',
+        'views/res_partner.xml',
         'data/res.country.state.csv',
         'data/res.country.city.csv',
+        'data/res.country.parish.csv',
         'data/res_country.xml',
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
     ],
-    'depends': [
-        'base'
-    ],
-    'installable': False,
+    'demo': [],
+    'test': [],
+    'installable': True,
 }
