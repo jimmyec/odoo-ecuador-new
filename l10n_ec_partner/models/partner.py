@@ -17,13 +17,13 @@ class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
-    @api.multi
     def update_identifiers(self):
         sql = """UPDATE res_partner SET identifier='9999999999999'
         WHERE identifier is NULL"""
         self.env.cr.execute(sql)
 
-    @api.model_cr_context
+    @api.model
+    # @api.model_cr_context
     def init(self):
         self.update_identifiers()
         super(ResPartner, self).init()
@@ -34,7 +34,6 @@ class ResPartner(models.Model):
         WHERE type_id <> 'pasaporte'"""
         self._cr.execute(sql_index)
 
-    @api.multi
     @api.depends('identifier', 'name')
     def name_get(self):
         data = []
@@ -59,38 +58,38 @@ class ResPartner(models.Model):
             partners = self.search(args, limit=limit)
         return partners.name_get()
 
-    @api.one
     @api.constrains('identifier')
     def _check_identifier(self):
         res = False
-        if self.type_id == 'cedula':
-            res = ec.ci.is_valid(self.identifier)
-        elif self.type_id == 'ruc':
-            res = ec.ruc.is_valid(self.identifier)
-        else:
-            return True
-        if not res:
-            raise ValidationError('Error en el identificador.')
+        for rec in self:
+            if rec.type_id == 'cedula':
+                res = ec.ci.is_valid(rec.identifier)
+            elif rec.type_id == 'ruc':
+                res = ec.ruc.is_valid(rec.identifier)
+            else:
+                return True
+            if not res:
+                raise ValidationError('Error en el identificador.')
 
-    @api.one
     @api.depends('identifier')
     def _compute_type_person(self):
-        if not self.identifier:
-            self.type_person = 'Otro'
-        elif int(self.identifier[2]) <= 6:
-            self.type_person = 'Natural'
-        elif int(self.identifier[2]) in [6, 9]:
-            self.type_person = 'Juridica'
-        else:
-            self.type_person = 'Otro'
+        for rec in self:
+            if not rec.identifier:
+                rec.type_person = 'Otro'
+            elif int(rec.identifier[2]) <= 6:
+                rec.type_person = 'Natural'
+            elif int(self.identifier[2]) in [6, 9]:
+                rec.type_person = 'Juridica'
+            else:
+                rec.type_person = 'Otro'
 
-    @api.one
     @api.constrains('email')
     def validate_mail(self):
-        if self.email:
-            match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)
-            if match == None:
-                raise ValidationError('Not a Valid email')
+        for rec in self:
+            if rec.email:
+                match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)
+                if match == None:
+                    raise ValidationError('Not a Valid email')
 
     identifier = fields.Char(
             string='Identificación',
@@ -114,6 +113,9 @@ class ResPartner(models.Model):
             string='Persona',
             compute='_compute_type_person'
     )
+    customer = fields.Boolean(string='Is a Customer', default=True,
+                            help="Check this box if this contact is a customer.")
+
 #    is_company = fields.Boolean(default=True)
 
     def validate_from_sri(self):
