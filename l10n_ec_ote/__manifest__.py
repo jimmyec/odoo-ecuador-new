@@ -2,7 +2,7 @@
 {
     'name': "OTE - Ecuador",
     'summary': """Ecuador's Geopolitical Information.""",
-    'version': '11.0.1.0.0',
+    'version': '13.0.0.0.0',
     'author': "Fabrica de Software Libre, Odoo Community Association (OCA)",
     'maintainer': 'Fabrica de Software Libre',
     'website': 'http://www.libre.ec',

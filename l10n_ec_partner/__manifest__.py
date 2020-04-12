@@ -4,7 +4,7 @@
 
 {
     'name': 'Partner for Ecuador',
-    'version': '11.0.0.1',
+    'version': '13.0.0.0',
     'description': """
         Campos requeridos para empresas ecuatorianas
     """,

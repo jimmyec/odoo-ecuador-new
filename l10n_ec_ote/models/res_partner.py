@@ -19,7 +19,6 @@ class ResPartner(models.Model):
     def push_city(self):
         return{'value': {'parish_id': ''}}
 
-    @api.multi
     @api.onchange("city_id")
     def _onchange_city_id(self):
         for r in self:
