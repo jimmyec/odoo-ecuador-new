@@ -30,7 +30,7 @@ class ResPartner(models.Model):
     city_id = fields.Many2one(
         comodel_name='res.country.city',
         ondelete='restrict',
-        string='City',
+        string='City id',
     )
     parish_id = fields.Many2one(
         comodel_name='res.country.parish',
