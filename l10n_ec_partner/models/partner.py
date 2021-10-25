@@ -140,6 +140,6 @@ class ResCompany(models.Model):
         [('NO', 'NO'),
          ('SI', 'SI')],
         string="Obligado a llevar contabilidad",
-        required=True,)
+        required=True,default='NO')
     artesano = fields.Boolean(string="Calificación Artesanal", default=False)
     numart = fields.Char(string="Número")
