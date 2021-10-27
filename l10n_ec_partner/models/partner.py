@@ -95,7 +95,8 @@ class ResPartner(models.Model):
             string='Identificación',
             required=True,
             size=13,
-            help='Cédula de Identidad, RUC o Pasaporte'
+            help='Cédula de Identidad, RUC o Pasaporte',
+            default='9999999999'
     )
     type_id = fields.Selection(
             string="Documento Id", required=True,
