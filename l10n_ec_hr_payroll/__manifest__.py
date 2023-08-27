@@ -14,6 +14,7 @@
 
     'author': "jfinlay@riseup.net",
     'website': "http://www.lalibre.net",
+    'license': 'AGPL-3',
     'version': '10.0.0.1',
     'depends': [
         'base',

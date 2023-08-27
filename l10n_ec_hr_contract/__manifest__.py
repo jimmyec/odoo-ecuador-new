@@ -9,6 +9,7 @@
     "Cristian Salamea <cristian.salamea@gmail.com>"
     "Odoo Community Association (OCA)",
     'website': 'http://miketelahun.wordpress.com',
+    'license': 'AGPL-3',
     'depends': [
         'hr_contract',
         'hr_holidays',
